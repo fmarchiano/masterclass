@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabio Marchianò — Masterclass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Syne:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --y:#FFE600;--b:#080808;--b2:#111111;--w:#F0EDE5;
+  --dim:rgba(240,237,229,.32);--dim2:rgba(240,237,229,.55);
+  --bb:'Bebas Neue',sans-serif;--sy:'Syne',sans-serif;--mo:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--b);color:var(--w);font-family:var(--sy);overflow-x:hidden;cursor:none;}
+body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");background-size:160px;pointer-events:none;opacity:.65;}
+
+
+
+.about-photo{
+  width:100%;
+  max-width:320px;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  object-position:center top;
+  border:1px solid rgba(255,230,0,.2);
+  display:block;
+  margin-bottom:1.5rem;
+  filter:grayscale(15%);
+  transition:filter .4s;
+}
+.about-photo:hover{filter:grayscale(0%);}
+
+/* when replaced with real img: */
+.travel-photo-placeholder img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+}
+
+/* ══ DEMO SECTION ══ */
+.demo-section{padding:clamp(3rem,7vh,6rem) clamp(1.5rem,5vw,5rem);background:var(--b);}
+.demo-wrap{
+  max-width:1100px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;
+  align-items:center;
+}
+@media(max-width:800px){.demo-wrap{grid-template-columns:1fr;}}
+.demo-copy{}
+.demo-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.demo-title{font-family:var(--bb);font-size:clamp(2rem,4vw,3.2rem);color:var(--w);line-height:1;margin-bottom:1rem;}
+.demo-desc{font-size:.88rem;font-weight:300;color:var(--dim2);line-height:1.6;}
+.demo-screen{
+  position:relative;
+  background:#0d0d0d;
+  border:1px solid rgba(255,230,0,.15);
+  border-radius:4px;
+  overflow:hidden;
+}
+.demo-screen-bar{
+  height:28px;background:#161616;
+  display:flex;align-items:center;gap:6px;padding:0 12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.demo-screen-dot{width:10px;height:10px;border-radius:50%;}
+.demo-screen-title{
+  font-family:var(--mo);font-size:.48rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.2);
+  margin-left:auto;margin-right:auto;
+}
+.demo-canvas-wrap{position:relative;}
+.demo-canvas-wrap canvas{display:block;width:100%;height:260px;}
+
+/* ══ MATERIALS CARD ══ */
+.materials-band{
+  background:rgba(255,230,0,.04);
+  border-top:1px solid rgba(255,230,0,.12);
+  border-bottom:1px solid rgba(255,230,0,.12);
+  padding:clamp(2.5rem,5vh,4rem) clamp(1.5rem,5vw,5rem);
+}
+.materials-inner{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+@media(max-width:700px){.materials-inner{grid-template-columns:1fr;}}
+.materials-headline{font-family:var(--bb);font-size:clamp(2rem,4vw,3.5rem);color:var(--w);line-height:1;margin-bottom:.8rem;}
+.materials-headline .y{color:var(--y);}
+.materials-sub{font-size:.9rem;font-weight:300;color:var(--dim2);line-height:1.6;max-width:38ch;}
+.materials-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.materials-list li{font-size:.85rem;font-weight:300;color:var(--dim2);display:flex;align-items:flex-start;gap:.7rem;line-height:1.4;}
+.materials-list li::before{content:'✦';color:var(--y);font-size:.6rem;flex-shrink:0;margin-top:.25rem;}
+
+/* ══ POLYMATH STRIP ══ */
+.polymath-strip{
+  padding:clamp(1.5rem,3vh,2.5rem) clamp(1.5rem,5vw,5rem);
+  border-top:1px solid rgba(255,230,0,.07);
+  display:flex;gap:1rem;flex-wrap:wrap;align-items:center;
+}
+.poly-tag{
+  font-family:var(--mo);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.3rem .8rem;border:1px solid rgba(255,230,0,.15);border-radius:20px;
+  color:rgba(255,230,0,.45);transition:all .2s;
+}
+.poly-tag:hover{border-color:var(--y);color:var(--y);}
+.poly-intro{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-right:.5rem;}
+
+/* ══ SIMULATOR / GIF SECTION ══ */
+.sim-section{padding:clamp(3rem,7vh,6rem) clamp(1.5rem,5vw,5rem);}
+.sim-wrap{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+@media(max-width:800px){.sim-wrap{grid-template-columns:1fr;}}
+.sim-copy{}
+.sim-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.sim-title{font-family:var(--bb);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--w);line-height:1.05;margin-bottom:1rem;}
+.sim-title .y{color:var(--y);}
+.sim-desc{font-size:.88rem;font-weight:300;color:var(--dim2);line-height:1.65;}
+.sim-perks{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:.5rem;}
+.sim-perks li{font-size:.82rem;font-weight:300;color:var(--dim2);display:flex;gap:.6rem;align-items:flex-start;}
+.sim-perks li::before{content:'✦';color:var(--y);font-size:.6rem;flex-shrink:0;margin-top:.2rem;}
+.sim-gif-wrap{
+  position:relative;background:#0d0d0d;
+  border:1px solid rgba(255,230,0,.15);border-radius:4px;overflow:hidden;
+}
+.sim-gif-bar{
+  height:28px;background:#161616;
+  display:flex;align-items:center;gap:6px;padding:0 12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.sim-gif-dot{width:10px;height:10px;border-radius:50%;}
+.sim-gif-name{
+  font-family:var(--mo);font-size:.46rem;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,.2);
+  margin:0 auto;
+}
+.sim-gif-img{
+  display:block;width:100%;height:auto;min-height:200px;
+  object-fit:cover;
+  background:repeating-linear-gradient(
+    -45deg,#111 0px,#111 10px,#141414 10px,#141414 20px
+  );
+}
+.sim-gif-placeholder{
+  min-height:220px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:.6rem;
+  background:repeating-linear-gradient(-45deg,#0d0d0d 0,#0d0d0d 10px,#111 10px,#111 20px);
+}
+.sim-gif-placeholder span{font-family:var(--mo);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,230,0,.3);}
+
+.toast-copied{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--y);color:var(--b);
+  font-family:var(--mo);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.55rem 1.4rem;border-radius:2px;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  z-index:9999;white-space:nowrap;
+}
+.toast-copied.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.email-copy-btn{
+  background:none;border:none;padding:0;
+  font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);cursor:pointer;transition:color .2s;
+}
+.email-copy-btn:hover{color:var(--y);}
+canvas{position:absolute;inset:0;z-index:0;}
+.cur,.cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cur{width:9px;height:9px;background:var(--y);border-radius:50%;}
+.cur-r{width:34px;height:34px;border:1.5px solid rgba(255,230,0,.5);border-radius:50%;z-index:9998;transition:all .13s ease;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.4rem clamp(1.5rem,5vw,5rem);background:linear-gradient(to bottom,rgba(8,8,8,.96),transparent);gap:1rem;flex-wrap:wrap;}
+.nav-logo{font-family:var(--mo);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;}
+.nav-center{display:flex;gap:1.8rem;list-style:none;}
+.nav-center a{font-family:var(--mo);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim2);text-decoration:none;cursor:none;transition:color .2s;position:relative;padding-bottom:3px;}
+.nav-center a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.nav-center a:hover,.nav-center a.active{color:var(--y);}
+.nav-center a.active::after,.nav-center a:hover::after{transform:scaleX(1);}
+.lang-switcher{display:flex;gap:.3rem;}
+.lang-btn{font-family:var(--mo);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .55rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;background:transparent;color:var(--dim);cursor:none;transition:all .2s;}
+.lang-btn:hover,.lang-btn.active{border-color:var(--y);color:var(--y);}
+
+/* PAGES */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* HOME HERO */
+.home-hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) 0;}
+.home-hero-inner{position:relative;z-index:2;}
+.hero-eyebrow{font-family:var(--mo);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;opacity:1;white-space:nowrap;}
+.hero-name{font-family:var(--bb);font-size:clamp(5rem,15vw,14rem);line-height:.88;letter-spacing:.02em;color:var(--w);}
+.hero-name .y{color:var(--y);}
+.hero-name .outline{-webkit-text-stroke:1.5px rgba(255,230,0,.2);color:transparent;display:block;}
+.hero-tagline{font-size:clamp(1rem,2vw,1.35rem);font-weight:300;color:var(--dim2);max-width:42ch;line-height:1.5;margin-top:1.4rem;opacity:0;animation:rise .8s ease .75s forwards;}
+.hero-creds{display:flex;gap:2rem;margin-top:2.2rem;flex-wrap:wrap;opacity:0;animation:rise .8s ease .95s forwards;}
+.cred{display:flex;flex-direction:column;gap:.2rem;}
+.cred-val{font-family:var(--bb);font-size:clamp(1.8rem,4vw,3rem);color:var(--y);line-height:1;}
+.cred-label{font-family:var(--mo);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
+.hero-cta{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:rise .8s ease 1.1s forwards;}
+.btn{font-family:var(--mo);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:.75rem 1.8rem;border-radius:2px;transition:all .22s;cursor:pointer;display:inline-block;border:none;}
+.btn-y{background:var(--y);color:var(--b);font-weight:600;}
+.btn-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--y);}
+.btn-o{border:1px solid rgba(255,230,0,.3);color:var(--dim2);}
+.btn-o:hover{border-color:var(--y);color:var(--y);}
+
+/* SECTIONS */
+.section{padding:clamp(5rem,10vh,9rem) clamp(1.5rem,5vw,5rem);position:relative;}
+.section-label{font-family:var(--mo);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--y);margin-bottom:2.5rem;display:flex;align-items:center;gap:.8rem;}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(255,230,0,.15);max-width:120px;}
+
+/* BIO */
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;}
+@media(max-width:700px){.bio-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.bio-text{font-size:clamp(1rem,1.8vw,1.25rem);font-weight:300;line-height:1.7;color:var(--dim2);}
+.bio-text strong{color:var(--w);font-weight:600;}
+.bio-text .hl{color:var(--y);}
+.bio-facts{display:flex;flex-direction:column;gap:1.5rem;}
+.fact{border-left:2px solid rgba(255,230,0,.25);padding:.8rem 1.2rem;transition:border-color .2s;}
+.fact:hover{border-color:var(--y);}
+.fact-title{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:.4rem;}
+.fact-text{font-size:.9rem;font-weight:300;color:var(--dim2);line-height:1.5;}
+
+/* IN-PERSON */
+.inperson-section{padding:clamp(4rem,8vh,7rem) clamp(1.5rem,5vw,5rem);background:var(--b2);}
+.inperson-intro{font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;color:var(--dim2);max-width:52ch;line-height:1.6;margin-bottom:3rem;}
+.seasons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;}
+@media(max-width:900px){.seasons-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.seasons-grid{grid-template-columns:1fr;}}
+.season-card{border:1px solid rgba(255,230,0,.1);border-radius:3px;padding:1.6rem;background:var(--b);transition:border-color .3s,transform .3s;position:relative;overflow:hidden;}
+.season-card:hover{border-color:rgba(255,230,0,.45);transform:translateY(-3px);}
+.season-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--y),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.season-card:hover::before{transform:scaleX(1);}
+.season-label{font-family:var(--mo);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--y);margin-bottom:.6rem;}
+.season-emoji{font-size:1.6rem;margin-bottom:.8rem;display:block;}
+.season-cities{font-family:var(--bb);font-size:clamp(1.2rem,2.5vw,1.8rem);color:var(--w);line-height:1.1;margin-bottom:.7rem;}
+.season-months{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:.8rem;}
+.season-note{font-size:.78rem;font-weight:300;color:var(--dim);line-height:1.45;}
+
+/* COURSES TEASER */
+.courses-teaser{padding:clamp(3rem,8vh,7rem) clamp(1.5rem,5vw,5rem);}
+.courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1100px;margin-top:3rem;}
+@media(max-width:700px){.courses-grid{grid-template-columns:1fr;}}
+.course-card{position:relative;overflow:hidden;padding:2.5rem;border:1px solid rgba(255,230,0,.1);border-radius:3px;cursor:none;transition:border-color .3s,transform .3s;background:var(--b2);}
+.course-card:hover{border-color:rgba(255,230,0,.5);transform:translateY(-4px);}
+.course-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--y),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.course-card:hover::before{transform:scaleX(1);}
+.card-num{font-family:var(--bb);font-size:4rem;color:rgba(255,230,0,.07);line-height:1;margin-bottom:1rem;}
+.card-icon{font-size:1.8rem;margin-bottom:1rem;}
+.card-title{font-family:var(--bb);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--w);margin-bottom:.8rem;}
+.card-sub{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.card-desc{font-size:.9rem;font-weight:300;color:var(--dim);line-height:1.6;margin-bottom:1.8rem;}
+.card-link{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;transition:gap .2s;}
+.card-link:hover{gap:.9rem;}
+.card-link::after{content:'→';}
+
+/* FOOTER */
+footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,230,0,.08);flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+.footer-socials{display:flex;gap:1.5rem;}
+.footer-socials a{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;transition:color .2s;}
+.footer-socials a:hover{color:var(--y);}
+
+/* COURSE HERO */
+.course-hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) clamp(1.5rem,5vw,5rem);}
+.course-hero-inner{position:relative;z-index:2;}
+.course-back{font-family:var(--mo);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:3rem;transition:color .2s;}
+.course-back:hover{color:var(--y);}
+.course-back::before{content:'←';}
+.course-tag{font-family:var(--mo);font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;padding:.3rem .9rem;border:1px solid var(--y);border-radius:20px;color:var(--y);display:inline-block;margin-bottom:1.2rem;}
+.course-title{font-family:var(--bb);font-size:clamp(4rem,12vw,10rem);line-height:.88;color:var(--w);letter-spacing:.02em;margin-bottom:1.2rem;}
+.course-title .accent{color:var(--y);}
+.course-subtitle{font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;color:var(--dim2);max-width:48ch;line-height:1.55;margin-bottom:2rem;}
+.course-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.pill{font-family:var(--mo);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid rgba(255,230,0,.2);border-radius:20px;color:rgba(255,230,0,.5);transition:all .2s;}
+.pill:hover{border-color:var(--y);color:var(--y);}
+
+/* WHAT YOU LEARN */
+.learn-section{padding:clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,5rem);}
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin-top:3rem;}
+@media(max-width:800px){.learn-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.learn-grid{grid-template-columns:1fr;}}
+.learn-card{padding:1.8rem;border:1px solid rgba(255,230,0,.1);border-radius:3px;background:var(--b2);transition:border-color .25s,background .25s;}
+.learn-card:hover{border-color:rgba(255,230,0,.4);background:#141414;}
+.learn-card-icon{font-size:1.5rem;margin-bottom:1rem;}
+.learn-card-title{font-size:1rem;font-weight:600;color:var(--w);margin-bottom:.5rem;}
+.learn-card-text{font-size:.82rem;font-weight:300;color:var(--dim);line-height:1.55;}
+
+/* ══ DUAL PATH SECTION ══ */
+.paths-section{padding:clamp(4rem,9vh,8rem) clamp(1.5rem,5vw,5rem);background:var(--b2);}
+.paths-intro{font-size:clamp(.95rem,1.7vw,1.15rem);font-weight:300;color:var(--dim2);max-width:50ch;line-height:1.6;margin-bottom:3.5rem;}
+.paths-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  max-width:1100px;
+  align-items:start;
+}
+@media(max-width:720px){.paths-grid{grid-template-columns:1fr;}}
+
+.path-card{
+  border:1px solid rgba(255,230,0,.12);
+  border-radius:3px;
+  overflow:hidden;
+  position:relative;
+  background:var(--b);
+  transition:border-color .3s,transform .3s;
+}
+.path-card:hover{border-color:rgba(255,230,0,.4);transform:translateY(-4px);}
+.path-card.featured{border-color:rgba(255,230,0,.3);}
+.path-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--y);}
+
+.path-header{padding:2rem 2rem 1.5rem;}
+.path-audience{
+  font-family:var(--mo);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--y);margin-bottom:.8rem;
+}
+.path-title{
+  font-family:var(--bb);font-size:clamp(1.6rem,3.5vw,2.6rem);
+  color:var(--w);line-height:1;margin-bottom:.6rem;
+}
+.path-desc{font-size:.82rem;font-weight:300;color:var(--dim);line-height:1.5;}
+
+.path-divider{height:1px;background:rgba(255,230,0,.1);margin:0 2rem;}
+
+/* PROGRAM MODULE LIST */
+.path-program{padding:1.8rem 2rem;}
+.program-label{
+  font-family:var(--mo);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:1.2rem;
+}
+.module-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.module-item{
+  display:flex;gap:.9rem;align-items:flex-start;
+  padding:.55rem .7rem;
+  border-radius:2px;
+  transition:background .2s;
+}
+.module-item:hover{background:rgba(255,230,0,.04);}
+.module-num{
+  font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;
+  color:var(--y);flex-shrink:0;width:1.4rem;padding-top:.18rem;
+}
+.module-body{}
+.module-title{font-size:.85rem;font-weight:600;color:var(--w);margin-bottom:.15rem;}
+.module-text{font-size:.75rem;font-weight:300;color:var(--dim);line-height:1.4;}
+
+/* PRICING IN PATH CARD */
+.path-pricing{
+  padding:1.8rem 2rem 2rem;
+  border-top:1px solid rgba(255,230,0,.1);
+  background:rgba(255,230,0,.02);
+}
+.price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.3rem;}
+.price-main{font-family:var(--bb);font-size:clamp(2.5rem,5vw,4rem);color:var(--w);line-height:1;}
+.price-unit{font-family:var(--mo);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
+.price-pack{
+  font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,230,0,.5);margin-bottom:1.4rem;
+}
+.price-pack strong{color:var(--y);}
+.path-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.6rem;}
+.path-features li{font-size:.78rem;font-weight:300;color:var(--dim2);display:flex;align-items:flex-start;gap:.55rem;}
+.path-features li::before{content:'✓';color:var(--y);font-size:.7rem;flex-shrink:0;margin-top:.1rem;}
+.path-cta{
+  font-family:var(--mo);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;padding:.7rem 1.5rem;border-radius:2px;
+  display:inline-block;cursor:pointer;transition:all .22s;width:100%;text-align:center;border:none;
+}
+.path-cta-y{background:var(--y);color:var(--b);font-weight:600;}
+.path-cta-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--y);}
+.path-cta-o{border:1px solid rgba(255,230,0,.35);color:var(--dim2);}
+.path-cta-o:hover{border-color:var(--y);color:var(--y);}
+
+/* FOR YOU */
+.for-section{padding:clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,5rem);}
+.for-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;margin-top:3rem;}
+@media(max-width:700px){.for-split{grid-template-columns:1fr;gap:2rem;}}
+.for-col-title{font-family:var(--bb);font-size:clamp(1.5rem,3vw,2.5rem);margin-bottom:1.2rem;}
+.for-col-title.good{color:var(--y);}
+.for-col-title.bad{color:rgba(255,255,255,.2);}
+.for-list{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
+.for-list li{font-size:.88rem;font-weight:300;color:var(--dim2);display:flex;gap:.7rem;align-items:flex-start;line-height:1.4;}
+.for-list.good li::before{content:'→';color:var(--y);}
+.for-list.bad li::before{content:'×';color:rgba(255,255,255,.2);}
+
+.cta-section{padding:clamp(5rem,12vh,10rem) clamp(1.5rem,5vw,5rem);text-align:center;border-top:1px solid rgba(255,230,0,.08);}
+.cta-title{font-family:var(--bb);font-size:clamp(3rem,8vw,7rem);color:var(--w);line-height:.9;margin-bottom:1.5rem;}
+.cta-title .y{color:var(--y);}
+.cta-sub{font-size:clamp(.9rem,1.6vw,1.1rem);font-weight:300;color:var(--dim);max-width:40ch;margin:0 auto 2.5rem;line-height:1.6;}
+
+/* ══ PERSONA SELECTOR ══ */
+.persona-row{
+  display:flex;gap:.8rem;flex-wrap:wrap;
+  margin-top:2.8rem;
+  opacity:0;animation:rise .8s ease 1s forwards;
+}
+.persona-btn{
+  display:flex;flex-direction:column;gap:.35rem;
+  padding:1rem 1.5rem;
+  border:1px solid rgba(255,230,0,.25);border-radius:3px;
+  background:rgba(255,230,0,.03);
+  cursor:none;transition:all .25s;text-align:left;
+  position:relative;overflow:hidden;
+  min-width:180px;
+}
+.persona-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--y);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;z-index:0;
+}
+.persona-btn:hover::before,.persona-btn.active::before{transform:scaleX(1);}
+.persona-btn:hover,.persona-btn.active{border-color:var(--y);}
+.persona-btn *{position:relative;z-index:1;transition:color .25s;}
+.persona-btn:hover .pb-label,.persona-btn.active .pb-label{color:var(--b);}
+.persona-btn:hover .pb-sub,.persona-btn.active .pb-sub{color:rgba(8,8,8,.65);}
+.pb-emoji{font-size:1.2rem;line-height:1;}
+.pb-label{
+  font-family:var(--bb);font-size:clamp(1rem,2vw,1.4rem);
+  color:var(--w);letter-spacing:.03em;line-height:1;
+}
+.pb-sub{
+  font-family:var(--mo);font-size:.48rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim);
+}
+
+/* ══ PATH CARD PERSONA STATES ══ */
+.path-card.persona-match{
+  border-color:rgba(255,230,0,.55) !important;
+  transform:translateY(-4px);
+}
+.path-card.persona-match .path-header{background:rgba(255,230,0,.04);}
+.path-card.persona-dim{
+  opacity:.45;
+  transform:scale(.98);
+  pointer-events:none;
+}
+
+/* ══ PERSONA BANNER (top of course page) ══ */
+.persona-banner{
+  display:none;
+  position:relative;z-index:20;
+  background:var(--y);
+  padding:.55rem clamp(1.5rem,5vw,5rem);
+  font-family:var(--mo);font-size:.55rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--b);
+  align-items:center;justify-content:space-between;gap:1rem;
+  flex-wrap:wrap;
+}
+.persona-banner.visible{display:flex;}
+.banner-msg strong{font-weight:700;}
+.banner-switch{
+  font-family:var(--mo);font-size:.5rem;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(8,8,8,.6);cursor:none;
+  text-decoration:underline;underline-offset:3px;transition:color .2s;
+  background:none;border:none;
+}
+.banner-switch:hover{color:var(--b);}
+
+/* course page top padding when banner visible */
+.page .course-hero{transition:padding-top .3s;}
+
+@keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+</style>
+<script>
+(function(C,A,L){let p=function(a,ar){a.q.push(ar);},d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
+Cal("init","fabio-marchiano",{origin:"https://cal.com"});
+Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",cssVarsPerTheme:{light:{"cal-brand":"#FFE600","cal-brand-text":"#080808"},dark:{"cal-brand":"#FFE600","cal-brand-text":"#080808"}}});
+</script>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">FM.SYS</a>
+  <ul class="nav-center">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active" data-i18n="nav_home">Home</a></li>
+    <li><a href="#" onclick="showPage('code')" id="nav-code" data-i18n="nav_code">Code &amp; Art</a></li>
+    <li><a href="#" onclick="showPage('physics')" id="nav-physics" data-i18n="nav_physics">Physics, Arduino &amp; Domotics</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')" id="btn-fr">FR</button>
+    <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
+  </div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <canvas id="canvas-home"></canvas>
+    <div class="home-hero-inner">
+      <div class="hero-eyebrow" data-i18n="hero_eyebrow">// PhD · Researcher · Educator</div>
+      <h1 class="hero-name">FABIO<br><span class="y">MARCHIANÒ</span><span class="outline" aria-hidden="true">MASTERCLASS</span></h1>
+      <p class="hero-tagline" data-i18n="hero_tagline">I make hard things click. Science and code, taught by someone who actually does both.</p>
+      <div class="hero-creds">
+        <div class="cred"><span class="cred-val">PhD</span><span class="cred-label" data-i18n="cred_phd">Computational Bio</span></div>
+        <div class="cred"><span class="cred-val">1:1</span><span class="cred-label" data-i18n="cred_sessions">Custom materials</span></div>
+        <div class="cred"><span class="cred-val">🌍</span><span class="cred-label" data-i18n="cred_location">Online &amp; In-person</span></div>
+      </div>
+      <div class="persona-row">
+        <button class="persona-btn" id="pb-hs" onclick="setPersona('hs')">
+          <span class="pb-emoji">🎒</span>
+          <span class="pb-label" data-i18n="pb_hs_label">High school</span>
+          <span class="pb-sub" data-i18n="pb_hs_sub">Liceo · Lycée · Secondary</span>
+        </button>
+        <button class="persona-btn" id="pb-uni" onclick="setPersona('uni')">
+          <span class="pb-emoji">🎓</span>
+          <span class="pb-label" data-i18n="pb_uni_label">Uni / Pro</span>
+          <span class="pb-sub" data-i18n="pb_uni_sub">University · Professional</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <section class="section reveal">
+    <div class="section-label" data-i18n="about_label">// About</div>
+    <div class="bio-grid">
+      <div class="bio-text" data-i18n="bio_text">I hold a <strong>PhD in computational biology</strong> and spent 8+ years doing research — cancer genomics, developmental biology, building tools published in top journals.<br><br>But my real superpower is something else: I'm genuinely obsessed with <strong>many things at once</strong>. Science, philosophy, music, code, sports, travel. That breadth is exactly what makes me a different kind of teacher.<br><br>When you're stuck on a physics concept, I find the angle that fits <em>your</em> world — not a generic textbook explanation. When code feels abstract, I connect it to something you already love. I don't translate difficulty away. I <strong>find the door that was always there</strong>.<br><br>Every session comes with custom materials: slides, handouts, and exercises built around your specific questions. Not recycled content — made for you.</div>
+      <div class="bio-facts">
+        <img class="about-photo reveal" src="pic/about.jpg" alt="Fabio Marchianò">
+        <div class="fact reveal"><div class="fact-title" data-i18n="fact1_title">Research background</div><div class="fact-text" data-i18n="fact1_text">Precision oncology · Cancer genomics · Developmental biology · Multi-omics · Published in Nucleic Acids Research & Scientific Reports</div></div>
+        <div class="fact reveal"><div class="fact-title" data-i18n="fact2_title">Included in every session</div><div class="fact-text" data-i18n="fact2_text">Custom slides · Personalized handouts · Exercises · Session notes · 24h async support</div></div>
+        <div class="fact reveal"><div class="fact-title" data-i18n="fact3_title">Teaching philosophy</div><div class="fact-text" data-i18n="fact3_text">I adapt to how you think — not the other way around. Your questions drive the session. Your project is the curriculum.</div></div>
+        <div class="fact reveal"><div class="fact-title" data-i18n="fact4_title">Based</div><div class="fact-text" data-i18n="fact4_text">Verbania / Milan / Lugano · Thailand (Dec–Mar) · Online worldwide</div></div>
+      </div>
+    </div>
+    <div class="polymath-strip reveal">
+      <span class="poly-intro" data-i18n="poly_intro">Talks to you through</span>
+      <span class="poly-tag">⚗️ Science</span>
+      <span class="poly-tag">💻 Code</span>
+      <span class="poly-tag">🎵 Music</span>
+      <span class="poly-tag">🏄 Sports</span>
+      <span class="poly-tag">📐 Math</span>
+      <span class="poly-tag">🌍 Travel</span>
+      <span class="poly-tag">🎨 Art</span>
+      <span class="poly-tag">🧠 Philosophy</span>
+    </div>
+  </section>
+
+  <section class="inperson-section reveal">
+    <div class="section-label" data-i18n="inperson_label">// In-person sessions</div>
+    <p class="inperson-intro" data-i18n="inperson_intro">I travel. The sessions follow. Depending on the season, I'm available face-to-face in these cities.</p>
+    <div class="seasons-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="season-card reveal"><div class="season-label" data-i18n="s1_label">Europa</div><span class="season-emoji">🌍</span><div class="season-cities" data-i18n="s1_cities">Verbania<br>Torino · Milano<br>Lugano · Lausanne</div><div class="season-months" data-i18n="s1_months">Mar — Dec</div><div class="season-note" data-i18n="s1_note">Based in Northern Italy / Swiss border area. Online sessions available worldwide year-round.</div></div>
+      <div class="season-card reveal"><div class="season-label" data-i18n="s2_label">Asia</div><span class="season-emoji">🌴</span><div class="season-cities" data-i18n="s2_cities">Bangkok<br>Krabi · Phuket<br>Pattaya</div><div class="season-months" data-i18n="s2_months">Dec — Mar</div><div class="season-note" data-i18n="s2_note">Thailand. In-person for travellers and digital nomads. Sessions go fully remote — same quality, zero friction.</div></div>
+    </div>
+
+  </section>
+
+  <section class="courses-teaser reveal" style="padding:clamp(3rem,8vh,7rem) clamp(1.5rem,5vw,5rem);">
+    <div class="section-label" data-i18n="courses_label">// Masterclasses</div>
+    <div class="courses-grid">
+      <div class="course-card reveal" onclick="showPage('code')" style="cursor:none;">
+        <div class="card-num">01</div><div class="card-icon">⌨️</div>
+        <div class="card-sub">Python · R · JavaScript · p5.js</div>
+        <div class="card-title" data-i18n="card1_title">Code &amp; Creative Art</div>
+        <div class="card-desc" data-i18n="card1_desc">From your first loop to generative art. Programming taught through things you actually want to build.</div>
+        <a class="card-link" href="#" onclick="event.stopPropagation();showPage('code')" data-i18n="card_explore">Explore course</a>
+      </div>
+      <div class="course-card reveal" onclick="showPage('physics')" style="cursor:none;">
+        <div class="card-num">02</div><div class="card-icon">⚡</div>
+        <div class="card-sub">Physics · Electronics · Arduino · KNX</div>
+        <div class="card-title" data-i18n="card2_title">Physics, Arduino<br>&amp; Domotics</div>
+        <div class="card-desc" data-i18n="card2_desc">Electrons, circuits, smart home automation. Taught with real components and real KNX installations.</div>
+        <a class="card-link" href="#" onclick="event.stopPropagation();showPage('physics')" data-i18n="card_explore">Explore course</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><a href="#" title="dont panic go nomadic">🌏 Nomadic</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
+</div>
+
+<!-- ══ CODE PAGE ══ -->
+<div class="page" id="page-code">
+  <div class="persona-banner" id="banner-code">
+    <span class="banner-msg" id="banner-code-msg"></span>
+    <button class="banner-switch" onclick="clearPersona()" data-i18n="banner_switch">Switch profile</button>
+  </div>
+  <div class="course-hero">
+    <canvas id="canvas-code"></canvas>
+    <div class="course-hero-inner">
+      <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
+      <div class="course-tag" data-i18n="course1_tag">Masterclass 01</div>
+      <h1 class="course-title" data-i18n="c1_title">CODE &amp;<br><span class="accent">CREATIVE</span><br>ART</h1>
+      <p class="course-subtitle" data-i18n="c1_sub">Python, R, JavaScript and generative art — taught like a conversation, not a lecture.</p>
+      <div class="course-pills">
+        <span class="pill">Python</span><span class="pill">R</span><span class="pill">JavaScript</span>
+        <span class="pill">p5.js</span><span class="pill">Processing</span><span class="pill">Generative art</span><span class="pill">Data viz</span>
+      </div>
+      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
+    </div>
+  </div>
+
+  <!-- WHAT YOU LEARN -->
+  <section class="learn-section reveal">
+    <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
+    <div class="learn-grid">
+      <div class="learn-card reveal"><div class="learn-card-icon">🐍</div><div class="learn-card-title" data-i18n="lc1_t">Python</div><div class="learn-card-text" data-i18n="lc1_d">Variables, loops, functions, data structures. Written for humans, not machines.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">📊</div><div class="learn-card-title" data-i18n="lc2_t">R &amp; Data analysis</div><div class="learn-card-text" data-i18n="lc2_d">Tidyverse, ggplot2, statistical thinking. From raw data to insight, with clean code.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🌐</div><div class="learn-card-title" data-i18n="lc3_t">JavaScript &amp; web</div><div class="learn-card-text" data-i18n="lc3_d">Make things that run in a browser. DOM, events, interactivity — building real pages.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🎨</div><div class="learn-card-title" data-i18n="lc4_t">Generative art</div><div class="learn-card-text" data-i18n="lc4_d">p5.js and Processing for visual output. Noise fields, particle systems, creative algorithms.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🔧</div><div class="learn-card-title" data-i18n="lc5_t">Problem solving</div><div class="learn-card-text" data-i18n="lc5_d">How to break a problem down, debug systematically, and think like a programmer.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🚀</div><div class="learn-card-title" data-i18n="lc6_t">Your project</div><div class="learn-card-text" data-i18n="lc6_d">Every session builds toward something you actually want to create. No toy exercises.</div></div>
+    </div>
+  </section>
+
+
+  <!-- SIMULATOR: CREATIVE CODING -->
+  <section class="sim-section reveal">
+    <div class="sim-wrap">
+      <div class="sim-copy">
+        <div class="sim-label" data-i18n="sim_label">// Simulatori</div>
+        <div class="sim-title" data-i18n="c_sim_title">Fai pratica <span class="y">ovunque.</span><br>Zero kit. Zero costi.</div>
+        <div class="sim-desc" data-i18n="c_sim_desc">Ogni concetto lo impari su simulatori professionali — gli stessi usati in produzione. Nessun software da installare, nessun hardware da comprare. Sei in un bar a Bangkok o a casa tua: l'ambiente è pronto.</div>
+        <ul class="sim-perks">
+          <li data-i18n="sim_perk1">Simulatori browser-based, zero installazione</li>
+          <li data-i18n="sim_perk2">Ideale per nomadi digitali e studenti in movimento</li>
+          <li data-i18n="sim_perk3">Stesso workflow dei developer professionisti</li>
+        </ul>
+      </div>
+      <div class="sim-gif-wrap">
+        <div class="sim-gif-bar">
+          <div class="sim-gif-dot" style="background:#ff5f57;"></div>
+          <div class="sim-gif-dot" style="background:#ffbd2e;"></div>
+          <div class="sim-gif-dot" style="background:#28c840;"></div>
+          <span class="sim-gif-name">creative coding — live sketch</span>
+        </div>
+        <img class="sim-gif-img" src="pic/processing.gif" alt="Processing p5.js simulator demo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="sim-gif-placeholder" style="display:none;">
+          <span>📷 placeholder</span>
+          <span>pic/processing.gif</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS BAND CODE -->
+  <section class="materials-band reveal">
+    <div class="materials-inner">
+      <div>
+        <div class="materials-headline">Every session.<br><span class="y">Every material.</span><br>Included.</div>
+        <p class="materials-sub" data-i18n="mat_sub_code" style="margin-top:1rem;">You never leave empty-handed. Each session produces a set of custom materials built around exactly what we covered.</p>
+      </div>
+      <ul class="materials-list">
+        <li data-i18n="mat1">Custom slides — written in your language, not the textbook's</li>
+        <li data-i18n="mat2">Personalized handouts with examples drawn from your own project</li>
+        <li data-i18n="mat3">Exercises calibrated to your weak points, not a generic problem set</li>
+        <li data-i18n="mat4">Session notes with a summary of what we built and why</li>
+        <li data-i18n="mat5">Code snippets and annotated scripts you actually ran during the session</li>
+        <li data-i18n="mat6">24h async support — stuck between sessions? I answer.</li>
+      </ul>
+    </div>
+  </section>
+  <!-- DUAL PATH -->
+  <section class="paths-section reveal">
+    <div class="section-label" data-i18n="paths_label">// Choose your path</div>
+    <p class="paths-intro" data-i18n="c_paths_intro">Same quality, different depth. Pick the programme that matches where you are right now.</p>
+    <div class="paths-grid">
+
+      <!-- LICEO -->
+      <div class="path-card reveal">
+        <div class="path-header">
+          <div class="path-audience" data-i18n="c_aud1">🎓 High school</div>
+          <div class="path-title" data-i18n="c_path1_title">Foundation<br>Track</div>
+          <div class="path-desc" data-i18n="c_path1_desc">Build real intuition for code from scratch. Ideal for students who want to pass exams and discover what programming can actually create.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">Programme</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">01</span><div class="module-body"><div class="module-title" data-i18n="cm1_1t">Python basics</div><div class="module-text" data-i18n="cm1_1d">Variables, conditions, loops, functions — the real building blocks.</div></div></li>
+            <li class="module-item"><span class="module-num">02</span><div class="module-body"><div class="module-title" data-i18n="cm1_2t">Data structures &amp; logic</div><div class="module-text" data-i18n="cm1_2d">Lists, dictionaries, algorithms — thinking before typing.</div></div></li>
+            <li class="module-item"><span class="module-num">03</span><div class="module-body"><div class="module-title" data-i18n="cm1_3t">Intro to web: HTML/CSS/JS</div><div class="module-text" data-i18n="cm1_3d">Make things appear in a browser. First taste of the web.</div></div></li>
+            <li class="module-item"><span class="module-num">04</span><div class="module-body"><div class="module-title" data-i18n="cm1_4t">Creative coding with p5.js</div><div class="module-text" data-i18n="cm1_4d">Draw, animate, interact. Code as visual expression.</div></div></li>
+            <li class="module-item"><span class="module-num">05</span><div class="module-body"><div class="module-title" data-i18n="cm1_5t">Final project</div><div class="module-text" data-i18n="cm1_5d">An interactive animation or small tool — yours to keep and share.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main">€50</div>
+            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+          </div>
+          <div class="price-pack" data-i18n="c1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
+          <ul class="path-features">
+            <li data-i18n="pf_custom">Fully personalized to your level</li>
+            <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
+            <li data-i18n="pf_async">24h async support between sessions</li>
+            <li data-i18n="pf_cancel">Cancel up to 24h before</li>
+          </ul>
+          <button class="path-cta path-cta-o" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+        </div>
+      </div>
+
+      <!-- UNI / PRO -->
+      <div class="path-card featured reveal">
+        <div class="path-header">
+          <div class="path-audience" data-i18n="c_aud2">🎓 University / Professional</div>
+          <div class="path-title" data-i18n="c_path2_title">Advanced<br>Track</div>
+          <div class="path-desc" data-i18n="c_path2_desc">Deeper algorithms, data science with R, and generative systems. For students who want to go further or professionals adding creative tech to their toolkit.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">Programme</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">01</span><div class="module-body"><div class="module-title" data-i18n="cm2_1t">Python advanced</div><div class="module-text" data-i18n="cm2_1d">OOP, functional patterns, libraries (NumPy, pandas). Writing code that scales.</div></div></li>
+            <li class="module-item"><span class="module-num">02</span><div class="module-body"><div class="module-title" data-i18n="cm2_2t">R for data science</div><div class="module-text" data-i18n="cm2_2d">Tidyverse, ggplot2, statistical modelling — from raw data to publication-quality output.</div></div></li>
+            <li class="module-item"><span class="module-num">03</span><div class="module-body"><div class="module-title" data-i18n="cm2_3t">Advanced JS &amp; canvas</div><div class="module-text" data-i18n="cm2_3d">Closures, async, WebGL basics. Building real interactive experiences.</div></div></li>
+            <li class="module-item"><span class="module-num">04</span><div class="module-body"><div class="module-title" data-i18n="cm2_4t">Generative systems</div><div class="module-text" data-i18n="cm2_4d">Flow fields, L-systems, noise algorithms, particle physics. Computational aesthetics.</div></div></li>
+            <li class="module-item"><span class="module-num">05</span><div class="module-body"><div class="module-title" data-i18n="cm2_5t">Data visualization</div><div class="module-text" data-i18n="cm2_5d">ggplot2 and D3.js — making data tell a story visually.</div></div></li>
+            <li class="module-item"><span class="module-num">06</span><div class="module-body"><div class="module-title" data-i18n="cm2_6t">Capstone project</div><div class="module-text" data-i18n="cm2_6d">A complete tool, installation or data story — portfolio-ready output.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main">€80</div>
+            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+          </div>
+          <div class="price-pack" data-i18n="c2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
+          <ul class="path-features">
+            <li data-i18n="pf_custom">Fully personalized to your level</li>
+            <li data-i18n="pf_code_review">Code review between sessions</li>
+            <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
+            <li data-i18n="pf_async">24h async support between sessions</li>
+            <li data-i18n="pf_cancel">Cancel up to 24h before</li>
+          </ul>
+          <button class="path-cta path-cta-y" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="for-section reveal">
+    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="for-split">
+      <div>
+        <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
+        <ul class="for-list good">
+          <li data-i18n="c_yes1">You're struggling with a programming course or exam</li>
+          <li data-i18n="c_yes2">You want to build something but don't know where to start</li>
+          <li data-i18n="c_yes3">You've tried tutorials and keep getting stuck</li>
+          <li data-i18n="c_yes4">You want to use code creatively — art, music, visuals</li>
+          <li data-i18n="c_yes5">You work with data and want to visualize it properly</li>
+          <li data-i18n="c_yes6">You learn better in conversation than from slides</li>
+        </ul>
+      </div>
+      <div>
+        <div class="for-col-title bad" data-i18n="for_no">Probably not if…</div>
+        <ul class="for-list bad">
+          <li data-i18n="c_no1">You want pre-recorded video courses</li>
+          <li data-i18n="c_no2">You want someone to just do your homework for you</li>
+          <li data-i18n="c_no3">You're a senior dev looking for advanced architecture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section reveal">
+    <div class="cta-title" data-i18n="cta1_title">READY TO<br><span class="y">ACTUALLY</span><br>GET IT?</div>
+    <p class="cta-sub" data-i18n="cta_guarantee">First session is a trial. If it doesn't click, you don't pay. Simple.</p>
+    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+  </section>
+  <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
+</div>
+
+<!-- ══ PHYSICS PAGE ══ -->
+<div class="page" id="page-physics">
+  <div class="persona-banner" id="banner-physics">
+    <span class="banner-msg" id="banner-physics-msg"></span>
+    <button class="banner-switch" onclick="clearPersona()" data-i18n="banner_switch">Switch profile</button>
+  </div>
+  <div class="course-hero">
+    <canvas id="canvas-physics"></canvas>
+    <div class="course-hero-inner">
+      <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
+      <div class="course-tag" data-i18n="course2_tag">Masterclass 02</div>
+      <h1 class="course-title" data-i18n="c2_title">PHYSICS,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICS</h1>
+      <p class="course-subtitle" data-i18n="c2_sub">Electricity, waves, mechanics and smart home automation — taught with real components, from breadboard to KNX.</p>
+      <div class="course-pills">
+        <span class="pill">Mechanics</span><span class="pill">Electromagnetism</span>
+        <span class="pill">Circuits</span><span class="pill">Arduino</span><span class="pill">Sensors</span><span class="pill">KNX</span><span class="pill">ETS6</span><span class="pill">Smart Home</span>
+      </div>
+      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
+    </div>
+  </div>
+
+  <section class="learn-section reveal">
+    <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
+    <div class="learn-grid">
+      <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="lp1_t">Electricity &amp; circuits</div><div class="learn-card-text" data-i18n="lp1_d">Ohm's law, resistors, capacitors — understood through circuits you actually build.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🔌</div><div class="learn-card-title" data-i18n="lp2_t">Arduino</div><div class="learn-card-text" data-i18n="lp2_d">From blinking an LED to reading sensors and building real devices that do things.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🌊</div><div class="learn-card-title" data-i18n="lp3_t">Waves &amp; optics</div><div class="learn-card-text" data-i18n="lp3_d">Light, sound, interference — the physical phenomena behind the formulas.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🎯</div><div class="learn-card-title" data-i18n="lp4_t">Mechanics</div><div class="learn-card-text" data-i18n="lp4_d">Forces, motion, energy — made intuitive before they're made mathematical.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🏠</div><div class="learn-card-title" data-i18n="lp5_t">KNX &amp; Domotics</div><div class="learn-card-text" data-i18n="lp5_d">KNX standard, ETS6 programming, smart home logic — industrial-grade home automation from scratch.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🛠️</div><div class="learn-card-title" data-i18n="lp6_t">Your prototype</div><div class="learn-card-text" data-i18n="lp6_d">Build something physical. A sensor, a light system, or a working KNX automation scenario.</div></div>
+    </div>
+  </section>
+
+
+  <!-- SIMULATOR: ARDUINO -->
+  <section class="sim-section reveal">
+    <div class="sim-wrap">
+      <div class="sim-copy">
+        <div class="sim-label" data-i18n="sim_label">// Simulatori</div>
+        <div class="sim-title" data-i18n="p_sim_title">Circuiti reali.<br><span class="y">Nessun kit</span> da comprare.</div>
+        <div class="sim-desc" data-i18n="p_sim_desc">Progetti Arduino, circuiti KNX, sensori — tutto simulato su piattaforme professionali prima ancora di toccare un componente fisico. Per i futuri maker nomadi di domani: laptop, connessione, e sei operativo.</div>
+        <ul class="sim-perks">
+          <li data-i18n="p_sim_perk1">Circuiti simulati in browser — LED, sensori, motori</li>
+          <li data-i18n="p_sim_perk2">Nessun kit da acquistare per iniziare</li>
+          <li data-i18n="p_sim_perk3">Fai pratica da qualsiasi posto nel mondo</li>
+        </ul>
+      </div>
+      <div class="sim-gif-wrap">
+        <div class="sim-gif-bar">
+          <div class="sim-gif-dot" style="background:#ff5f57;"></div>
+          <div class="sim-gif-dot" style="background:#ffbd2e;"></div>
+          <div class="sim-gif-dot" style="background:#28c840;"></div>
+          <span class="sim-gif-name">circuit simulator — arduino</span>
+        </div>
+        <img class="sim-gif-img" src="pic/arduino.gif" alt="Arduino circuit simulator demo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="sim-gif-placeholder" style="display:none;">
+          <span>📷 placeholder</span>
+          <span>pic/arduino.gif</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS BAND PHYSICS -->
+  <section class="materials-band reveal">
+    <div class="materials-inner">
+      <div>
+        <div class="materials-headline" data-i18n="mat_headline">Every session.<br><span class="y">Every material.</span><br>Included.</div>
+        <p class="materials-sub" data-i18n="mat_sub_phys" style="margin-top:1rem;">Walk away with everything you need to keep going — custom-built for your level, your questions, your project.</p>
+      </div>
+      <ul class="materials-list">
+        <li data-i18n="pmat1">Custom slides — your level, your language, your examples</li>
+        <li data-i18n="pmat2">Circuit diagrams and KNX topology sheets for what we built</li>
+        <li data-i18n="pmat3">Annotated Arduino sketches from the session</li>
+        <li data-i18n="pmat4">Formula sheets with context — not just the formula, but when and why to use it</li>
+        <li data-i18n="pmat5">Exercises targeting exactly what you found hard</li>
+        <li data-i18n="pmat6">24h async support — a question between sessions is never lost</li>
+      </ul>
+    </div>
+  </section>
+  <!-- DUAL PATH PHYSICS -->
+  <section class="paths-section reveal">
+    <div class="section-label" data-i18n="paths_label">// Choose your path</div>
+    <p class="paths-intro" data-i18n="p_paths_intro">Same hands-on approach, different level of rigour. Pick the track that matches your background.</p>
+    <div class="paths-grid">
+
+      <!-- LICEO -->
+      <div class="path-card reveal">
+        <div class="path-header">
+          <div class="path-audience" data-i18n="p_aud1">🎓 High school</div>
+          <div class="path-title" data-i18n="p_path1_title">Foundation<br>Track</div>
+          <div class="path-desc" data-i18n="p_path1_desc">Build intuition for the physical world before formulas take over. Exam-oriented when needed, curiosity-first always.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">Programme</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">01</span><div class="module-body"><div class="module-title" data-i18n="pm1_1t">Mechanics — intuition first</div><div class="module-text" data-i18n="pm1_1d">Forces, motion, Newton's laws. What actually happens before what the formula says.</div></div></li>
+            <li class="module-item"><span class="module-num">02</span><div class="module-body"><div class="module-title" data-i18n="pm1_2t">Energy &amp; thermodynamics</div><div class="module-text" data-i18n="pm1_2d">Work, heat, entropy. Made tangible through everyday examples and thought experiments.</div></div></li>
+            <li class="module-item"><span class="module-num">03</span><div class="module-body"><div class="module-title" data-i18n="pm1_3t">Waves, sound &amp; optics</div><div class="module-text" data-i18n="pm1_3d">How light and sound behave — and why. Interference, lenses, the EM spectrum.</div></div></li>
+            <li class="module-item"><span class="module-num">04</span><div class="module-body"><div class="module-title" data-i18n="pm1_4t">Electricity &amp; basic circuits</div><div class="module-text" data-i18n="pm1_4d">Voltage, current, Ohm's law, resistors — hands-on with a breadboard.</div></div></li>
+            <li class="module-item"><span class="module-num">05</span><div class="module-body"><div class="module-title" data-i18n="pm1_5t">Arduino + intro to domotics</div><div class="module-text" data-i18n="pm1_5d">Code + circuit combined. Build a reactive device, then take a first look at KNX smart home logic.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main">€50</div>
+            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+          </div>
+          <div class="price-pack" data-i18n="p1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
+          <ul class="path-features">
+            <li data-i18n="pf_custom">Fully personalized to your level</li>
+            <li data-i18n="pf_exam">Exam strategy included when relevant</li>
+            <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
+            <li data-i18n="pf_async">24h async support between sessions</li>
+          </ul>
+          <button class="path-cta path-cta-o" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+        </div>
+      </div>
+
+      <!-- UNI / PRO -->
+      <div class="path-card featured reveal">
+        <div class="path-header">
+          <div class="path-audience" data-i18n="p_aud2">🎓 University / Professional</div>
+          <div class="path-title" data-i18n="p_path2_title">Advanced<br>Track</div>
+          <div class="path-desc" data-i18n="p_path2_desc">Rigorous physics with full mathematical treatment, advanced electronics, Arduino systems and professional-grade home automation with KNX/ETS6. For students at degree level and professionals building physical or domotics installations.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">Programme</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">01</span><div class="module-body"><div class="module-title" data-i18n="pm2_1t">Analytical mechanics</div><div class="module-text" data-i18n="pm2_1d">Lagrangian approach, oscillations, coupled systems — beyond Newton.</div></div></li>
+            <li class="module-item"><span class="module-num">02</span><div class="module-body"><div class="module-title" data-i18n="pm2_2t">Advanced electromagnetism</div><div class="module-text" data-i18n="pm2_2d">Maxwell's equations, field theory, electromagnetic waves and their applications.</div></div></li>
+            <li class="module-item"><span class="module-num">03</span><div class="module-body"><div class="module-title" data-i18n="pm2_3t">Electronics: active components</div><div class="module-text" data-i18n="pm2_3d">Transistors, op-amps, filters, signal processing — from theory to circuit.</div></div></li>
+            <li class="module-item"><span class="module-num">04</span><div class="module-body"><div class="module-title" data-i18n="pm2_4t">Arduino: sensors &amp; systems</div><div class="module-text" data-i18n="pm2_4d">I2C/SPI protocols, sensor fusion, data logging, serial comms with Python.</div></div></li>
+            <li class="module-item"><span class="module-num">05</span><div class="module-body"><div class="module-title" data-i18n="pm2_5t">KNX &amp; Domotics</div><div class="module-text" data-i18n="pm2_5d">KNX topology, ETS6 configuration, group addresses, logic programming — industry-standard smart home design.</div></div></li>
+            <li class="module-item"><span class="module-num">06</span><div class="module-body"><div class="module-title" data-i18n="pm2_6t">Functional prototype</div><div class="module-text" data-i18n="pm2_6d">A working physical device or KNX installation — sensor array, automation scenario, or interactive system.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main">€80</div>
+            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+          </div>
+          <div class="price-pack" data-i18n="p2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
+          <ul class="path-features">
+            <li data-i18n="pf_custom">Fully personalized to your level</li>
+            <li data-i18n="pf_hw_review">Homework &amp; problem-set review</li>
+            <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
+            <li data-i18n="pf_async">24h async support between sessions</li>
+            <li data-i18n="pf_cancel">Cancel up to 24h before</li>
+          </ul>
+          <button class="path-cta path-cta-y" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="for-section reveal">
+    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="for-split">
+      <div>
+        <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
+        <ul class="for-list good">
+          <li data-i18n="p_yes1">Physics feels like a wall of symbols you can't decode</li>
+          <li data-i18n="p_yes2">You're preparing for a bac, matura or university exam</li>
+          <li data-i18n="p_yes3">You want to build electronics projects but don't know how</li>
+          <li data-i18n="p_yes4">Your teacher explains fast and you don't want to ask again</li>
+          <li data-i18n="p_yes5">You're curious about how the physical world actually works</li>
+          <li data-i18n="p_yes6">You want to combine physics with code (Arduino, sensors)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="for-col-title bad" data-i18n="for_no">Probably not if…</div>
+        <ul class="for-list bad">
+          <li data-i18n="p_no1">You want someone to solve your problem sets without explaining</li>
+          <li data-i18n="p_no2">You're looking for advanced quantum or graduate-level theory</li>
+          <li data-i18n="p_no3">You prefer group classes over 1:1 attention</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section reveal">
+    <div class="cta-title" data-i18n="cta2_title">PHYSICS ISN'T <span class="y">HARD</span>.<br>IT'S MIS-TAUGHT.</div>
+    <p class="cta-sub" data-i18n="cta_guarantee">First session is a trial. If it doesn't click, you don't pay. Simple.</p>
+    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+  </section>
+  <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══ I18N ══ */
+const T = {
+en:{
+  nav_home:'Home',nav_code:'Code & Art',nav_physics:'Physics, Arduino & Domotics',
+  hero_eyebrow:'// PhD · Researcher · Educator',
+  hero_tagline:'I take complex things apart until they make sense. Science, code and electronics — taught by someone who is obsessed with all of them.',
+  cred_phd:'Computational Bio',cred_sessions:'Custom materials',cred_location:'Online & In-person',
+  cta_code:'Code & Creative Art',cta_physics:'Physics, Arduino & Domotics',
+  about_label:'// About',
+  bio_text:`I hold a <strong>PhD in computational biology</strong> and spent 8+ years in research — cancer genomics, developmental biology, building tools published in top journals.<br><br>But my real superpower is something else: I'm genuinely obsessed with <strong>many things at once</strong>. Science, philosophy, music, code, sports, travel. That breadth is exactly what makes me a different kind of teacher. When you're stuck on a physics concept, I find the angle that fits <em>your</em> world. When code feels abstract, I connect it to something you already love.<br><br>I don't translate difficulty away. I <strong>find the door that was always there</strong>. And every session comes with custom slides, handouts and exercises — built around your specific questions, not recycled templates.`,
+  fact1_title:'Research background',fact1_text:'Precision oncology · Cancer genomics · Developmental biology · Multi-omics · Published in Nucleic Acids Research & Scientific Reports',
+  fact2_title:'Included in every session',fact2_text:'Custom slides · Personalized handouts · Exercises · Session notes · 24h async support',fact3_title:'Teaching philosophy',
+  fact3_text:"I adapt to how you think — not the other way around. Your questions drive the session. Your project is the curriculum.",
+  fact4_title:'Based',fact4_text:'Verbania / Milan / Lugano · Thailand (Dec–Mar) · Online worldwide',
+  inperson_label:'// In-person sessions',
+  inperson_intro:"I travel. The sessions follow. I'm based in Northern Italy and the Swiss border most of the year, and in Southeast Asia from December to March.",
+  s1_label:'Europa',s1_cities:'Verbania<br>Torino · Milano<br>Lugano · Lausanne',s1_months:'Mar — Dec',s1_note:'Northern Italy and Swiss border. Regular weekly sessions possible. Also online for the rest of Europe.',
+  s2_label:'Asia',s2_cities:'Bangkok<br>Krabi · Phuket<br>Pattaya',s2_months:'Dec — Mar',s2_note:'Thailand. In-person for travellers, expats and digital nomads. Online sessions continue worldwide — always.',
+  courses_label:'// Masterclasses',
+  card1_title:'Code &amp; Creative Art',card1_desc:'From your first loop to generative art. Programming taught through things you actually want to build.',
+  card2_title:'Physics, Arduino<br>&amp; Domotics',card2_desc:'Electrons, circuits, smart home automation. Taught with real components and real KNX installations.',
+  card_explore:'Explore course',back_home:'Back to home',
+  course1_tag:'Masterclass 01',course2_tag:'Masterclass 02',
+  c1_sub:'Python, R, JavaScript and generative art — taught like a conversation, not a lecture.',
+  c2_sub:'Electricity, waves, mechanics and smart home automation — taught with real components, from breadboard to KNX.',
+  book_trial:'Book a free 15-min call →',
+  learn_label:"// What you'll learn",
+  lc1_t:'Python',lc1_d:'Variables, loops, functions, data structures. Written for humans, not machines.',
+  lc2_t:'R & Data analysis',lc2_d:'Tidyverse, ggplot2, statistical thinking. From raw data to insight, with clean code.',
+  lc3_t:'JavaScript & web',lc3_d:'Make things that run in a browser. DOM, events, interactivity — building real pages.',
+  lc4_t:'Generative art',lc4_d:'p5.js and Processing for visual output. Noise fields, particle systems, creative algorithms.',
+  lc5_t:'Problem solving',lc5_d:'How to break a problem down, debug systematically, and think like a programmer.',
+  lc6_t:'Your project',lc6_d:'Every session builds toward something you actually want to create. No toy exercises.',
+  lp1_t:'Electricity & circuits',lp1_d:"Ohm's law, resistors, capacitors — understood through circuits you actually build.",
+  lp2_t:'Arduino',lp2_d:'From blinking an LED to reading sensors and building real devices that do things.',
+  lp3_t:'Waves & optics',lp3_d:'Light, sound, interference — the physical phenomena behind the formulas.',
+  lp4_t:'Mechanics',lp4_d:"Forces, motion, energy — made intuitive before they're made mathematical.",
+  lp5_t:'KNX & Domotics',lp5_d:'KNX standard, ETS6 programming, smart home logic — industrial-grade home automation from scratch.',
+  lp6_t:'Your prototype',lp6_d:'Build something physical. A sensor, a light system, or a working KNX automation scenario.',
+  paths_label:'// Choose your path',
+  c_paths_intro:'Same quality, different depth. Pick the programme that matches where you are right now.',
+  p_paths_intro:'Same hands-on approach, different level of rigour. Pick the track that matches your background.',
+  program_label:'Programme',
+  c_aud1:'🎓 High school',c_aud2:'🎓 University / Professional',
+  p_aud1:'🎓 High school',p_aud2:'🎓 University / Professional',
+  c_path1_title:'Foundation<br>Track',c_path1_desc:'Build real intuition for code from scratch. Ideal for students who want to pass exams and discover what programming can actually create.',
+  c_path2_title:'Advanced<br>Track',c_path2_desc:'Deeper algorithms, data science with R, and generative systems. For students who want to go further or professionals adding creative tech to their toolkit.',
+  p_path1_title:'Foundation<br>Track',p_path1_desc:'Build intuition for the physical world before formulas take over. Exam-oriented when needed, curiosity-first always. Includes intro to domotics.',
+  p_path2_title:'Advanced<br>Track',p_path2_desc:'Rigorous physics with full mathematical treatment, advanced electronics, Arduino systems and professional-grade KNX/ETS6 home automation.',
+  cm1_1t:'Python basics',cm1_1d:'Variables, conditions, loops, functions — the real building blocks.',
+  cm1_2t:'Data structures & logic',cm1_2d:'Lists, dictionaries, algorithms — thinking before typing.',
+  cm1_3t:'Intro to web: HTML/CSS/JS',cm1_3d:'Make things appear in a browser. First taste of the web.',
+  cm1_4t:'Creative coding with p5.js',cm1_4d:'Draw, animate, interact. Code as visual expression.',
+  cm1_5t:'Final project',cm1_5d:'An interactive animation or small tool — yours to keep and share.',
+  cm2_1t:'Python advanced',cm2_1d:'OOP, functional patterns, libraries (NumPy, pandas). Writing code that scales.',
+  cm2_2t:'R for data science',cm2_2d:'Tidyverse, ggplot2, statistical modelling — from raw data to publication-quality output.',
+  cm2_3t:'Advanced JS & canvas',cm2_3d:'Closures, async, WebGL basics. Building real interactive experiences.',
+  cm2_4t:'Generative systems',cm2_4d:'Flow fields, L-systems, noise algorithms, particle physics. Computational aesthetics.',
+  cm2_5t:'Data visualization',cm2_5d:'ggplot2 and D3.js — making data tell a story visually.',
+  cm2_6t:'Capstone project',cm2_6d:'A complete tool, installation or data story — portfolio-ready output.',
+  pm1_1t:'Mechanics — intuition first',pm1_1d:"Forces, motion, Newton's laws. What actually happens before what the formula says.",
+  pm1_2t:'Energy & thermodynamics',pm1_2d:'Work, heat, entropy. Made tangible through everyday examples and thought experiments.',
+  pm1_3t:'Waves, sound & optics',pm1_3d:'How light and sound behave — and why. Interference, lenses, the EM spectrum.',
+  pm1_4t:'Electricity & basic circuits',pm1_4d:'Voltage, current, Ohm\'s law, resistors — hands-on with a breadboard.',
+  pm1_5t:'Arduino + intro to domotics',pm1_5d:'Code + circuit combined. Build a reactive device, then take a first look at KNX smart home logic.',
+  pm2_1t:'Analytical mechanics',pm2_1d:'Lagrangian approach, oscillations, coupled systems — beyond Newton.',
+  pm2_2t:'Advanced electromagnetism',pm2_2d:"Maxwell's equations, field theory, electromagnetic waves and their applications.",
+  pm2_3t:'Electronics: active components',pm2_3d:'Transistors, op-amps, filters, signal processing — from theory to circuit.',
+  pm2_4t:'Arduino: sensors & systems',pm2_4d:'I2C/SPI protocols, sensor fusion, data logging, serial comms with Python.',
+  pm2_5t:'KNX & Domotics',pm2_5d:'KNX topology, ETS6 configuration, group addresses, logic programming — industry-standard smart home design.',
+  pm2_6t:'Functional prototype',pm2_6d:'A working physical device or KNX installation — sensor array, automation scenario, or interactive system.',
+  price_per:'/ 60 min',
+  c1_pack_hs:'5-session pack <strong>€220</strong> — save €30',
+  c2_pack_uni:'5-session pack <strong>€350</strong> — save €50',
+  p1_pack_hs:'5-session pack <strong>€220</strong> — save €30',
+  p2_pack_uni:'5-session pack <strong>€350</strong> — save €50',
+  pf_custom:'Fully personalized to your level',pf_notes:'Session notes sent after each class',
+  pf_async:'24h async support between sessions',pf_cancel:'Cancel up to 24h before',
+  pf_code_review:'Code review between sessions',pf_exam:'Exam strategy included when relevant',
+  pf_hw_review:'Homework & problem-set review',
+  book_call_short:'Book a free 15-min call',book_trial_short:'Book a free 15-min call',
+  book_session:'Book a session →',
+  for_label:'// Is this for you?',for_yes:'This is for you if…',for_no:'Probably not if…',
+  c_yes1:"You're struggling with a programming course or exam",c_yes2:"You want to build something but don't know where to start",
+  c_yes3:"You've tried tutorials and keep getting stuck",c_yes4:"You want to use code creatively — art, music, visuals",
+  c_yes5:"You work with data and want to visualize it properly",c_yes6:"You learn better in conversation than from slides",
+  c_no1:'You want pre-recorded video courses',c_no2:'You want someone to just do your homework for you',c_no3:"You're a senior dev looking for advanced architecture",
+  p_yes1:"Physics feels like a wall of symbols you can't decode",p_yes2:"You're preparing for a maturità, bac or university exam",
+  p_yes3:"You want to build electronics or smart home projects but don't know how",p_yes4:"Your teacher explains fast and you don't want to ask again",
+  p_yes5:'You\'re curious about how the physical world actually works',p_yes6:'You want to combine physics with code and home automation',
+  p_no1:'You want someone to solve your problem sets without explaining',p_no2:"You're looking for advanced quantum or graduate-level theory only",p_no3:'You prefer group classes over 1:1 attention',
+  cta1_title:'READY TO<br><span class="y">ACTUALLY</span><br>GET IT?',
+  cta2_title:'PHYSICS ISN\'T <span class="y">HARD</span>.<br>IT\'S MIS-TAUGHT.',
+  demo_label:'// Live demo',
+  c_demo_title:'Code becomes<br>something <span style="color:var(--y)">visible.</span>',
+  c_demo_desc:"This is the kind of output you'll build — a generative sketch running entirely in your browser. Every line of code you write draws something, moves something, reacts to something. That's the feedback loop that makes it stick.",
+  p_demo_title:'Circuits that<br>actually <span style="color:var(--y)">do things.</span>',
+  p_demo_desc:"This is the loop: you write a few lines, a real LED blinks, a sensor reacts, a motor moves. The feedback is immediate and physical. That's what makes electronics and domotics learnable — not theory, but tangible cause and effect.",
+  mat_headline:'Every session.<br><span class="y">Every material.</span><br>Included.',
+  mat_sub_code:"You never leave empty-handed. Each session produces a set of custom materials built around exactly what we covered.",
+  mat_sub_phys:"Walk away with everything you need to keep going — custom-built for your level, your questions, your project.",
+  pmat1:'Custom slides — your level, your language, your examples',
+  pmat2:'Circuit diagrams and KNX topology sheets for what we built',
+  pmat3:'Annotated Arduino sketches from the session',
+  pmat4:'Formula sheets with context — not just the formula, but when and why to use it',
+  pmat5:'Exercises targeting exactly what you found hard',
+  pmat6:'24h async support — a question between sessions is never lost',
+  poly_intro:'Talks to you through',
+  c1_title:'CODE &amp;<br><span class="accent">CREATIVE</span><br>ART',
+  c2_title:'PHYSICS,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICS',
+  sim_label:'// Simulators',
+  c_sim_title:'Practice <span class="y">anywhere.</span><br>Zero kit. Zero cost.',
+  c_sim_desc:"Every concept you learn runs on professional simulators — the same ones used in production. No software to install, no hardware to buy. Whether you're in a café in Bangkok or at home: the environment is ready.",
+  p_sim_title:'Real circuits.<br><span class="y">No kit</span> required.',
+  p_sim_desc:"Arduino projects, KNX circuits, sensors — all simulated on professional platforms before you touch a single physical component. For the nomadic makers of tomorrow: laptop, connection, you're operational.",
+  sim_perk1:'Browser-based simulators — zero installation',
+  sim_perk2:'Perfect for digital nomads and students on the move',
+  sim_perk3:'Same workflow as professional developers',
+  p_sim_perk1:'Circuits simulated in browser — LEDs, sensors, motors',
+  p_sim_perk2:'No kit to buy to get started',
+  p_sim_perk3:'Practice from anywhere in the world',
+  mat1:'Custom slides — written in your language, not the textbook\'s',
+  mat2:'Personalized handouts with examples from your own project',
+  mat3:'Exercises calibrated to your weak points, not a generic set',
+  mat4:'Session notes with a summary of what we built and why',
+  mat5:'Code snippets and annotated scripts from the session',
+  mat6:'24h async support — stuck between sessions? I answer.',
+},
+fr:{
+  nav_home:'Accueil',nav_code:'Code & Art',nav_physics:'Physique, Arduino & Domotique',
+  hero_eyebrow:'// Docteur · Chercheur · Formateur',
+  hero_tagline:"Je rends les choses difficiles limpides. La science et le code, enseignés par quelqu'un qui les pratique.",
+  cred_phd:'Bio Computationnelle',cred_sessions:'Séances 1:1 uniquement',cred_location:'En ligne & Présentiel',
+  cta_code:'Code & Art Créatif',cta_physics:'Physique, Arduino & Domotique',
+  about_label:'// À propos',
+  bio_text:`Je suis <strong>biologiste computationnel titulaire d'un doctorat</strong>, avec plus de 8 ans en oncologie clinique et biologie du développement. J'ai développé des outils publiés dans <em>Nucleic Acids Research</em> et <em>Scientific Reports</em>, utilisés dans des laboratoires européens, et dirigé le développement de pipelines pour la génomique du cancer à l'Humanitas Research Hospital.<br><br>Mais ce que personne ne dit : j'ai passé des années à être la personne dans le labo qui savait <strong>expliquer</strong>. Non parce que les concepts sont simples — ils ne le sont pas. Mais parce que j'ai trouvé une porte d'entrée.<br><br>Maintenant j'enseigne en 1:1. Physique. Électronique. Code. Art génératif. Domotique. Pour les étudiants à qui on a raconté la mauvaise histoire.`,
+  fact1_title:'Formation scientifique',fact1_text:'Oncologie de précision · Génomique du cancer · Biologie du développement · Analyse multi-omique · Outils bioinformatiques full-stack',
+  fact2_title:'Stack technique',fact3_title:'Philosophie pédagogique',
+  fact3_text:"Pas de slides. Pas de manuels. De vrais problèmes, de vrais outils, tes questions. Je m'adapte à ta façon de penser.",
+  fact4_title:'Localisation',fact4_text:'Verbania / Milan / Lugano · Thaïlande (déc–mars) · Disponible partout en ligne',
+  inperson_label:'// Séances en présentiel',
+  inperson_intro:"Je voyage. Les séances suivent. Basé en Italie du Nord et à la frontière suisse la plupart de l'année, en Asie du Sud-Est de décembre à mars.",
+  s1_label:'Europe',s1_cities:'Verbania<br>Turin · Milan<br>Lugano · Lausanne',s1_months:'Mar — Déc',s1_note:"Italie du Nord et frontière suisse. Sessions hebdomadaires régulières possibles. En ligne pour le reste de l'Europe.",
+  s2_label:'Asie',s2_cities:'Bangkok<br>Krabi · Phuket<br>Pattaya',s2_months:'Déc — Mar',s2_note:'Thaïlande. Présentiel pour voyageurs, expats et nomades numériques. Les séances en ligne continuent partout.',
+  courses_label:'// Masterclasses',
+  card1_title:'Code & Art Créatif',card1_desc:"De ta première boucle à l'art génératif. La programmation enseignée à travers ce que tu veux créer.",
+  card2_title:'Physique, Arduino<br>& Domotique',card2_desc:"Électrons, circuits, domotique. Enseigné avec de vrais composants et de vraies installations KNX.",
+  card_explore:'Explorer le cours',back_home:"Retour à l'accueil",
+  course1_tag:'Masterclass 01',course2_tag:'Masterclass 02',
+  c1_sub:'Python, R, JavaScript et art génératif — enseignés comme une conversation, pas un cours magistral.',
+  c2_sub:"Électricité, ondes, mécanique et domotique — enseignés avec de vrais composants, du breadboard au KNX.",
+  book_trial:'Réserver un appel gratuit de 15 min →',
+  learn_label:'// Ce que tu vas apprendre',
+  lc1_t:'Python',lc1_d:'Variables, boucles, fonctions, structures de données. Écrit pour les humains.',
+  lc2_t:'R & Analyse de données',lc2_d:"Tidyverse, ggplot2, pensée statistique. Des données brutes à l'insight.",
+  lc3_t:'JavaScript & web',lc3_d:'Construire des choses qui tournent dans un navigateur. DOM, événements, interactivité.',
+  lc4_t:'Art génératif',lc4_d:'p5.js et Processing pour la création visuelle. Champs de bruit, systèmes de particules.',
+  lc5_t:'Résolution de problèmes',lc5_d:'Comment décomposer un problème, déboguer méthodiquement, penser comme un programmeur.',
+  lc6_t:'Ton projet',lc6_d:"Chaque séance avance vers quelque chose que tu veux vraiment créer. Pas d'exercices bidons.",
+  lp1_t:'Électricité & circuits',lp1_d:"Loi d'Ohm, résistances, condensateurs — compris à travers des circuits que tu construis.",
+  lp2_t:'Arduino',lp2_d:'De faire clignoter une LED à lire des capteurs et construire des appareils réels.',
+  lp3_t:'Ondes & optique',lp3_d:'Lumière, son, interférences — les phénomènes physiques derrière les formules.',
+  lp4_t:'Mécanique',lp4_d:"Forces, mouvement, énergie — rendus intuitifs avant d'être mathématisés.",
+  lp5_t:'KNX & Domotique',lp5_d:"Standard KNX, programmation ETS6, logique maison intelligente — domotique industrielle depuis zéro.",
+  lp6_t:'Ton prototype',lp6_d:"Quelque chose de physique. Un capteur, un système lumineux, ou un scénario KNX fonctionnel.",
+  paths_label:'// Choisir ton parcours',
+  c_paths_intro:'Même qualité, profondeur différente. Choisis le programme qui correspond à où tu en es.',
+  p_paths_intro:"Même approche pratique, niveau de rigueur différent. Choisis le parcours qui correspond à ton background.",
+  program_label:'Programme',
+  c_aud1:'🎓 Lycée',c_aud2:'🎓 Université / Professionnel',
+  p_aud1:'🎓 Lycée',p_aud2:'🎓 Université / Professionnel',
+  c_path1_title:'Parcours<br>Fondation',c_path1_desc:"Construire une vraie intuition du code de zéro. Idéal pour réussir les examens et découvrir ce que la programmation peut vraiment créer.",
+  c_path2_title:'Parcours<br>Avancé',c_path2_desc:"Algorithmes plus profonds, data science avec R, et systèmes génératifs. Pour aller plus loin ou ajouter le tech créatif à son toolkit.",
+  p_path1_title:'Parcours<br>Fondation',p_path1_desc:"Construire l'intuition du monde physique avant que les formules prennent le dessus. Orienté examen quand nécessaire. Inclut une intro à la domotique.",
+  p_path2_title:'Parcours<br>Avancé',p_path2_desc:"Physique rigoureuse, électronique avancée, systèmes Arduino et domotique professionnelle KNX/ETS6.",
+  cm1_1t:'Les bases de Python',cm1_1d:'Variables, conditions, boucles, fonctions — les vrais blocs de construction.',
+  cm1_2t:'Structures de données & logique',cm1_2d:'Listes, dictionnaires, algorithmes — penser avant de taper.',
+  cm1_3t:'Intro au web : HTML/CSS/JS',cm1_3d:'Faire apparaître des choses dans un navigateur. Premier goût du web.',
+  cm1_4t:'Coding créatif avec p5.js',cm1_4d:'Dessiner, animer, interagir. Le code comme expression visuelle.',
+  cm1_5t:'Projet final',cm1_5d:"Une animation interactive ou un petit outil — à toi pour le garder et le partager.",
+  cm2_1t:'Python avancé',cm2_1d:'POO, patterns fonctionnels, librairies (NumPy, pandas). Du code qui passe à l\'échelle.',
+  cm2_2t:'R pour la data science',cm2_2d:'Tidyverse, ggplot2, modélisation statistique — des données brutes à la publication.',
+  cm2_3t:'JS avancé & canvas',cm2_3d:'Closures, async, bases WebGL. Construire de vraies expériences interactives.',
+  cm2_4t:'Systèmes génératifs',cm2_4d:'Champs de flux, L-systems, algorithmes de bruit, physique des particules.',
+  cm2_5t:'Visualisation de données',cm2_5d:'ggplot2 et D3.js — faire raconter une histoire aux données.',
+  cm2_6t:'Projet capstone',cm2_6d:"Un outil complet, une installation ou une data story — prêt pour le portfolio.",
+  pm1_1t:"Mécanique — l'intuition d'abord",pm1_1d:"Forces, mouvement, lois de Newton. Ce qui se passe vraiment avant ce que dit la formule.",
+  pm1_2t:'Énergie & thermodynamique',pm1_2d:"Travail, chaleur, entropie. Rendus tangibles par des exemples quotidiens.",
+  pm1_3t:'Ondes, son & optique',pm1_3d:"Comment la lumière et le son se comportent — et pourquoi. Interférences, lentilles.",
+  pm1_4t:'Électricité & circuits de base',pm1_4d:"Tension, courant, loi d'Ohm, résistances — hands-on sur breadboard.",
+  pm1_5t:'Arduino + intro domotique',pm1_5d:"Code + circuit combinés. Construire un dispositif réactif, puis découvrir la logique KNX.",
+  pm2_1t:'Mécanique analytique',pm2_1d:'Approche lagrangienne, oscillations, systèmes couplés — au-delà de Newton.',
+  pm2_2t:'Électromagnétisme avancé',pm2_2d:"Équations de Maxwell, théorie des champs, ondes électromagnétiques.",
+  pm2_3t:'Électronique : composants actifs',pm2_3d:'Transistors, AOP, filtres, traitement du signal — de la théorie au circuit.',
+  pm2_4t:'Arduino : capteurs & systèmes',pm2_4d:'Protocoles I2C/SPI, fusion de capteurs, data logging, comm série avec Python.',
+  pm2_5t:'KNX & Domotique',pm2_5d:"Topologie KNX, configuration ETS6, adresses de groupe, programmation logique — conception domotique standard.",
+  pm2_6t:'Prototype fonctionnel',pm2_6d:"Un dispositif physique ou une installation KNX — réseau de capteurs, scénario d'automatisation.",
+  price_per:'/ 60 min',
+  c1_pack_hs:'Pack 5 séances <strong>220€</strong> — économise 30€',
+  c2_pack_uni:'Pack 5 séances <strong>350€</strong> — économise 50€',
+  p1_pack_hs:'Pack 5 séances <strong>220€</strong> — économise 30€',
+  p2_pack_uni:'Pack 5 séances <strong>350€</strong> — économise 50€',
+  pf_custom:'Entièrement personnalisé à ton niveau',pf_notes:'Notes de séance envoyées après chaque cours',
+  pf_async:'Support async 24h entre les séances',pf_cancel:"Annulation jusqu'à 24h avant",
+  pf_code_review:'Révision de code entre les séances',pf_exam:'Stratégie exam incluse si besoin',
+  pf_hw_review:"Révision des exercices et devoirs",
+  book_call_short:'Réserver un appel gratuit de 15 min',book_trial_short:'Réserver un essai gratuit',
+  book_session:'Réserver une séance →',
+  for_label:'// Est-ce fait pour toi ?',for_yes:'C\'est pour toi si…',for_no:'Probablement pas si…',
+  c_yes1:"Tu es en difficulté dans un cours ou un examen de programmation",c_yes2:"Tu veux construire quelque chose mais ne sais pas par où commencer",
+  c_yes3:"Tu as essayé des tutos et tu te bloques toujours",c_yes4:"Tu veux utiliser le code de façon créative — art, musique, visuels",
+  c_yes5:"Tu travailles avec des données et tu veux les visualiser correctement",c_yes6:"Tu apprends mieux en conversation qu'avec des slides",
+  c_no1:'Tu veux des cours vidéo pré-enregistrés',c_no2:'Tu veux quelqu\'un qui fasse tes devoirs à ta place',c_no3:"Tu es un dev senior cherchant de l'architecture avancée",
+  p_yes1:"La physique ressemble à un mur de symboles incompréhensibles",p_yes2:"Tu prépares une maturité, un bac ou un exam universitaire",
+  p_yes3:"Tu veux faire des projets électroniques ou domotiques mais tu ne sais pas comment",p_yes4:"Ton prof explique vite et tu n'oses pas redemander",
+  p_yes5:'Tu es curieux du fonctionnement réel du monde physique',p_yes6:'Tu veux combiner physique, code et domotique',
+  p_no1:'Tu veux qu\'on te résolve tes exercices sans explications',p_no2:"Tu cherches uniquement de la théorie quantique ou de niveau master",p_no3:'Tu préfères les cours collectifs au 1:1',
+  cta1_title:'PRÊT À<br><span class="y">VRAIMENT</span><br>COMPRENDRE ?',
+  cta2_title:'LA PHYSIQUE N\'EST PAS <span class="y">DIFFICILE</span>.<br>ELLE EST MAL ENSEIGNÉE.',
+  c1_title:'CODE &amp;<br><span class="accent">CRÉATIF</span><br>&amp; ART',
+  c2_title:'PHYSIQUE,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTIQUE',
+  sim_label:'// Simulateurs',
+  c_sim_title:'Pratique <span class="y">partout.</span><br>Zéro kit. Zéro coût.',
+  c_sim_desc:"Chaque concept s'apprend sur des simulateurs professionnels. Rien à installer, rien à acheter. Dans un café à Bangkok ou chez toi : l'environnement est prêt.",
+  p_sim_title:'De vrais circuits.<br><span class="y">Sans kit</span> à acheter.',
+  p_sim_desc:"Projets Arduino, circuits KNX, capteurs — tout simulé sur des plateformes pro avant de toucher un seul composant. Pour les futurs makers nomades : laptop, connexion, tu es opérationnel.",
+  sim_perk1:'Simulateurs dans le navigateur — zéro installation',
+  sim_perk2:'Idéal pour les nomades numériques et étudiants en déplacement',
+  sim_perk3:'Même workflow que les développeurs professionnels',
+  p_sim_perk1:'Circuits simulés dans le navigateur — LEDs, capteurs, moteurs',
+  p_sim_perk2:'Aucun kit à acheter pour commencer',
+  p_sim_perk3:'Pratiquer depuis n\'importe où dans le monde',
+
+  cta_guarantee:"La première séance est un essai. Si ça ne clique pas, tu ne paies pas. Simple.",
+},
+it:{
+  nav_home:'Home',nav_code:'Codice & Arte',nav_physics:'Fisica, Arduino & Domotica',
+  hero_eyebrow:'// Dottorato · Ricercatore · Formatore',
+  hero_tagline:'Rendo le cose difficili intuitive. Scienza e codice, insegnati da chi li pratica davvero.',
+  cred_phd:'Bio Computazionale',cred_sessions:'Solo sessioni 1:1',cred_location:'Online & Presenza',
+  cta_code:'Codice & Arte Creativa',cta_physics:'Fisica, Arduino & Domotica',
+  about_label:'// Chi sono',
+  bio_text:`Sono un <strong>biologo computazionale con dottorato</strong>, con oltre 8 anni tra oncologia clinica e biologia dello sviluppo. Ho sviluppato strumenti pubblicati su <em>Nucleic Acids Research</em> e <em>Scientific Reports</em>, usati in laboratori europei. Ho diretto lo sviluppo di pipeline per la genomica del cancro all'Humanitas Research Hospital di Milano.<br><br>Ma la parte che nessuno racconta: ho passato anni ad essere la persona in laboratorio che sapeva <strong>spiegare le cose</strong>. Non perché i concetti siano semplici — non lo sono. Ma perché ho trovato una porta d'ingresso.<br><br>Ora insegno 1:1. Fisica. Elettronica. Codice. Arte generativa. Domotica. Per studenti a cui è stata raccontata la storia sbagliata.`,
+  fact1_title:'Background di ricerca',fact1_text:'Oncologia di precisione · Genomica del cancro · Biologia dello sviluppo · Analisi multi-omiche · Strumenti bioinformatici full-stack',
+  fact2_title:'Stack tecnologico',fact3_title:'Filosofia didattica',
+  fact3_text:"Niente slide. Niente libri di testo. Problemi reali, strumenti reali, le tue domande. Mi adatto al tuo modo di pensare.",
+  fact4_title:'Dove sono',fact4_text:'Verbania / Milano / Lugano · Tailandia (dic–mar) · Disponibile ovunque online',
+  inperson_label:'// Sessioni in presenza',
+  inperson_intro:"Viaggio. Le sessioni mi seguono. Sono basato nell'Italia del Nord e al confine svizzero per la maggior parte dell'anno, in Asia tra dicembre e marzo.",
+  s1_label:'Europa',s1_cities:'Verbania<br>Torino · Milano<br>Lugano · Losanna',s1_months:'Mar — Dic',s1_note:'Italia del Nord e confine svizzero. Sessioni settimanali regolari possibili. Online per il resto d\'Europa.',
+  s2_label:'Asia',s2_cities:'Bangkok<br>Krabi · Phuket<br>Pattaya',s2_months:'Dic — Mar',s2_note:'Tailandia. In presenza per viaggiatori, expat e nomadi digitali. Le sessioni online continuano ovunque.',
+  courses_label:'// Masterclass',
+  card1_title:'Codice & Arte Creativa',card1_desc:'Dal tuo primo loop all\'arte generativa. La programmazione insegnata attraverso quello che vuoi davvero costruire.',
+  card2_title:'Fisica, Arduino<br>& Domotica',card2_desc:'Elettroni, circuiti, domotica professionale. Insegnato con componenti reali e installazioni KNX vere.',
+  card_explore:'Esplora il corso',back_home:'Torna alla home',
+  course1_tag:'Masterclass 01',course2_tag:'Masterclass 02',
+  c1_sub:'Python, R, JavaScript e arte generativa — insegnati come una conversazione, non una lezione.',
+  c2_sub:'Elettricità, onde, meccanica e domotica — insegnati con componenti reali, dal breadboard al KNX.',
+  book_trial:'Prenota una chiamata gratuita di 15 min →',
+  learn_label:'// Cosa imparerai',
+  lc1_t:'Python',lc1_d:'Variabili, cicli, funzioni, strutture dati. Scritto per esseri umani, non macchine.',
+  lc2_t:'R & Analisi dei dati',lc2_d:'Tidyverse, ggplot2, pensiero statistico. Dai dati grezzi all\'intuizione.',
+  lc3_t:'JavaScript & web',lc3_d:'Costruire cose che girano nel browser. DOM, eventi, interattività.',
+  lc4_t:'Arte generativa',lc4_d:'p5.js e Processing per output visivo. Campi di rumore, sistemi di particelle.',
+  lc5_t:'Problem solving',lc5_d:'Come scomporre un problema, fare debug in modo sistematico, pensare da programmatore.',
+  lc6_t:'Il tuo progetto',lc6_d:'Ogni sessione costruisce verso qualcosa che vuoi davvero creare. Niente esercizi fittizi.',
+  lp1_t:'Elettricità & circuiti',lp1_d:'Legge di Ohm, resistori, condensatori — compresi attraverso circuiti che costruisci.',
+  lp2_t:'Arduino',lp2_d:'Dal far lampeggiare un LED a leggere sensori e costruire dispositivi reali.',
+  lp3_t:'Onde & ottica',lp3_d:'Luce, suono, interferenza — i fenomeni fisici dietro le formule.',
+  lp4_t:'Meccanica',lp4_d:"Forze, moto, energia — resi intuitivi prima di diventare matematici.",
+  lp5_t:'KNX & Domotica',lp5_d:"Standard KNX, programmazione ETS6, logica smart home — domotica industriale da zero.",
+  lp6_t:'Il tuo prototipo',lp6_d:"Qualcosa di fisico. Un sensore, un sistema di luci, o uno scenario KNX funzionante.",
+  paths_label:'// Scegli il tuo percorso',
+  c_paths_intro:'Stessa qualità, profondità diversa. Scegli il programma che corrisponde a dove sei adesso.',
+  p_paths_intro:"Stesso approccio pratico, livello di rigore diverso. Scegli il percorso che corrisponde al tuo background.",
+  program_label:'Programma',
+  c_aud1:'🎓 Liceo',c_aud2:'🎓 Università / Professionista',
+  p_aud1:'🎓 Liceo',p_aud2:'🎓 Università / Professionista',
+  c_path1_title:'Percorso<br>Base',c_path1_desc:"Costruire vera intuizione per il codice da zero. Ideale per superare gli esami e scoprire cosa può davvero creare la programmazione.",
+  c_path2_title:'Percorso<br>Avanzato',c_path2_desc:"Algoritmi più profondi, data science con R, e sistemi generativi. Per chi vuole andare oltre o professionisti che aggiungono tech creativo al loro toolkit.",
+  p_path1_title:'Percorso<br>Base',p_path1_desc:"Costruire l'intuizione del mondo fisico prima che le formule prendano il sopravvento. Orientato all'esame quando serve. Include intro alla domotica.",
+  p_path2_title:'Percorso<br>Avanzato',p_path2_desc:"Fisica rigorosa, elettronica avanzata, sistemi Arduino e domotica professionale KNX/ETS6.",
+  cm1_1t:'Le basi di Python',cm1_1d:'Variabili, condizioni, cicli, funzioni — i veri mattoni fondamentali.',
+  cm1_2t:'Strutture dati & logica',cm1_2d:'Liste, dizionari, algoritmi — pensare prima di digitare.',
+  cm1_3t:'Intro al web: HTML/CSS/JS',cm1_3d:'Far apparire cose in un browser. Primo assaggio del web.',
+  cm1_4t:'Coding creativo con p5.js',cm1_4d:'Disegnare, animare, interagire. Il codice come espressione visiva.',
+  cm1_5t:'Progetto finale',cm1_5d:"Un'animazione interattiva o un piccolo strumento — tuo da tenere e condividere.",
+  cm2_1t:'Python avanzato',cm2_1d:'OOP, pattern funzionali, librerie (NumPy, pandas). Codice che scala.',
+  cm2_2t:'R per la data science',cm2_2d:'Tidyverse, ggplot2, modellazione statistica — dai dati grezzi alla pubblicazione.',
+  cm2_3t:'JS avanzato & canvas',cm2_3d:'Closures, async, basi WebGL. Costruire vere esperienze interattive.',
+  cm2_4t:'Sistemi generativi',cm2_4d:'Flow fields, L-systems, algoritmi di rumore, fisica delle particelle.',
+  cm2_5t:'Visualizzazione dati',cm2_5d:'ggplot2 e D3.js — far raccontare una storia ai dati.',
+  cm2_6t:'Progetto capstone',cm2_6d:"Uno strumento completo, un'installazione o una data story — pronto per il portfolio.",
+  pm1_1t:"Meccanica — prima l'intuizione",pm1_1d:"Forze, moto, leggi di Newton. Cosa succede davvero, prima di cosa dice la formula.",
+  pm1_2t:'Energia & termodinamica',pm1_2d:"Lavoro, calore, entropia. Resi concreti attraverso esempi quotidiani e esperimenti mentali.",
+  pm1_3t:'Onde, suono & ottica',pm1_3d:"Come si comportano luce e suono — e perché. Interferenza, lenti, spettro EM.",
+  pm1_4t:'Elettricità & circuiti base',pm1_4d:"Tensione, corrente, legge di Ohm, resistori — hands-on su breadboard.",
+  pm1_5t:'Arduino + intro domotica',pm1_5d:'Codice + circuito combinati. Costruire un dispositivo reattivo, poi scoprire la logica KNX.',
+  pm2_1t:'Meccanica analitica',pm2_1d:'Approccio lagrangiano, oscillazioni, sistemi accoppiati — oltre Newton.',
+  pm2_2t:'Elettromagnetismo avanzato',pm2_2d:"Equazioni di Maxwell, teoria dei campi, onde elettromagnetiche e loro applicazioni.",
+  pm2_3t:'Elettronica: componenti attivi',pm2_3d:'Transistor, op-amp, filtri, elaborazione del segnale — dalla teoria al circuito.',
+  pm2_4t:'Arduino: sensori & sistemi',pm2_4d:'Protocolli I2C/SPI, sensor fusion, data logging, comunicazione seriale con Python.',
+  pm2_5t:'KNX & Domotica',pm2_5d:'Topologia KNX, configurazione ETS6, indirizzi di gruppo, programmazione logica — domotica standard industriale.',
+  pm2_6t:'Prototipo funzionale',pm2_6d:"Un dispositivo fisico o un'installazione KNX funzionante — array di sensori, scenario di automazione.",
+  price_per:'/ 60 min',
+  c1_pack_hs:'Pacchetto 5 sessioni <strong>220€</strong> — risparmi 30€',
+  c2_pack_uni:'Pacchetto 5 sessioni <strong>350€</strong> — risparmi 50€',
+  p1_pack_hs:'Pacchetto 5 sessioni <strong>220€</strong> — risparmi 30€',
+  p2_pack_uni:'Pacchetto 5 sessioni <strong>350€</strong> — risparmi 50€',
+  pf_custom:'Completamente personalizzato al tuo livello',pf_notes:'Note della sessione inviate dopo ogni lezione',
+  pf_async:'Supporto async 24h tra le sessioni',pf_cancel:'Cancellazione fino a 24h prima',
+  pf_code_review:'Revisione del codice tra le sessioni',pf_exam:'Strategia esame inclusa quando rilevante',
+  pf_hw_review:"Revisione esercizi e problem set",
+  book_call_short:'Prenota una chiamata gratuita di 15 min',book_trial_short:'Prenota una prova gratuita',
+  book_session:'Prenota una sessione →',
+  for_label:'// È per te?',for_yes:'È per te se…',for_no:'Probabilmente no se…',
+  c_yes1:"Sei in difficoltà in un corso o esame di programmazione",c_yes2:"Vuoi costruire qualcosa ma non sai da dove iniziare",
+  c_yes3:"Hai provato tutorial e continui a bloccarti",c_yes4:"Vuoi usare il codice in modo creativo — arte, musica, visual",
+  c_yes5:"Lavori con dati e vuoi visualizzarli correttamente",c_yes6:"Impari meglio in conversazione che con le slide",
+  c_no1:'Vuoi corsi video pre-registrati',c_no2:'Vuoi qualcuno che faccia i tuoi compiti al posto tuo',c_no3:"Sei un dev senior in cerca di architetture avanzate",
+  p_yes1:"La fisica ti sembra un muro di simboli incomprensibili",p_yes2:"Stai preparando una maturità o un esame universitario",
+  p_yes3:"Vuoi fare progetti elettronici o domotici ma non sai come",p_yes4:"Il tuo prof spiega veloce e non vuoi chiedere di nuovo",
+  p_yes5:'Sei curioso di come funziona davvero il mondo fisico',p_yes6:'Vuoi combinare fisica, codice e domotica',
+  p_no1:'Vuoi che qualcuno risolva i tuoi esercizi senza spiegare',p_no2:"Cerchi solo teoria quantistica avanzata o di livello magistrale",p_no3:'Preferisci lezioni di gruppo al 1:1',
+  cta1_title:'PRONTO A<br><span class="y">CAPIRE</span><br>DAVVERO?',
+  cta2_title:'LA FISICA NON È <span class="y">DIFFICILE</span>.<br>È MAL INSEGNATA.',
+  c1_title:'CODE &amp;<br><span class="accent">CREATIVO</span><br>&amp; ARTE',
+  c2_title:'FISICA,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICA',
+  sim_label:'// Simulatori',
+  c_sim_title:'Fai pratica <span class="y">ovunque.</span><br>Zero kit. Zero costi.',
+  c_sim_desc:"Ogni concetto si impara su simulatori professionali. Nessun software da installare, nessun hardware da comprare. In un bar a Bangkok o a casa tua: l'ambiente è pronto.",
+  p_sim_title:'Circuiti reali.<br><span class="y">Nessun kit</span> da comprare.',
+  p_sim_desc:"Progetti Arduino, circuiti KNX, sensori — tutto simulato su piattaforme professionali prima ancora di toccare un componente fisico. Per i futuri maker nomadi di domani: laptop, connessione, sei operativo.",
+  sim_perk1:'Simulatori browser-based — zero installazione',
+  sim_perk2:'Ideale per nomadi digitali e studenti in movimento',
+  sim_perk3:'Stesso workflow dei developer professionisti',
+  p_sim_perk1:'Circuiti simulati in browser — LED, sensori, motori',
+  p_sim_perk2:'Nessun kit da acquistare per iniziare',
+  p_sim_perk3:'Fai pratica da qualsiasi posto nel mondo',
+
+  cta_guarantee:"La prima sessione è una prova. Se non scatta il click, non paghi. Punto.",
+}};
+
+let lang='en';
+function detectLang(){const b=(navigator.language||'en').toLowerCase();if(b.startsWith('fr'))return'fr';if(b.startsWith('it'))return'it';return'en';}
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('btn-'+l).classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n'),v=T[l][k];
+    if(v!==undefined)el.innerHTML=v;
+  });
+  document.documentElement.lang=l;
+}
+
+/* CURSOR */
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function lc(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(lc);})();
+
+/* ROUTING */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-center a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);setTimeout(initReveals,80);
+  if(id==='code'&&!codeInit)initCodeCanvas();
+  if(id==='physics'&&!physInit)initPhysCanvas();
+}
+
+/* REVEAL */
+function initReveals(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
+  document.querySelectorAll('.page.active .reveal').forEach(el=>{el.classList.remove('visible');obs.observe(el);});
+}
+initReveals();
+
+/* CANVAS UTILS */
+function noise3(x,y,t){return(Math.sin(x*1.2+t)+Math.cos(y*.85-t*.65)+Math.sin((x+y)*.65+t*1.15))/3;}
+function makeP(W,H,n){return Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:.7+Math.random()*1.8,ph:Math.random()*Math.PI*2,s:.0003+Math.random()*.0005}));}
+function moveP(pts,W,H,t){pts.forEach(p=>{const a=noise3(p.x/W,p.y/H,t)*Math.PI*2;p.x+=Math.cos(a)*.28+p.vx;p.y+=Math.sin(a)*.28+p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;});}
+function edges(ctx,pts,D,r,g,b){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],bb=pts[j],dx=a.x-bb.x,dy=a.y-bb.y,d=Math.sqrt(dx*dx+dy*dy);if(d<D){ctx.beginPath();ctx.strokeStyle=`rgba(${r},${g},${b},${(1-d/D)*.18})`;ctx.lineWidth=(1-d/D)*.7;ctx.moveTo(a.x,a.y);ctx.lineTo(bb.x,bb.y);ctx.stroke();}}}
+function drawNodes(ctx,pts,t,r,g,b){pts.forEach(p=>{const p2=.7+.3*Math.sin(t/p.s*.001+p.ph),gr=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*9);gr.addColorStop(0,`rgba(${r},${g},${b},${.1*p2})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.beginPath();ctx.fillStyle=gr;ctx.arc(p.x,p.y,p.r*9,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(${r},${g},${b},${.7+.3*p2})`;ctx.arc(p.x,p.y,p.r*p2,0,Math.PI*2);ctx.fill();});}
+function vig(ctx,W,H){const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);}
+
+/* HOME */
+(function(){
+  const cv=document.getElementById('canvas-home'),ctx=cv.getContext('2d');
+  let W,H,pts,t=0,rAF,resizeTimer;
+  function resize(){
+    W=cv.width=window.innerWidth;
+    H=cv.height=window.innerHeight;
+    pts=makeP(W,H,70);
+  }
+  function draw(){t+=.004;ctx.clearRect(0,0,W,H);moveP(pts,W,H,t);edges(ctx,pts,140,255,230,0);drawNodes(ctx,pts,t,255,230,0);vig(ctx,W,H);rAF=requestAnimationFrame(draw);}
+  window.addEventListener('resize',()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(resize,120);
+  });
+  resize();draw();
+  document.addEventListener('mousemove',e=>{if(!pts)return;pts.forEach(p=>{const dx=p.x-e.clientX,dy=p.y-e.clientY,d=Math.sqrt(dx*dx+dy*dy);if(d<100){const f=(100-d)/100*.9;p.x+=(dx/d)*f;p.y+=(dy/d)*f;}});});
+})();
+
+/* CODE CANVAS */
+let codeInit=false;
+function initCodeCanvas(){
+  codeInit=true;
+  const cv=document.getElementById('canvas-code'),ctx=cv.getContext('2d');
+  let W,H,pts,t=0;
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;pts=makeP(W,H,90);}
+  function draw(){
+    t+=.003;ctx.clearRect(0,0,W,H);
+    ctx.font='11px monospace';ctx.fillStyle='rgba(0,255,180,.018)';
+    for(let i=0;i<W;i+=28)ctx.fillText(String.fromCharCode(33+Math.floor(Math.random()*90)),i,Math.random()*H);
+    moveP(pts,W,H,t);edges(ctx,pts,120,0,255,180);drawNodes(ctx,pts,t,0,255,180);vig(ctx,W,H);requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+}
+
+/* PHYSICS CANVAS */
+let physInit=false;
+function initPhysCanvas(){
+  physInit=true;
+  const cv=document.getElementById('canvas-physics'),ctx=cv.getContext('2d');
+  let W,H,t=0,nds=[];
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;nds=[];
+    const cols=Math.ceil(W/80),rows=Math.ceil(H/80);
+    for(let r=0;r<=rows;r++)for(let c=0;c<=cols;c++)
+      nds.push({x:c*80+(Math.random()-.5)*30,y:r*80+(Math.random()-.5)*30,active:Math.random()>.4,pulse:Math.random()*Math.PI*2});
+  }
+  function draw(){
+    t+=.018;ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(255,140,0,.04)';ctx.lineWidth=1;
+    for(let x=0;x<W;x+=80){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=80){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    nds.forEach((n,i)=>{if(!n.active)return;nds.slice(i+1).forEach(m=>{if(!m.active)return;const dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){ctx.beginPath();ctx.strokeStyle=`rgba(255,140,0,${(1-d/160)*.2})`;ctx.lineWidth=.8;ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}});});
+    nds.forEach(n=>{if(!n.active)return;const p=.6+.4*Math.sin(t+n.pulse),g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);g.addColorStop(0,`rgba(255,140,0,${.18*p})`);g.addColorStop(1,'rgba(255,140,0,0)');ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(255,140,0,${.8*p})`;ctx.arc(n.x,n.y,2*p,0,Math.PI*2);ctx.fill();});
+    const sx=(Math.sin(t*.4)+1)/2*W,g2=ctx.createRadialGradient(sx,H/2,0,sx,H/2,80);g2.addColorStop(0,'rgba(255,180,0,.07)');g2.addColorStop(1,'rgba(255,180,0,0)');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);
+    vig(ctx,W,H);requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+}
+
+/* ══ PERSONA ══ */
+let persona = null;
+
+const BANNER_MSGS = {
+  en: {
+    hs:  '🎒 Showing the <strong>High School</strong> track — Foundation programme & student pricing',
+    uni: '🎓 Showing the <strong>University / Pro</strong> track — Advanced programme & professional pricing',
+  },
+  fr: {
+    hs:  '🎒 Parcours <strong>Lycée</strong> — Programme fondation & tarifs étudiants',
+    uni: '🎓 Parcours <strong>Université / Pro</strong> — Programme avancé & tarifs professionnels',
+  },
+  it: {
+    hs:  '🎒 Percorso <strong>Liceo</strong> — Programma base & prezzi studenti',
+    uni: '🎓 Percorso <strong>Università / Pro</strong> — Programma avanzato & prezzi professionali',
+  },
+};
+
+function setPersona(p) {
+  persona = p;
+  document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('pb-' + p).classList.add('active');
+  // if on home, scroll to courses
+  if (document.getElementById('page-home').classList.contains('active')) {
+    document.querySelector('.courses-teaser').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  applyPersonaToPage('code');
+  applyPersonaToPage('physics');
+}
+
+function clearPersona() {
+  persona = null;
+  document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+  applyPersonaToPage('code');
+  applyPersonaToPage('physics');
+}
+
+function applyPersonaToPage(pageId) {
+  const page = document.getElementById('page-' + pageId);
+  const banner = document.getElementById('banner-' + pageId);
+  const bannerMsg = document.getElementById('banner-' + pageId + '-msg');
+  const cards = page.querySelectorAll('.path-card');
+
+  if (!persona) {
+    banner.classList.remove('visible');
+    cards.forEach(c => c.classList.remove('persona-match', 'persona-dim'));
+    return;
+  }
+
+  banner.classList.add('visible');
+  bannerMsg.innerHTML = BANNER_MSGS[lang][persona];
+
+  const [hsCard, uniCard] = cards;
+  if (persona === 'hs') {
+    hsCard.classList.add('persona-match');  hsCard.classList.remove('persona-dim');
+    uniCard.classList.add('persona-dim');   uniCard.classList.remove('persona-match');
+  } else {
+    uniCard.classList.add('persona-match'); uniCard.classList.remove('persona-dim');
+    hsCard.classList.add('persona-dim');    hsCard.classList.remove('persona-match');
+  }
+}
+
+// re-apply persona on every page switch
+const _origShowPage = showPage;
+showPage = function(id) {
+  _origShowPage(id);
+  if (id === 'code' || id === 'physics') {
+    setTimeout(() => applyPersonaToPage(id), 50);
+  }
+};
+
+// also re-apply banner texts on language switch
+const _origSetLang = setLang;
+setLang = function(l) {
+  _origSetLang(l);
+  if (persona) {
+    applyPersonaToPage('code');
+    applyPersonaToPage('physics');
+  }
+};
+
+// add i18n keys for persona buttons
+['en','fr','it'].forEach(l => {
+  T[l].pb_hs_label  = {en:'High school', fr:'Lycée', it:'Liceo'}[l];
+  T[l].pb_hs_sub    = {en:'Secondary · Lycée · Liceo', fr:'Secondaire · Secondary · Liceo', it:'Secondaria · Lycée · Secondary'}[l];
+  T[l].pb_uni_label = {en:'Uni / Pro', fr:'Université / Pro', it:'Università / Pro'}[l];
+  T[l].pb_uni_sub   = {en:'University · Professional', fr:'Université · Professionnel', it:'Università · Professionista'}[l];
+  T[l].banner_switch = {en:'Switch profile', fr:'Changer de profil', it:'Cambia profilo'}[l];
+});
+
+setLang(detectLang());
+
+
+</script>
+
+<div class="toast-copied" id="toast-copied">fabio.marchiano.phd@gmail.com &nbsp;✓ Copied</div>
+<script>
+function copyEmail(){
+  navigator.clipboard.writeText('fabio.marchiano.phd@gmail.com').then(function(){
+    const t=document.getElementById('toast-copied');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2200);
+  });
+}
+</script>
+</body>
+</html>
