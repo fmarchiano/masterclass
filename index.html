@@ -188,7 +188,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .page.active{display:block;}
 
 /* HOME HERO */
-.home-hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) 0;}
+.home-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) clamp(3rem,5vh,5rem);}
 .home-hero-inner{position:relative;z-index:2;}
 .hero-eyebrow{font-family:var(--mo);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;opacity:1;white-space:nowrap;}
 .hero-name{font-family:var(--bb);font-size:clamp(5rem,15vw,14rem);line-height:.88;letter-spacing:.02em;color:var(--w);}
@@ -273,9 +273,10 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 .course-title{font-family:var(--bb);font-size:clamp(4rem,12vw,10rem);line-height:.88;color:var(--w);letter-spacing:.02em;margin-bottom:1.2rem;}
 .course-title .accent{color:var(--y);}
 .course-subtitle{font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;color:var(--dim2);max-width:48ch;line-height:1.55;margin-bottom:2rem;}
-.course-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.pill{font-family:var(--mo);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid rgba(255,230,0,.2);border-radius:20px;color:rgba(255,230,0,.5);transition:all .2s;}
-.pill:hover{border-color:var(--y);color:var(--y);}
+.course-pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.pill{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border:1px solid rgba(255,230,0,.25);border-radius:20px;color:rgba(255,230,0,.6);transition:all .22s;white-space:nowrap;}
+.pill:hover{border-color:var(--y);color:var(--y);background:rgba(255,230,0,.06);}
+.pills-section{padding:2rem clamp(1.5rem,5vw,5rem) 0;display:flex;gap:.6rem;flex-wrap:wrap;max-width:1100px;}
 
 /* WHAT YOU LEARN */
 .learn-section{padding:clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,5rem);}
@@ -353,14 +354,15 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
   border-top:1px solid rgba(255,230,0,.1);
   background:rgba(255,230,0,.02);
 }
-.price-currency-row{display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-bottom:.2rem;}
-.price-chf{font-family:var(--mo);font-size:.7rem;letter-spacing:.1em;color:rgba(255,230,0,.55);padding:.15rem .5rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;}
-.price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem;}
-.price-main{font-family:var(--bb);font-size:clamp(2.5rem,5vw,4rem);color:var(--w);line-height:1;}
-.price-unit{font-family:var(--mo);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
+.price-currency-row{display:none;}
+.price-chf-inline{display:none;}
+.price-chf-label{display:none;}
+.price-row{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem;}
+.price-main{font-family:var(--bb);font-size:clamp(1.6rem,3.5vw,2.8rem);color:var(--w);line-height:1.1;}
+.price-unit{display:none;}
 .price-pack{
-  font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,230,0,.5);margin-bottom:1.4rem;
+  font-family:var(--mo);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,230,0,.8);margin-bottom:.4rem;
 }
 .price-pack strong{color:var(--y);}
 .path-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.6rem;}
@@ -592,24 +594,24 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
       <div class="course-tag" data-i18n="course1_tag">Masterclass 01</div>
       <h1 class="course-title" data-i18n="c1_title">CODE &amp;<br><span class="accent">CREATIVE</span><br>ART</h1>
       <p class="course-subtitle" data-i18n="c1_sub">Python, R, JavaScript and generative art — taught like a conversation, not a lecture.</p>
-      <div class="course-pills">
-        <span class="pill">Python</span><span class="pill">R</span><span class="pill">JavaScript</span>
-        <span class="pill">p5.js</span><span class="pill">Processing</span><span class="pill">Generative art</span><span class="pill">Data viz</span>
-      </div>
       <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
     </div>
+  </div>
+  <div class="pills-section">
+    <span class="pill">Python</span><span class="pill">R</span><span class="pill">JavaScript</span>
+    <span class="pill">p5.js</span><span class="pill">Processing</span><span class="pill">Generative art</span><span class="pill">Data viz</span>
   </div>
 
   <!-- WHAT YOU LEARN -->
   <section class="learn-section reveal">
     <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
     <div class="learn-grid">
-      <div class="learn-card reveal"><div class="learn-card-icon">🐍</div><div class="learn-card-title" data-i18n="lc1_t">Python</div><div class="learn-card-text" data-i18n="lc1_d">Variables, loops, functions, data structures. Written for humans, not machines.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">📊</div><div class="learn-card-title" data-i18n="lc2_t">R &amp; Data analysis</div><div class="learn-card-text" data-i18n="lc2_d">Tidyverse, ggplot2, statistical thinking. From raw data to insight, with clean code.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🌐</div><div class="learn-card-title" data-i18n="lc3_t">JavaScript &amp; web</div><div class="learn-card-text" data-i18n="lc3_d">Make things that run in a browser. DOM, events, interactivity — building real pages.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🎨</div><div class="learn-card-title" data-i18n="lc4_t">Generative art</div><div class="learn-card-text" data-i18n="lc4_d">p5.js and Processing for visual output. Noise fields, particle systems, creative algorithms.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🔧</div><div class="learn-card-title" data-i18n="lc5_t">Problem solving</div><div class="learn-card-text" data-i18n="lc5_d">How to break a problem down, debug systematically, and think like a programmer.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🚀</div><div class="learn-card-title" data-i18n="lc6_t">Your project</div><div class="learn-card-text" data-i18n="lc6_d">Every session builds toward something you actually want to create. No toy exercises.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🐍</div><div class="learn-card-title" data-i18n="lc1_t">Python</div><div class="learn-card-text" data-i18n="lc1_d">The language of science, data and automation. Clean syntax that reads almost like English — once you get Python, everything else becomes easier. Used by researchers, startups and data scientists worldwide.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">📊</div><div class="learn-card-title" data-i18n="lc2_t">R &amp; Data analysis</div><div class="learn-card-text" data-i18n="lc2_d">R is the statistician's power tool. Tidyverse makes data wrangling intuitive, ggplot2 produces publication-quality charts. If you work with data, this is your language.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🌐</div><div class="learn-card-title" data-i18n="lc3_t">JavaScript &amp; web</div><div class="learn-card-text" data-i18n="lc3_d">The language of the web — anything interactive you see in a browser is JavaScript. We go from basics to building real pages, handling events and creating smooth user experiences.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🎨</div><div class="learn-card-title" data-i18n="lc4_t">Generative art</div><div class="learn-card-text" data-i18n="lc4_d">p5.js and Processing let you draw with code. Noise fields, particle systems, recursive shapes, generative patterns — visual output that makes you want to keep going.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🔧</div><div class="learn-card-title" data-i18n="lc5_t">Problem solving</div><div class="learn-card-text" data-i18n="lc5_d">The meta-skill: how to read an error, decompose a problem, search effectively and think like a programmer. This is what separates people who get stuck from people who ship things.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🚀</div><div class="learn-card-title" data-i18n="lc6_t">Your project</div><div class="learn-card-text" data-i18n="lc6_d">Every session builds toward something real — a data dashboard, a generative poster, an interactive tool. You leave with something you can show, not just notes you'll forget.</div></div>
     </div>
   </section>
 
@@ -687,11 +689,9 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
         </div>
         <div class="path-pricing">
           <div class="price-row">
-            <div class="price-main">€50</div>
-            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+            <div class="price-main">€50 / CHF 60 &times; 60 min</div>
           </div>
-          <div class="price-currency-row"><span class="price-chf">CHF 60 / session</span><span class="price-chf">CHF 250 pack ×5</span></div>
-          <div class="price-pack" data-i18n="c1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
+          <div class="price-pack">5-session pack <strong>€220 / CHF 250</strong> — save €30 / CHF 50</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
             <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
@@ -723,11 +723,9 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
         </div>
         <div class="path-pricing">
           <div class="price-row">
-            <div class="price-main">€80</div>
-            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+            <div class="price-main">€80 / CHF 95 &times; 60 min</div>
           </div>
-          <div class="price-currency-row"><span class="price-chf">CHF 95 / session</span><span class="price-chf">CHF 400 pack ×5</span></div>
-          <div class="price-pack" data-i18n="c2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
+          <div class="price-pack">5-session pack <strong>€350 / CHF 400</strong> — save €50 / CHF 75</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
             <li data-i18n="pf_code_review">Code review between sessions</li>
@@ -787,23 +785,23 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
       <div class="course-tag" data-i18n="course2_tag">Masterclass 02</div>
       <h1 class="course-title" data-i18n="c2_title">PHYSICS,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICS</h1>
       <p class="course-subtitle" data-i18n="c2_sub">Electricity, waves, mechanics and smart home automation — taught with real components, from breadboard to KNX.</p>
-      <div class="course-pills">
-        <span class="pill">Mechanics</span><span class="pill">Electromagnetism</span>
-        <span class="pill">Circuits</span><span class="pill">Arduino</span><span class="pill">Sensors</span><span class="pill">KNX</span><span class="pill">ETS6</span><span class="pill">Smart Home</span>
-      </div>
       <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
     </div>
+  </div>
+  <div class="pills-section">
+    <span class="pill">Mechanics</span><span class="pill">Electromagnetism</span>
+    <span class="pill">Circuits</span><span class="pill">Arduino</span><span class="pill">Sensors</span><span class="pill">KNX</span><span class="pill">ETS6</span><span class="pill">Smart Home</span>
   </div>
 
   <section class="learn-section reveal">
     <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
     <div class="learn-grid">
-      <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="lp1_t">Electricity &amp; circuits</div><div class="learn-card-text" data-i18n="lp1_d">Ohm's law, resistors, capacitors — understood through circuits you actually build.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🔌</div><div class="learn-card-title" data-i18n="lp2_t">Arduino</div><div class="learn-card-text" data-i18n="lp2_d">From blinking an LED to reading sensors and building real devices that do things.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🌊</div><div class="learn-card-title" data-i18n="lp3_t">Waves &amp; optics</div><div class="learn-card-text" data-i18n="lp3_d">Light, sound, interference — the physical phenomena behind the formulas.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🎯</div><div class="learn-card-title" data-i18n="lp4_t">Mechanics</div><div class="learn-card-text" data-i18n="lp4_d">Forces, motion, energy — made intuitive before they're made mathematical.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🏠</div><div class="learn-card-title" data-i18n="lp5_t">KNX &amp; Domotics</div><div class="learn-card-text" data-i18n="lp5_d">KNX standard, ETS6 programming, smart home logic — industrial-grade home automation from scratch.</div></div>
-      <div class="learn-card reveal"><div class="learn-card-icon">🛠️</div><div class="learn-card-title" data-i18n="lp6_t">Your prototype</div><div class="learn-card-text" data-i18n="lp6_d">Build something physical. A sensor, a light system, or a working KNX automation scenario.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="lp1_t">Electricity &amp; circuits</div><div class="learn-card-text" data-i18n="lp1_d">Voltage, current, resistance — the ABCs of electronics. We start with Ohm's law on a breadboard and work up to building actual circuits. Theory only makes sense once you've held the components.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🔌</div><div class="learn-card-title" data-i18n="lp2_t">Arduino</div><div class="learn-card-text" data-i18n="lp2_d">Arduino is a microcontroller you program in C++. It reads sensors, controls LEDs and motors, communicates with your computer. The feedback loop — write code, see something physical happen — is addictive.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🌊</div><div class="learn-card-title" data-i18n="lp3_t">Waves &amp; optics</div><div class="learn-card-text" data-i18n="lp3_d">Light and sound are waves. Once you understand interference, diffraction and the EM spectrum, optics stops being magic and starts being engineering. Lenses, lasers, fiber — all the same physics.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🎯</div><div class="learn-card-title" data-i18n="lp4_t">Mechanics</div><div class="learn-card-text" data-i18n="lp4_d">Newton's laws, energy, momentum — the foundation of everything physical. We build intuition first (what actually happens?) then formalize (why does the math describe it?). Exam prep included when relevant.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🏠</div><div class="learn-card-title" data-i18n="lp5_t">KNX &amp; Domotics</div><div class="learn-card-text" data-i18n="lp5_d">KNX is the international standard for building automation — used in hotels, hospitals and smart homes across Europe. We cover topology, ETS6 software, group addresses and logic programming. A professional skill, taught from scratch.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🛠️</div><div class="learn-card-title" data-i18n="lp6_t">Your prototype</div><div class="learn-card-text" data-i18n="lp6_d">A sensor array that logs data, a KNX scene triggered by motion, a custom Arduino controller — you decide what to build. The prototype is yours to keep and put in your portfolio.</div></div>
     </div>
   </section>
 
@@ -881,11 +879,9 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
         </div>
         <div class="path-pricing">
           <div class="price-row">
-            <div class="price-main">€50</div>
-            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+            <div class="price-main">€50 / CHF 60 &times; 60 min</div>
           </div>
-          <div class="price-currency-row"><span class="price-chf">CHF 60 / session</span><span class="price-chf">CHF 250 pack ×5</span></div>
-          <div class="price-pack" data-i18n="p1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
+          <div class="price-pack">5-session pack <strong>€220 / CHF 250</strong> — save €30 / CHF 50</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
             <li data-i18n="pf_exam">Exam strategy included when relevant</li>
@@ -917,11 +913,9 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
         </div>
         <div class="path-pricing">
           <div class="price-row">
-            <div class="price-main">€80</div>
-            <div class="price-unit" data-i18n="price_per">/ 60 min</div>
+            <div class="price-main">€80 / CHF 95 &times; 60 min</div>
           </div>
-          <div class="price-currency-row"><span class="price-chf">CHF 95 / session</span><span class="price-chf">CHF 400 pack ×5</span></div>
-          <div class="price-pack" data-i18n="p2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
+          <div class="price-pack">5-session pack <strong>€350 / CHF 400</strong> — save €50 / CHF 75</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
             <li data-i18n="pf_hw_review">Homework &amp; problem-set review</li>
@@ -1041,10 +1035,10 @@ en:{
   pm2_5t:'KNX & Domotics',pm2_5d:'KNX topology, ETS6 configuration, group addresses, logic programming — industry-standard smart home design.',
   pm2_6t:'Functional prototype',pm2_6d:'A working physical device or KNX installation — sensor array, automation scenario, or interactive system.',
   price_per:'/ 60 min',
-  c1_pack_hs:'5-session pack <strong>€220</strong> — save €30',
-  c2_pack_uni:'5-session pack <strong>€350</strong> — save €50',
-  p1_pack_hs:'5-session pack <strong>€220</strong> — save €30',
-  p2_pack_uni:'5-session pack <strong>€350</strong> — save €50',
+  c1_pack_hs:'5-session pack <strong>€220 / CHF 250</strong> — save €30 / CHF 50',
+  c2_pack_uni:'5-session pack <strong>€350 / CHF 400</strong> — save €50 / CHF 75',
+  p1_pack_hs:'5-session pack <strong>€220 / CHF 250</strong> — save €30 / CHF 50',
+  p2_pack_uni:'5-session pack <strong>€350 / CHF 400</strong> — save €50 / CHF 75',
   pf_custom:'Fully personalized to your level',pf_notes:'Session notes sent after each class',
   pf_async:'24h async support between sessions',pf_cancel:'Cancel up to 24h before',
   pf_code_review:'Code review between sessions',pf_exam:'Exam strategy included when relevant',
@@ -1167,10 +1161,10 @@ fr:{
   pm2_5t:'KNX & Domotique',pm2_5d:"Topologie KNX, configuration ETS6, adresses de groupe, programmation logique — conception domotique standard.",
   pm2_6t:'Prototype fonctionnel',pm2_6d:"Un dispositif physique ou une installation KNX — réseau de capteurs, scénario d'automatisation.",
   price_per:'/ 60 min',
-  c1_pack_hs:'Pack 5 séances <strong>220€</strong> — économise 30€',
-  c2_pack_uni:'Pack 5 séances <strong>350€</strong> — économise 50€',
-  p1_pack_hs:'Pack 5 séances <strong>220€</strong> — économise 30€',
-  p2_pack_uni:'Pack 5 séances <strong>350€</strong> — économise 50€',
+  c1_pack_hs:'Pack 5 séances <strong>220€ / CHF 250</strong> — économise 30€ / CHF 50',
+  c2_pack_uni:'Pack 5 séances <strong>350€ / CHF 400</strong> — économise 50€ / CHF 75',
+  p1_pack_hs:'Pack 5 séances <strong>220€ / CHF 250</strong> — économise 30€ / CHF 50',
+  p2_pack_uni:'Pack 5 séances <strong>350€ / CHF 400</strong> — économise 50€ / CHF 75',
   pf_custom:'Entièrement personnalisé à ton niveau',pf_notes:'Notes de séance envoyées après chaque cours',
   pf_async:'Support async 24h entre les séances',pf_cancel:"Annulation jusqu'à 24h avant",
   pf_code_review:'Révision de code entre les séances',pf_exam:'Stratégie exam incluse si besoin',
@@ -1274,10 +1268,10 @@ it:{
   pm2_5t:'KNX & Domotica',pm2_5d:'Topologia KNX, configurazione ETS6, indirizzi di gruppo, programmazione logica — domotica standard industriale.',
   pm2_6t:'Prototipo funzionale',pm2_6d:"Un dispositivo fisico o un'installazione KNX funzionante — array di sensori, scenario di automazione.",
   price_per:'/ 60 min',
-  c1_pack_hs:'Pacchetto 5 sessioni <strong>220€</strong> — risparmi 30€',
-  c2_pack_uni:'Pacchetto 5 sessioni <strong>350€</strong> — risparmi 50€',
-  p1_pack_hs:'Pacchetto 5 sessioni <strong>220€</strong> — risparmi 30€',
-  p2_pack_uni:'Pacchetto 5 sessioni <strong>350€</strong> — risparmi 50€',
+  c1_pack_hs:'Pacchetto 5 sessioni <strong>220€ / CHF 250</strong> — risparmi 30€ / CHF 50',
+  c2_pack_uni:'Pacchetto 5 sessioni <strong>350€ / CHF 400</strong> — risparmi 50€ / CHF 75',
+  p1_pack_hs:'Pacchetto 5 sessioni <strong>220€ / CHF 250</strong> — risparmi 30€ / CHF 50',
+  p2_pack_uni:'Pacchetto 5 sessioni <strong>350€ / CHF 400</strong> — risparmi 50€ / CHF 75',
   pf_custom:'Completamente personalizzato al tuo livello',pf_notes:'Note della sessione inviate dopo ogni lezione',
   pf_async:'Supporto async 24h tra le sessioni',pf_cancel:'Cancellazione fino a 24h prima',
   pf_code_review:'Revisione del codice tra le sessioni',pf_exam:'Strategia esame inclusa quando rilevante',
