@@ -1196,6 +1196,33 @@ fr:{
   p_sim_perk2:'Aucun kit à acheter pour commencer',
   p_sim_perk3:'Pratiquer depuis n\'importe où dans le monde',
 
+  mat_sub_code:"Vous ne repartez jamais les mains vides. Chaque séance produit des supports personnalisés autour de ce qu'on a couvert.",
+  mat_sub_phys:"Repartez avec tout ce qu'il faut pour continuer — fait sur mesure pour votre niveau, vos questions, votre projet.",
+  mat1:"Slides personnalisées — dans votre langage, pas celui du manuel",
+  mat2:"Fiches avec des exemples tirés de votre propre projet",
+  mat3:"Exercices calibrés sur vos points faibles, pas un set générique",
+  mat4:"Notes de séance résumant ce qu'on a construit et pourquoi",
+  mat5:"Extraits de code et scripts annotés de la séance",
+  mat6:"Support async 24h — bloqué entre deux séances ? Je réponds.",
+  pmat1:"Slides personnalisées — votre niveau, votre langage, vos exemples",
+  pmat2:"Schémas de circuits et topologies KNX de ce qu'on a construit",
+  pmat3:"Sketches Arduino annotés de la séance",
+  pmat4:"Formulaires avec contexte — pas juste la formule, mais quand et pourquoi l'utiliser",
+  pmat5:"Exercices ciblant exactement ce qui vous a posé problème",
+  pmat6:"Support async 24h — une question entre séances ne se perd jamais",
+  poly_intro:"Me parle à travers",
+  sim_label:"// Simulateurs",
+  c_sim_title:'Pratiquez <span class="y">partout.</span><br>Zéro kit. Zéro coût.',
+  c_sim_desc:"Chaque concept s'apprend sur des simulateurs professionnels. Rien à installer, rien à acheter. Dans un café à Bangkok ou chez vous : l'environnement est prêt.",
+  p_sim_title:'De vrais circuits.<br><span class="y">Sans kit</span> à acheter.',
+  p_sim_desc:"Projets Arduino, circuits KNX, capteurs — tout simulé sur des plateformes pro avant de toucher un seul composant. Pour les futurs makers nomades : laptop, connexion, vous êtes opérationnel.",
+  sim_perk1:"Simulateurs dans le navigateur — zéro installation",
+  sim_perk2:"Idéal pour les nomades numériques et étudiants en déplacement",
+  sim_perk3:"Même workflow que les développeurs professionnels",
+  p_sim_perk1:"Circuits simulés dans le navigateur — LEDs, capteurs, moteurs",
+  p_sim_perk2:"Aucun kit à acheter pour commencer",
+  p_sim_perk3:"Pratiquer depuis n'importe où dans le monde",
+  mat_headline:'Chaque séance.<br><span class="y">Chaque support.</span><br>Inclus.',
   cta_guarantee:"La première séance est un essai. Si ça ne clique pas, tu ne paies pas. Simple.",
 },
 it:{
@@ -1303,6 +1330,33 @@ it:{
   p_sim_perk2:'Nessun kit da acquistare per iniziare',
   p_sim_perk3:'Fai pratica da qualsiasi posto nel mondo',
 
+  mat_sub_code:"Non vai mai via a mani vuote. Ogni sessione produce materiali personalizzati costruiti intorno a quello che abbiamo fatto.",
+  mat_sub_phys:"Porta via tutto il necessario per continuare — fatto su misura per il tuo livello, le tue domande, il tuo progetto.",
+  mat1:"Slide personalizzate — nel tuo linguaggio, non quello del manuale",
+  mat2:"Dispense con esempi tratti dal tuo stesso progetto",
+  mat3:"Esercizi calibrati sui tuoi punti deboli, non un set generico",
+  mat4:"Note di sessione con un riassunto di cosa abbiamo costruito e perché",
+  mat5:"Snippet di codice e script annotati dalla sessione",
+  mat6:"Supporto async 24h — bloccato tra una sessione e l'altra? Rispondo.",
+  pmat1:"Slide personalizzate — il tuo livello, il tuo linguaggio, i tuoi esempi",
+  pmat2:"Schemi di circuiti e topologie KNX di quello che abbiamo costruito",
+  pmat3:"Sketch Arduino annotati della sessione",
+  pmat4:"Formulari con contesto — non solo la formula, ma quando e perché usarla",
+  pmat5:"Esercizi mirati esattamente su quello che hai trovato difficile",
+  pmat6:"Supporto async 24h — una domanda tra le sessioni non va mai persa",
+  poly_intro:"Mi parla attraverso",
+  sim_label:"// Simulatori",
+  c_sim_title:'Fai pratica <span class="y">ovunque.</span><br>Zero kit. Zero costi.',
+  c_sim_desc:"Ogni concetto si impara su simulatori professionali. Nessun software da installare, nessun hardware da comprare. In un bar a Bangkok o a casa tua: l'ambiente è pronto.",
+  p_sim_title:'Circuiti reali.<br><span class="y">Nessun kit</span> da comprare.',
+  p_sim_desc:"Progetti Arduino, circuiti KNX, sensori — tutto simulato su piattaforme professionali prima ancora di toccare un componente fisico. Per i futuri maker nomadi: laptop, connessione, sei operativo.",
+  sim_perk1:"Simulatori browser-based — zero installazione",
+  sim_perk2:"Ideale per nomadi digitali e studenti in movimento",
+  sim_perk3:"Stesso workflow dei developer professionisti",
+  p_sim_perk1:"Circuiti simulati in browser — LED, sensori, motori",
+  p_sim_perk2:"Nessun kit da acquistare per iniziare",
+  p_sim_perk3:"Fai pratica da qualsiasi posto nel mondo",
+  mat_headline:'Ogni sessione.<br><span class="y">Ogni materiale.</span><br>Incluso.',
   cta_guarantee:"La prima sessione è una prova. Se non scatta il click, non paghi. Punto.",
 }};
 
@@ -1313,7 +1367,7 @@ function setLang(l){
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('btn-'+l).classList.add('active');
   document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n'),v=T[l][k];
+    const k=el.getAttribute('data-i18n'),v=T[l][k]??T['en'][k];
     if(v!==undefined)el.innerHTML=v;
   });
   document.documentElement.lang=l;
