@@ -14,7 +14,7 @@
   --bb:'Bebas Neue',sans-serif;--sy:'Syne',sans-serif;--mo:'DM Mono',monospace;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--b);color:var(--w);font-family:var(--sy);overflow-x:hidden;cursor:none;}
+body{background:var(--b);color:var(--w);font-family:var(--sy);overflow-x:hidden;cursor:none;}@media(hover:none),(pointer:coarse){body,a,button,.btn,.path-cta,.lang-btn,.nav-logo,.nav-center a,.course-back,.card-link,.footer-socials a,.email-copy-btn,.persona-btn,.course-card{cursor:auto!important;}#cur,#curR{display:none!important;}}
 body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");background-size:160px;pointer-events:none;opacity:.65;}
 
 
@@ -167,16 +167,21 @@ canvas{position:absolute;inset:0;z-index:0;}
 .cur-r{width:34px;height:34px;border:1.5px solid rgba(255,230,0,.5);border-radius:50%;z-index:9998;transition:all .13s ease;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1.4rem clamp(1.5rem,5vw,5rem);background:linear-gradient(to bottom,rgba(8,8,8,.96),transparent);gap:1rem;flex-wrap:wrap;}
-.nav-logo{font-family:var(--mo);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;}
-.nav-center{display:flex;gap:1.8rem;list-style:none;}
-.nav-center a{font-family:var(--mo);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim2);text-decoration:none;cursor:none;transition:color .2s;position:relative;padding-bottom:3px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1rem clamp(1rem,4vw,5rem);background:rgba(8,8,8,.97);gap:1rem;flex-wrap:nowrap;}
+.nav-logo{font-family:var(--mo);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;flex-shrink:0;}
+.nav-center{display:flex;gap:1.4rem;list-style:none;flex-shrink:1;min-width:0;}
+.nav-center a{font-family:var(--mo);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);text-decoration:none;cursor:none;transition:color .2s;position:relative;padding-bottom:3px;white-space:nowrap;}
 .nav-center a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
 .nav-center a:hover,.nav-center a.active{color:var(--y);}
 .nav-center a.active::after,.nav-center a:hover::after{transform:scaleX(1);}
-.lang-switcher{display:flex;gap:.3rem;}
-.lang-btn{font-family:var(--mo);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .55rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;background:transparent;color:var(--dim);cursor:none;transition:all .2s;}
+.lang-switcher{display:flex;gap:.25rem;flex-shrink:0;}
+.lang-btn{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .45rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;background:transparent;color:var(--dim);cursor:pointer;transition:all .2s;}
 .lang-btn:hover,.lang-btn.active{border-color:var(--y);color:var(--y);}
+@media(max-width:600px){
+  .nav-center{display:none;}
+  nav{padding:.8rem 1.2rem;}
+  .nav-logo{font-size:.58rem;}
+}
 
 /* PAGES */
 .page{display:none;min-height:100vh;}
@@ -348,7 +353,9 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
   border-top:1px solid rgba(255,230,0,.1);
   background:rgba(255,230,0,.02);
 }
-.price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.3rem;}
+.price-currency-row{display:flex;align-items:baseline;gap:1.5rem;flex-wrap:wrap;margin-bottom:.2rem;}
+.price-chf{font-family:var(--mo);font-size:.7rem;letter-spacing:.1em;color:rgba(255,230,0,.55);padding:.15rem .5rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;}
+.price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem;}
 .price-main{font-family:var(--bb);font-size:clamp(2.5rem,5vw,4rem);color:var(--w);line-height:1;}
 .price-unit{font-family:var(--mo);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
 .price-pack{
@@ -683,6 +690,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <div class="price-main">€50</div>
             <div class="price-unit" data-i18n="price_per">/ 60 min</div>
           </div>
+          <div class="price-currency-row"><span class="price-chf">CHF 60 / session</span><span class="price-chf">CHF 250 pack ×5</span></div>
           <div class="price-pack" data-i18n="c1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
@@ -718,6 +726,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <div class="price-main">€80</div>
             <div class="price-unit" data-i18n="price_per">/ 60 min</div>
           </div>
+          <div class="price-currency-row"><span class="price-chf">CHF 95 / session</span><span class="price-chf">CHF 400 pack ×5</span></div>
           <div class="price-pack" data-i18n="c2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
@@ -875,6 +884,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <div class="price-main">€50</div>
             <div class="price-unit" data-i18n="price_per">/ 60 min</div>
           </div>
+          <div class="price-currency-row"><span class="price-chf">CHF 60 / session</span><span class="price-chf">CHF 250 pack ×5</span></div>
           <div class="price-pack" data-i18n="p1_pack_hs">5-session pack <strong>€220</strong> — save €30</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
@@ -910,6 +920,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <div class="price-main">€80</div>
             <div class="price-unit" data-i18n="price_per">/ 60 min</div>
           </div>
+          <div class="price-currency-row"><span class="price-chf">CHF 95 / session</span><span class="price-chf">CHF 400 pack ×5</span></div>
           <div class="price-pack" data-i18n="p2_pack_uni">5-session pack <strong>€350</strong> — save €50</div>
           <ul class="path-features">
             <li data-i18n="pf_custom">Fully personalized to your level</li>
@@ -1343,8 +1354,8 @@ function noise3(x,y,t){return(Math.sin(x*1.2+t)+Math.cos(y*.85-t*.65)+Math.sin((
 function makeP(W,H,n){return Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,r:.7+Math.random()*1.8,ph:Math.random()*Math.PI*2,s:.0003+Math.random()*.0005}));}
 function moveP(pts,W,H,t){pts.forEach(p=>{const a=noise3(p.x/W,p.y/H,t)*Math.PI*2;p.x+=Math.cos(a)*.28+p.vx;p.y+=Math.sin(a)*.28+p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;});}
 function edges(ctx,pts,D,r,g,b){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],bb=pts[j],dx=a.x-bb.x,dy=a.y-bb.y,d=Math.sqrt(dx*dx+dy*dy);if(d<D){ctx.beginPath();ctx.strokeStyle=`rgba(${r},${g},${b},${(1-d/D)*.18})`;ctx.lineWidth=(1-d/D)*.7;ctx.moveTo(a.x,a.y);ctx.lineTo(bb.x,bb.y);ctx.stroke();}}}
-function drawNodes(ctx,pts,t,r,g,b){pts.forEach(p=>{const p2=.7+.3*Math.sin(t/p.s*.001+p.ph),gr=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*9);gr.addColorStop(0,`rgba(${r},${g},${b},${.1*p2})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.beginPath();ctx.fillStyle=gr;ctx.arc(p.x,p.y,p.r*9,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(${r},${g},${b},${.7+.3*p2})`;ctx.arc(p.x,p.y,p.r*p2,0,Math.PI*2);ctx.fill();});}
-function vig(ctx,W,H){const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);}
+function drawNodes(ctx,pts,t,r,g,b){pts.forEach(p=>{if(!isFinite(p.x)||!isFinite(p.y)||!isFinite(p.r)||p.r<=0)return;const p2=.7+.3*Math.sin(t/p.s*.001+p.ph),gr=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*9);gr.addColorStop(0,`rgba(${r},${g},${b},${.1*p2})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.beginPath();ctx.fillStyle=gr;ctx.arc(p.x,p.y,p.r*9,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(${r},${g},${b},${.7+.3*p2})`;ctx.arc(p.x,p.y,p.r*p2,0,Math.PI*2);ctx.fill();});}
+function vig(ctx,W,H){if(!W||!H||!isFinite(W)||!isFinite(H))return;const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);}
 
 /* HOME */
 (function(){
@@ -1355,7 +1366,7 @@ function vig(ctx,W,H){const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.8
     H=cv.height=window.innerHeight;
     pts=makeP(W,H,70);
   }
-  function draw(){t+=.004;ctx.clearRect(0,0,W,H);moveP(pts,W,H,t);edges(ctx,pts,140,255,230,0);drawNodes(ctx,pts,t,255,230,0);vig(ctx,W,H);rAF=requestAnimationFrame(draw);}
+  function draw(){if(!W||!H)return void(rAF=requestAnimationFrame(draw));t+=.004;ctx.clearRect(0,0,W,H);moveP(pts,W,H,t);edges(ctx,pts,140,255,230,0);drawNodes(ctx,pts,t,255,230,0);vig(ctx,W,H);rAF=requestAnimationFrame(draw);}
   window.addEventListener('resize',()=>{
     clearTimeout(resizeTimer);
     resizeTimer=setTimeout(resize,120);
@@ -1372,6 +1383,7 @@ function initCodeCanvas(){
   let W,H,pts,t=0;
   function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;pts=makeP(W,H,90);}
   function draw(){
+    if(!W||!H)return void requestAnimationFrame(draw);
     t+=.003;ctx.clearRect(0,0,W,H);
     ctx.font='11px monospace';ctx.fillStyle='rgba(0,255,180,.018)';
     for(let i=0;i<W;i+=28)ctx.fillText(String.fromCharCode(33+Math.floor(Math.random()*90)),i,Math.random()*H);
@@ -1397,8 +1409,8 @@ function initPhysCanvas(){
     for(let x=0;x<W;x+=80){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
     for(let y=0;y<H;y+=80){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
     nds.forEach((n,i)=>{if(!n.active)return;nds.slice(i+1).forEach(m=>{if(!m.active)return;const dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){ctx.beginPath();ctx.strokeStyle=`rgba(255,140,0,${(1-d/160)*.2})`;ctx.lineWidth=.8;ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}});});
-    nds.forEach(n=>{if(!n.active)return;const p=.6+.4*Math.sin(t+n.pulse),g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);g.addColorStop(0,`rgba(255,140,0,${.18*p})`);g.addColorStop(1,'rgba(255,140,0,0)');ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(255,140,0,${.8*p})`;ctx.arc(n.x,n.y,2*p,0,Math.PI*2);ctx.fill();});
-    const sx=(Math.sin(t*.4)+1)/2*W,g2=ctx.createRadialGradient(sx,H/2,0,sx,H/2,80);g2.addColorStop(0,'rgba(255,180,0,.07)');g2.addColorStop(1,'rgba(255,180,0,0)');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);
+    nds.forEach(n=>{if(!n.active)return;if(!isFinite(n.x)||!isFinite(n.y))return;const p=.6+.4*Math.sin(t+n.pulse),g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);g.addColorStop(0,`rgba(255,140,0,${.18*p})`);g.addColorStop(1,'rgba(255,140,0,0)');ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(255,140,0,${.8*p})`;ctx.arc(n.x,n.y,2*p,0,Math.PI*2);ctx.fill();});
+    const sx=(Math.sin(t*.4)+1)/2*W;if(isFinite(sx)&&isFinite(H)){const g2=ctx.createRadialGradient(sx,H/2,0,sx,H/2,80);g2.addColorStop(0,'rgba(255,180,0,.07)');g2.addColorStop(1,'rgba(255,180,0,0)');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);}
     vig(ctx,W,H);requestAnimationFrame(draw);
   }
   window.addEventListener('resize',resize);resize();draw();
