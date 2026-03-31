@@ -161,6 +161,30 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
   color:var(--dim);cursor:pointer;transition:color .2s;
 }
 .email-copy-btn:hover{color:var(--y);}
+
+/* ══ AI FORM ══ */
+.ai-form{display:flex;flex-direction:column;gap:1.4rem;margin-top:2rem;}
+.form-group{display:flex;flex-direction:column;gap:.5rem;}
+.form-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);}
+.form-input{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,230,0,.2);
+  border-radius:3px;
+  padding:.8rem 1rem;
+  color:var(--w);
+  font-family:var(--sy);
+  font-size:.9rem;
+  transition:border-color .2s;
+  outline:none;
+  width:100%;
+}
+.form-input:focus{border-color:rgba(255,230,0,.7);}
+.form-input::placeholder{color:rgba(255,237,229,.25);}
+.form-textarea{resize:vertical;min-height:140px;line-height:1.6;}
+.form-select{cursor:pointer;}
+.form-select option{background:#1a1a1a;color:var(--w);}
+.form-note{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,230,0,.3);margin-top:.5rem;text-align:center;}
+@media(max-width:600px){.courses-grid{grid-template-columns:1fr!important;}}
 canvas{position:absolute;inset:0;z-index:0;}
 .cur,.cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 .cur{width:9px;height:9px;background:var(--y);border-radius:50%;}
@@ -487,6 +511,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
     <li><a href="#" onclick="showPage('home')" id="nav-home" class="active" data-i18n="nav_home">Home</a></li>
     <li><a href="#" onclick="showPage('code')" id="nav-code" data-i18n="nav_code">Code &amp; Art</a></li>
     <li><a href="#" onclick="showPage('physics')" id="nav-physics" data-i18n="nav_physics">Physics, Arduino &amp; Domotics</a></li>
+    <li><a href="#" onclick="showPage('ai')" id="nav-ai" data-i18n="nav_ai">AI &amp; Automation</a></li>
   </ul>
   <div class="lang-switcher">
     <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
@@ -560,7 +585,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
 
   <section class="courses-teaser reveal" style="padding:clamp(3rem,8vh,7rem) clamp(1.5rem,5vw,5rem);">
     <div class="section-label" data-i18n="courses_label">// Masterclasses</div>
-    <div class="courses-grid">
+    <div class="courses-grid" style="grid-template-columns:repeat(3,1fr);">
       <div class="course-card reveal" onclick="showPage('code')" style="cursor:none;">
         <div class="card-num">01</div><div class="card-icon">⌨️</div>
         <div class="card-sub">Python · R · JavaScript · p5.js</div>
@@ -574,6 +599,13 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
         <div class="card-title" data-i18n="card2_title">Physics, Arduino<br>&amp; Domotics</div>
         <div class="card-desc" data-i18n="card2_desc">Electrons, circuits, smart home automation. Taught with real components and real KNX installations.</div>
         <a class="card-link" href="#" onclick="event.stopPropagation();showPage('physics')" data-i18n="card_explore">Explore course</a>
+      </div>
+      <div class="course-card reveal" onclick="showPage('ai')" style="cursor:none;">
+        <div class="card-num">03</div><div class="card-icon">🤖</div>
+        <div class="card-sub">AI · Automation · Notion · Google Workspace</div>
+        <div class="card-title" data-i18n="card3_title">AI &amp; Automation</div>
+        <div class="card-desc" data-i18n="card3_desc">Stop doing manually what AI can do for you. Learn to use AI tools to automate your workflow — or bring me your project and we'll build it together.</div>
+        <a class="card-link" href="#" onclick="event.stopPropagation();showPage('ai')" data-i18n="card_explore">Explore course</a>
       </div>
     </div>
   </section>
@@ -1492,6 +1524,7 @@ function setPersona(p) {
   }
   applyPersonaToPage('code');
   applyPersonaToPage('physics');
+  applyPersonaToPage('ai');
 }
 
 function clearPersona() {
@@ -1499,6 +1532,7 @@ function clearPersona() {
   document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
   applyPersonaToPage('code');
   applyPersonaToPage('physics');
+  applyPersonaToPage('ai');
 }
 
 function applyPersonaToPage(pageId) {
@@ -1559,6 +1593,186 @@ setLang(detectLang());
 
 </script>
 
+
+<!-- ══ AI PAGE ══ -->
+<div class="page" id="page-ai">
+  <div class="persona-banner" id="banner-ai">
+    <span class="banner-msg" id="banner-ai-msg"></span>
+    <button class="banner-switch" onclick="clearPersona()" data-i18n="banner_switch">Switch profile</button>
+  </div>
+  <div class="course-hero">
+    <canvas id="canvas-ai"></canvas>
+    <div class="course-hero-inner">
+      <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
+      <div class="course-tag" data-i18n="course3_tag">Masterclass 03</div>
+      <h1 class="course-title" data-i18n="c3_title">AI &amp;<br><span class="accent">AUTOMATION</span></h1>
+      <p class="course-subtitle" data-i18n="c3_sub">Stop doing manually what AI can do for you. From daily workflow automation to full custom integrations — built around your specific use case.</p>
+      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free 15-min call</button>
+    </div>
+  </div>
+  <div class="pills-section">
+    <span class="pill">AI assistants</span><span class="pill">Automation</span>
+    <span class="pill">Notion</span><span class="pill">Google Workspace</span>
+    <span class="pill">Prompt engineering</span><span class="pill">Workflow design</span><span class="pill">Custom integrations</span>
+  </div>
+
+  <!-- WHAT YOU LEARN -->
+  <section class="learn-section reveal">
+    <div class="section-label" data-i18n="learn_label">// What you'll work on</div>
+    <div class="learn-grid">
+      <div class="learn-card reveal"><div class="learn-card-icon">🧠</div><div class="learn-card-title" data-i18n="la1_t">AI literacy</div><div class="learn-card-text" data-i18n="la1_d">Understand what AI tools actually do, where they're reliable, where they fail, and how to work with them instead of around them. Not hype — practical understanding.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="la2_t">Prompt engineering</div><div class="learn-card-text" data-i18n="la2_d">Writing prompts that consistently give you what you need. Techniques for structured output, role definition, chain-of-thought — applied to your real tasks, not toy examples.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🔄</div><div class="learn-card-title" data-i18n="la3_t">Workflow automation</div><div class="learn-card-text" data-i18n="la3_d">Connect AI to Notion, Google Docs, Sheets, Gmail. Automate the repetitive parts of your day so you can focus on the work that actually needs you.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🏗️</div><div class="learn-card-title" data-i18n="la4_t">Custom integrations</div><div class="learn-card-text" data-i18n="la4_d">For more complex needs: build pipelines that connect AI to your existing tools and data. From simple automations to full API integrations — scoped to your business.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">📊</div><div class="learn-card-title" data-i18n="la5_t">Data &amp; documents</div><div class="learn-card-text" data-i18n="la5_d">Make AI work on your documents, spreadsheets and databases. Summarise, extract, transform and generate — without touching the data manually.</div></div>
+      <div class="learn-card reveal"><div class="learn-card-icon">🚀</div><div class="learn-card-title" data-i18n="la6_t">Your use case</div><div class="learn-card-text" data-i18n="la6_d">Every engagement starts from what you actually need to solve. No generic demos — we build something that works in your context, for your workflow, on your tools.</div></div>
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section class="paths-section reveal" style="background:var(--b2);">
+    <div class="section-label" data-i18n="ai_who_label">// Who is this for</div>
+    <p class="paths-intro" data-i18n="ai_who_intro">Two different engagements, depending on where you are and what you need.</p>
+    <div class="paths-grid">
+
+      <!-- FOUNDATION: AI Literacy -->
+      <div class="path-card reveal">
+        <div class="path-header">
+          <div class="path-audience">🧳 Freelancers &amp; Digital Nomads</div>
+          <div class="path-title" data-i18n="ai_path1_title">AI Literacy<br>Sessions</div>
+          <div class="path-desc" data-i18n="ai_path1_desc">You're busy creating content, managing clients, travelling. AI should make your life easier — not add another thing to learn. We start from your actual workflow and automate the parts that drain your time.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">What we cover</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">01</span><div class="module-body"><div class="module-title" data-i18n="am1_1t">Your AI stack audit</div><div class="module-text" data-i18n="am1_1d">What tools you're using, what you're missing, what's worth your time. Honest picture, no upselling.</div></div></li>
+            <li class="module-item"><span class="module-num">02</span><div class="module-body"><div class="module-title" data-i18n="am1_2t">Prompt engineering fundamentals</div><div class="module-text" data-i18n="am1_2d">Write prompts that work reliably. Structured output, role-playing, few-shot examples — applied to your tasks.</div></div></li>
+            <li class="module-item"><span class="module-num">03</span><div class="module-body"><div class="module-title" data-i18n="am1_3t">Notion + AI workflows</div><div class="module-text" data-i18n="am1_3d">Connect your knowledge base to AI. Automate note-taking, project tracking, content pipelines.</div></div></li>
+            <li class="module-item"><span class="module-num">04</span><div class="module-body"><div class="module-title" data-i18n="am1_4t">Google Workspace automation</div><div class="module-text" data-i18n="am1_4d">Docs, Sheets, Gmail, Drive — AI working inside the tools you already use every day.</div></div></li>
+            <li class="module-item"><span class="module-num">05</span><div class="module-body"><div class="module-title" data-i18n="am1_5t">Your automated workflow</div><div class="module-text" data-i18n="am1_5d">Leave with at least one repetitive task fully automated and running.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main">€80 / CHF 95 × 60 min</div>
+          </div>
+          <div class="price-pack">5-session pack <strong>€350 / CHF 400</strong> — save €50 / CHF 75</div>
+          <ul class="path-features">
+            <li data-i18n="pf_custom">Fully personalized to your workflow</li>
+            <li data-i18n="pf_notes">Custom slides, handouts &amp; session notes included</li>
+            <li data-i18n="pf_async">24h async support between sessions</li>
+            <li data-i18n="pf_cancel">Cancel up to 24h before</li>
+          </ul>
+          <button class="path-cta path-cta-o" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+        </div>
+      </div>
+
+      <!-- ADVANCED: Custom integration -->
+      <div class="path-card featured reveal">
+        <div class="path-header">
+          <div class="path-audience">🏢 Small Business &amp; Pro</div>
+          <div class="path-title" data-i18n="ai_path2_title">Custom<br>Integration</div>
+          <div class="path-desc" data-i18n="ai_path2_desc">You have a specific problem — a repetitive process, a data pipeline, a tool integration. Tell me the use case and I'll scope a solution. Every project is quoted individually.</div>
+        </div>
+        <div class="path-divider"></div>
+        <div class="path-program">
+          <div class="program-label" data-i18n="program_label">Examples of past &amp; current projects</div>
+          <ul class="module-list">
+            <li class="module-item"><span class="module-num">→</span><div class="module-body"><div class="module-title" data-i18n="am2_1t">AI + Notion knowledge base</div><div class="module-text" data-i18n="am2_1d">Automated ingestion, tagging and retrieval of documents and meeting notes.</div></div></li>
+            <li class="module-item"><span class="module-num">→</span><div class="module-body"><div class="module-title" data-i18n="am2_2t">Google Workspace AI pipeline</div><div class="module-text" data-i18n="am2_2d">Summarise emails, generate reports, classify data — triggered automatically from your existing tools.</div></div></li>
+            <li class="module-item"><span class="module-num">→</span><div class="module-body"><div class="module-title" data-i18n="am2_3t">AI integration with ERP / CRM</div><div class="module-text" data-i18n="am2_3d">Connect AI to your business software via API. Extract insights, automate data entry, build AI-assisted workflows inside your existing systems.</div></div></li>
+            <li class="module-item"><span class="module-num">→</span><div class="module-body"><div class="module-title" data-i18n="am2_4t">Custom AI agent</div><div class="module-text" data-i18n="am2_4d">A purpose-built assistant that knows your business context, has access to your tools and answers questions about your own data.</div></div></li>
+          </ul>
+        </div>
+        <div class="path-pricing">
+          <div class="price-row">
+            <div class="price-main" data-i18n="ai_quote_price">Quote-based</div>
+          </div>
+          <div class="price-pack" data-i18n="ai_quote_sub">Scoped to your project. Transparent pricing, no surprises.</div>
+          <ul class="path-features">
+            <li data-i18n="ai_feat1">Discovery call to scope the project</li>
+            <li data-i18n="ai_feat2">Written proposal with timeline and cost</li>
+            <li data-i18n="ai_feat3">Iterative build with your feedback</li>
+            <li data-i18n="ai_feat4">Handover + documentation + 30-day support</li>
+          </ul>
+          <button class="path-cta path-cta-y" onclick="document.getElementById('ai-form-section').scrollIntoView({behavior:'smooth'})" data-i18n="ai_get_quote">Tell me your project →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE FORM -->
+  <section class="section reveal" id="ai-form-section" style="background:var(--b);">
+    <div class="section-label" data-i18n="ai_form_label">// Tell me your project</div>
+    <div style="max-width:700px;">
+      <p class="paths-intro" data-i18n="ai_form_intro">Describe what you're trying to automate or build. I'll reply within 48h with a scoped proposal and a price estimate. No commitment required.</p>
+      <div class="ai-form">
+        <div class="form-group">
+          <label class="form-label" data-i18n="ai_form_name">Your name</label>
+          <input class="form-input" type="text" id="f-name" placeholder="Fabio Marchianò">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="ai_form_email">Your email</label>
+          <input class="form-input" type="email" id="f-email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="ai_form_tools">Tools you currently use</label>
+          <input class="form-input" type="text" id="f-tools" placeholder="Notion, Google Workspace, Shopify, custom CRM…">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="ai_form_goal">What do you want to automate or build?</label>
+          <textarea class="form-input form-textarea" id="f-goal" rows="5" placeholder="Describe your use case. What task takes too much time? What would you build if you could? The more specific, the better."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="ai_form_budget">Rough budget range (optional)</label>
+          <select class="form-input form-select" id="f-budget">
+            <option value="" data-i18n="ai_budget_0">I prefer to get a proposal first</option>
+            <option value="< €500">Under €500</option>
+            <option value="€500 – €1,500">€500 – €1,500</option>
+            <option value="€1,500 – €5,000">€1,500 – €5,000</option>
+            <option value="> €5,000">Over €5,000</option>
+          </select>
+        </div>
+        <button class="btn btn-y" onclick="sendQuoteEmail()" data-i18n="ai_form_send" style="width:100%;text-align:center;">Send me a proposal request →</button>
+        <p class="form-note" data-i18n="ai_form_note">This opens your email client with everything pre-filled. No data is stored anywhere.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IS THIS FOR YOU -->
+  <section class="for-section reveal">
+    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="for-split">
+      <div>
+        <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
+        <ul class="for-list good">
+          <li data-i18n="a_yes1">You spend hours on tasks AI could do in minutes</li>
+          <li data-i18n="a_yes2">You want to use AI seriously but don't know where to start</li>
+          <li data-i18n="a_yes3">You have a specific integration project but no dev background</li>
+          <li data-i18n="a_yes4">You want someone to build it with you, not just explain it</li>
+          <li data-i18n="a_yes5">You're a freelancer, nomad or small business owner</li>
+        </ul>
+      </div>
+      <div>
+        <div class="for-col-title bad" data-i18n="for_no">Probably not if…</div>
+        <ul class="for-list bad">
+          <li data-i18n="a_no1">You want someone to manage your AI tools for you long-term</li>
+          <li data-i18n="a_no2">You're looking for enterprise-scale IT consulting</li>
+          <li data-i18n="a_no3">You want a fully autonomous AI that runs without any human input</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section reveal">
+    <div class="cta-title" data-i18n="cta3_title">YOUR TIME IS<br><span class="y">WORTH</span><br>MORE THAN THIS.</div>
+    <p class="cta-sub" data-i18n="cta3_sub">Let's find the one thing AI can take off your plate this week. Free 15-min call — no pitch, just a conversation.</p>
+    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+  </section>
+  <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
+</div>
+
 <div class="toast-copied" id="toast-copied">fabio.marchiano.phd@gmail.com &nbsp;✓ Copied</div>
 <script>
 function copyEmail(){
@@ -1568,6 +1782,98 @@ function copyEmail(){
     setTimeout(()=>t.classList.remove('show'),2200);
   });
 }
+/* ══ AI CANVAS ══ */
+let aiInit=false;
+function initAiCanvas(){
+  aiInit=true;
+  const cv=document.getElementById('canvas-ai'),ctx=cv.getContext('2d');
+  let W,H,t=0,nodes=[];
+  const COL='0,230,120';
+
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;buildNodes();}
+
+  function buildNodes(){
+    nodes=[];
+    const n=Math.floor(W*H/18000)+30;
+    for(let i=0;i<n;i++) nodes.push({
+      x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.18, vy:(Math.random()-.5)*.18,
+      r:1.2+Math.random()*2, ph:Math.random()*Math.PI*2,
+      active:Math.random()>.25
+    });
+  }
+
+  function draw(){
+    if(!W||!H)return void requestAnimationFrame(draw);
+    t+=.005;
+    ctx.clearRect(0,0,W,H);
+    // Move
+    nodes.forEach(n=>{
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0)n.x=W;if(n.x>W)n.x=0;
+      if(n.y<0)n.y=H;if(n.y>H)n.y=0;
+    });
+    // Edges
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i],b=nodes[j];
+        if(!a.active||!b.active)continue;
+        const dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<160){
+          // Pulse along edge
+          const pulse=(Math.sin(t*3+i*.5)*.5+.5);
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(${COL},${(1-d/160)*.15*pulse})`;
+          ctx.lineWidth=(1-d/160)*.8;
+          ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+        }
+      }
+    }
+    // Nodes
+    nodes.forEach((n,i)=>{
+      if(!n.active)return;
+      if(!isFinite(n.x)||!isFinite(n.y))return;
+      const p=.5+.5*Math.sin(t*1.5+n.ph);
+      const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r*8);
+      g.addColorStop(0,`rgba(${COL},${.15*p})`);
+      g.addColorStop(1,`rgba(${COL},0)`);
+      ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,n.r*8,0,Math.PI*2);ctx.fill();
+      ctx.beginPath();ctx.fillStyle=`rgba(${COL},${.8*p})`;ctx.arc(n.x,n.y,n.r*p,0,Math.PI*2);ctx.fill();
+    });
+    if(!isFinite(W)||!isFinite(H))return void requestAnimationFrame(draw);
+    const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);
+    v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');
+    ctx.fillStyle=v;ctx.fillRect(0,0,W,H);
+    requestAnimationFrame(draw);
+  }
+  let rt;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(resize,120);});
+  resize();draw();
+}
+
+/* ══ QUOTE FORM ══ */
+function sendQuoteEmail(){
+  const name   = document.getElementById('f-name').value.trim();
+  const email  = document.getElementById('f-email').value.trim();
+  const tools  = document.getElementById('f-tools').value.trim();
+  const goal   = document.getElementById('f-goal').value.trim();
+  const budget = document.getElementById('f-budget').value;
+
+  if(!goal){
+    document.getElementById('f-goal').focus();
+    return;
+  }
+
+  const subject = encodeURIComponent('AI & Automation — Project Inquiry' + (name ? ' from ' + name : ''));
+  const body = encodeURIComponent(
+    'Name: ' + (name||'—') + '\n' +
+    'Email: ' + (email||'—') + '\n' +
+    'Tools used: ' + (tools||'—') + '\n' +
+    'Budget range: ' + (budget||'No preference') + '\n\n' +
+    'Project / Use case:\n' + goal
+  );
+  window.location.href = 'mailto:fabio.marchiano.phd@gmail.com?subject=' + subject + '&body=' + body;
+}
+
 </script>
 </body>
 </html>
