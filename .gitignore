@@ -1,0 +1,7 @@
+.DS_Store
+Thumbs.db
+*.log
+style-card.html
+index_backup.html
+.claude/
+.superpowers/

@@ -1,20 +1,21 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fabio Marchianò — Masterclass</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Syne:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=VT323&family=Permanent+Marker&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --y:#FFE600;--b:#080808;--b2:#111111;--w:#F0EDE5;
-  --dim:rgba(240,237,229,.32);--dim2:rgba(240,237,229,.55);
-  --bb:'Bebas Neue',sans-serif;--sy:'Syne',sans-serif;--mo:'DM Mono',monospace;
+  --cyan:#00f5ff;--mag:#ff00aa;--acid:#aaff00;--amber:#ff9500;--purple:#9b30ff;
+  --fog:#8a9a8a;--b:#0a0a0a;--b2:#0f0f14;--w:#f0ece0;
+  --accent:var(--cyan);
+  --bb:'Bebas Neue',sans-serif;--vt:'VT323',monospace;--pm:'Permanent Marker',cursive;--mo:'DM Mono',monospace;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--b);color:var(--w);font-family:var(--sy);overflow-x:hidden;cursor:none;}@media(hover:none),(pointer:coarse){body,a,button,.btn,.path-cta,.lang-btn,.nav-logo,.nav-center a,.course-back,.card-link,.footer-socials a,.email-copy-btn,.persona-btn,.course-card{cursor:auto!important;}#cur,#curR{display:none!important;}}
+body{background:var(--b);color:var(--w);font-family:var(--mo);overflow-x:hidden;cursor:none;}@media(hover:none),(pointer:coarse){body,a,button,.btn,.path-cta,.lang-btn,.nav-logo,.nav-center a,.course-back,.card-link,.footer-socials a,.email-copy-btn,.persona-btn,.course-card{cursor:auto!important;}#cur,#curR{display:none!important;}}
 body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");background-size:160px;pointer-events:none;opacity:.65;}
 
 
@@ -25,7 +26,7 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
   aspect-ratio:3/4;
   object-fit:cover;
   object-position:center top;
-  border:1px solid rgba(255,230,0,.2);
+  border:1px solid rgba(0,245,255,.2);
   display:block;
   margin-bottom:1.5rem;
   filter:grayscale(15%);
@@ -50,13 +51,13 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
 }
 @media(max-width:800px){.demo-wrap{grid-template-columns:1fr;}}
 .demo-copy{}
-.demo-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.demo-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 .demo-title{font-family:var(--bb);font-size:clamp(2rem,4vw,3.2rem);color:var(--w);line-height:1;margin-bottom:1rem;}
 .demo-desc{font-size:.88rem;font-weight:300;color:var(--dim2);line-height:1.6;}
 .demo-screen{
   position:relative;
   background:#0d0d0d;
-  border:1px solid rgba(255,230,0,.15);
+  border:1px solid rgba(0,245,255,.15);
   border-radius:4px;
   overflow:hidden;
 }
@@ -76,32 +77,32 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
 
 /* ══ MATERIALS CARD ══ */
 .materials-band{
-  background:rgba(255,230,0,.04);
-  border-top:1px solid rgba(255,230,0,.12);
-  border-bottom:1px solid rgba(255,230,0,.12);
+  background:rgba(0,245,255,.04);
+  border-top:1px solid rgba(0,245,255,.12);
+  border-bottom:1px solid rgba(0,245,255,.12);
   padding:clamp(2.5rem,5vh,4rem) clamp(1.5rem,5vw,5rem);
 }
 .materials-inner{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
 @media(max-width:700px){.materials-inner{grid-template-columns:1fr;}}
 .materials-headline{font-family:var(--bb);font-size:clamp(2rem,4vw,3.5rem);color:var(--w);line-height:1;margin-bottom:.8rem;}
-.materials-headline .y{color:var(--y);}
+.materials-headline .y{color:var(--accent);}
 .materials-sub{font-size:.9rem;font-weight:300;color:var(--dim2);line-height:1.6;max-width:38ch;}
 .materials-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
 .materials-list li{font-size:.85rem;font-weight:300;color:var(--dim2);display:flex;align-items:flex-start;gap:.7rem;line-height:1.4;}
-.materials-list li::before{content:'✦';color:var(--y);font-size:.6rem;flex-shrink:0;margin-top:.25rem;}
+.materials-list li::before{content:'✦';color:var(--accent);font-size:.6rem;flex-shrink:0;margin-top:.25rem;}
 
 /* ══ POLYMATH STRIP ══ */
 .polymath-strip{
   padding:clamp(1.5rem,3vh,2.5rem) clamp(1.5rem,5vw,5rem);
-  border-top:1px solid rgba(255,230,0,.07);
+  border-top:1px solid rgba(0,245,255,.07);
   display:flex;gap:1rem;flex-wrap:wrap;align-items:center;
 }
 .poly-tag{
-  font-family:var(--mo);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:.3rem .8rem;border:1px solid rgba(255,230,0,.15);border-radius:20px;
-  color:rgba(255,230,0,.45);transition:all .2s;
+  font-family:var(--vt);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.3rem .8rem;border:1px solid rgba(0,245,255,.5);border-radius:20px;
+  color:var(--accent);transition:all .2s;
 }
-.poly-tag:hover{border-color:var(--y);color:var(--y);}
+.poly-tag:hover{border-color:var(--accent);background:rgba(0,245,255,.08);transform:scale(1.04);}
 .poly-intro{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-right:.5rem;}
 
 /* ══ SIMULATOR / GIF SECTION ══ */
@@ -109,16 +110,16 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
 .sim-wrap{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
 @media(max-width:800px){.sim-wrap{grid-template-columns:1fr;}}
 .sim-copy{}
-.sim-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.sim-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 .sim-title{font-family:var(--bb);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--w);line-height:1.05;margin-bottom:1rem;}
-.sim-title .y{color:var(--y);}
+.sim-title .y{color:var(--accent);}
 .sim-desc{font-size:.88rem;font-weight:300;color:var(--dim2);line-height:1.65;}
 .sim-perks{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:.5rem;}
 .sim-perks li{font-size:.82rem;font-weight:300;color:var(--dim2);display:flex;gap:.6rem;align-items:flex-start;}
-.sim-perks li::before{content:'✦';color:var(--y);font-size:.6rem;flex-shrink:0;margin-top:.2rem;}
+.sim-perks li::before{content:'✦';color:var(--accent);font-size:.6rem;flex-shrink:0;margin-top:.2rem;}
 .sim-gif-wrap{
   position:relative;background:#0d0d0d;
-  border:1px solid rgba(255,230,0,.15);border-radius:4px;overflow:hidden;
+  border:1px solid rgba(0,245,255,.15);border-radius:4px;overflow:hidden;
 }
 .sim-gif-bar{
   height:28px;background:#161616;
@@ -143,11 +144,11 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
   flex-direction:column;gap:.6rem;
   background:repeating-linear-gradient(-45deg,#0d0d0d 0,#0d0d0d 10px,#111 10px,#111 20px);
 }
-.sim-gif-placeholder span{font-family:var(--mo);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,230,0,.3);}
+.sim-gif-placeholder span{font-family:var(--mo);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,245,255,.3);}
 
 .toast-copied{
   position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);
-  background:var(--y);color:var(--b);
+  background:var(--accent);color:var(--b);
   font-family:var(--mo);font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
   padding:.55rem 1.4rem;border-radius:2px;
   opacity:0;pointer-events:none;
@@ -157,50 +158,50 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
 .toast-copied.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .email-copy-btn{
   background:none;border:none;padding:0;
-  font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--dim);cursor:pointer;transition:color .2s;
+  font-family:var(--vt);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(240,236,224,.7);cursor:pointer;transition:color .2s;
 }
-.email-copy-btn:hover{color:var(--y);}
+.email-copy-btn:hover{color:var(--accent);}
 
 /* ══ AI FORM ══ */
 .ai-form{display:flex;flex-direction:column;gap:1.4rem;margin-top:2rem;}
 .form-group{display:flex;flex-direction:column;gap:.5rem;}
-.form-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);}
+.form-label{font-family:var(--mo);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);}
 .form-input{
   background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,230,0,.2);
+  border:1px solid rgba(0,245,255,.2);
   border-radius:3px;
   padding:.8rem 1rem;
   color:var(--w);
-  font-family:var(--sy);
+  font-family:var(--mo);
   font-size:.9rem;
   transition:border-color .2s;
   outline:none;
   width:100%;
 }
-.form-input:focus{border-color:rgba(255,230,0,.7);}
+.form-input:focus{border-color:rgba(0,245,255,.7);}
 .form-input::placeholder{color:rgba(255,237,229,.25);}
 .form-textarea{resize:vertical;min-height:140px;line-height:1.6;}
 .form-select{cursor:pointer;}
 .form-select option{background:#1a1a1a;color:var(--w);}
-.form-note{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,230,0,.3);margin-top:.5rem;text-align:center;}
+.form-note{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,245,255,.3);margin-top:.5rem;text-align:center;}
 @media(max-width:600px){.courses-grid{grid-template-columns:1fr!important;}}
 canvas{position:absolute;inset:0;z-index:0;}
 .cur,.cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
-.cur{width:9px;height:9px;background:var(--y);border-radius:50%;}
-.cur-r{width:34px;height:34px;border:1.5px solid rgba(255,230,0,.5);border-radius:50%;z-index:9998;transition:all .13s ease;}
+.cur{width:9px;height:9px;background:var(--accent);border-radius:50%;}
+.cur-r{width:34px;height:34px;border:1.5px solid rgba(0,245,255,.5);border-radius:50%;z-index:9998;transition:all .13s ease;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:1rem clamp(1rem,4vw,5rem);background:rgba(8,8,8,.97);gap:1rem;flex-wrap:nowrap;}
-.nav-logo{font-family:var(--mo);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;flex-shrink:0;}
+.nav-logo{font-family:var(--vt);font-size:.95rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:none;flex-shrink:0;}
 .nav-center{display:flex;gap:1.4rem;list-style:none;flex-shrink:1;min-width:0;}
-.nav-center a{font-family:var(--mo);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim2);text-decoration:none;cursor:none;transition:color .2s;position:relative;padding-bottom:3px;white-space:nowrap;}
-.nav-center a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--y);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
-.nav-center a:hover,.nav-center a.active{color:var(--y);}
+.nav-center a{font-family:var(--vt);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,236,224,.55);text-decoration:none;cursor:none;transition:color .2s;position:relative;padding-bottom:3px;white-space:nowrap;}
+.nav-center a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+.nav-center a:hover,.nav-center a.active{color:var(--accent);}
 .nav-center a.active::after,.nav-center a:hover::after{transform:scaleX(1);}
 .lang-switcher{display:flex;gap:.25rem;flex-shrink:0;}
-.lang-btn{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .45rem;border:1px solid rgba(255,230,0,.2);border-radius:2px;background:transparent;color:var(--dim);cursor:pointer;transition:all .2s;}
-.lang-btn:hover,.lang-btn.active{border-color:var(--y);color:var(--y);}
+.lang-btn{font-family:var(--vt);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .55rem;border:1px solid rgba(0,245,255,.2);border-radius:2px;background:transparent;color:rgba(240,236,224,.32);cursor:pointer;transition:all .2s;}
+.lang-btn:hover,.lang-btn.active{border-color:var(--accent);color:var(--accent);}
 @media(max-width:600px){
   .nav-center{display:none;}
   nav{padding:.8rem 1.2rem;}
@@ -214,37 +215,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* HOME HERO */
 .home-hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) clamp(3rem,5vh,5rem);}
 .home-hero-inner{position:relative;z-index:2;}
-.hero-eyebrow{font-family:var(--mo);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;opacity:1;white-space:nowrap;}
+.hero-eyebrow{font-family:var(--mo);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;opacity:1;white-space:nowrap;}
 .hero-name{font-family:var(--bb);font-size:clamp(5rem,15vw,14rem);line-height:.88;letter-spacing:.02em;color:var(--w);}
-.hero-name .y{color:var(--y);}
-.hero-name .outline{-webkit-text-stroke:1.5px rgba(255,230,0,.2);color:transparent;display:block;}
-.hero-tagline{font-size:clamp(1rem,2vw,1.35rem);font-weight:300;color:var(--dim2);max-width:42ch;line-height:1.5;margin-top:1.4rem;opacity:0;animation:rise .8s ease .75s forwards;}
+.hero-name .y{color:var(--accent);}
+.hero-name .outline{-webkit-text-stroke:1.5px rgba(0,245,255,.2);color:transparent;display:block;}
+.hero-tagline{font-family:var(--pm);font-size:clamp(1rem,2vw,1.35rem);color:rgba(240,236,224,.55);max-width:42ch;line-height:1.5;margin-top:1.4rem;opacity:0;animation:rise .8s ease .75s forwards;}
 .hero-creds{display:flex;gap:2rem;margin-top:2.2rem;flex-wrap:wrap;opacity:0;animation:rise .8s ease .95s forwards;}
 .cred{display:flex;flex-direction:column;gap:.2rem;}
-.cred-val{font-family:var(--bb);font-size:clamp(1.8rem,4vw,3rem);color:var(--y);line-height:1;}
+.cred-val{font-family:var(--bb);font-size:clamp(1.8rem,4vw,3rem);color:var(--accent);line-height:1;}
 .cred-label{font-family:var(--mo);font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
 .hero-cta{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:rise .8s ease 1.1s forwards;}
 .btn{font-family:var(--mo);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:.75rem 1.8rem;border-radius:2px;transition:all .22s;cursor:pointer;display:inline-block;border:none;}
-.btn-y{background:var(--y);color:var(--b);font-weight:600;}
-.btn-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--y);}
-.btn-o{border:1px solid rgba(255,230,0,.3);color:var(--dim2);}
-.btn-o:hover{border-color:var(--y);color:var(--y);}
+.btn-primary,.btn-y{background:var(--accent);color:var(--b);font-weight:600;}
+.btn-primary:hover,.btn-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--accent);}
+.btn-o{border:1px solid rgba(0,245,255,.3);color:var(--dim2);}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);}
 
 /* SECTIONS */
 .section{padding:clamp(5rem,10vh,9rem) clamp(1.5rem,5vw,5rem);position:relative;}
-.section-label{font-family:var(--mo);font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--y);margin-bottom:2.5rem;display:flex;align-items:center;gap:.8rem;}
-.section-label::after{content:'';flex:1;height:1px;background:rgba(255,230,0,.15);max-width:120px;}
+.section-label{font-family:var(--vt);font-size:.9rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;display:flex;align-items:center;gap:.8rem;}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(0,245,255,.15);max-width:120px;}
 
 /* BIO */
 .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;}
 @media(max-width:700px){.bio-grid{grid-template-columns:1fr;gap:2.5rem;}}
 .bio-text{font-size:clamp(1rem,1.8vw,1.25rem);font-weight:300;line-height:1.7;color:var(--dim2);}
 .bio-text strong{color:var(--w);font-weight:600;}
-.bio-text .hl{color:var(--y);}
+.bio-text .hl{color:var(--accent);}
 .bio-facts{display:flex;flex-direction:column;gap:1.5rem;}
-.fact{border-left:2px solid rgba(255,230,0,.25);padding:.8rem 1.2rem;transition:border-color .2s;}
-.fact:hover{border-color:var(--y);}
-.fact-title{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:.4rem;}
+.fact{border-left:2px solid rgba(0,245,255,.25);padding:.8rem 1.2rem;transition:border-color .2s;}
+.fact:hover{border-color:var(--accent);}
+.fact-title{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;}
 .fact-text{font-size:.9rem;font-weight:300;color:var(--dim2);line-height:1.5;}
 
 /* IN-PERSON */
@@ -253,11 +254,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .seasons-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:1100px;}
 @media(max-width:900px){.seasons-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:500px){.seasons-grid{grid-template-columns:1fr;}}
-.season-card{border:1px solid rgba(255,230,0,.1);border-radius:3px;padding:1.6rem;background:var(--b);transition:border-color .3s,transform .3s;position:relative;overflow:hidden;}
-.season-card:hover{border-color:rgba(255,230,0,.45);transform:translateY(-3px);}
-.season-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--y),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.season-card{border:1px solid rgba(0,245,255,.1);border-radius:3px;padding:1.6rem;background:var(--b);transition:border-color .3s,transform .3s;position:relative;overflow:hidden;}
+.season-card:hover{border-color:rgba(0,245,255,.45);transform:translateY(-3px);}
+.season-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
 .season-card:hover::before{transform:scaleX(1);}
-.season-label{font-family:var(--mo);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--y);margin-bottom:.6rem;}
+.season-label{font-family:var(--mo);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
 .season-emoji{font-size:1.6rem;margin-bottom:.8rem;display:block;}
 .season-cities{font-family:var(--bb);font-size:clamp(1.2rem,2.5vw,1.8rem);color:var(--w);line-height:1.1;margin-bottom:.7rem;}
 .season-months{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:.8rem;}
@@ -267,39 +268,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .courses-teaser{padding:clamp(3rem,8vh,7rem) clamp(1.5rem,5vw,5rem);}
 .courses-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1100px;margin-top:3rem;}
 @media(max-width:700px){.courses-grid{grid-template-columns:1fr;}}
-.course-card{position:relative;overflow:hidden;padding:2.5rem;border:1px solid rgba(255,230,0,.1);border-radius:3px;cursor:none;transition:border-color .3s,transform .3s;background:var(--b2);}
-.course-card:hover{border-color:rgba(255,230,0,.5);transform:translateY(-4px);}
-.course-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--y),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.course-card{position:relative;overflow:hidden;padding:2.5rem;border:1px solid rgba(0,245,255,.1);border-radius:3px;cursor:none;transition:border-color .3s,transform .3s;background:var(--b2);}
+.course-card:hover{border-color:rgba(0,245,255,.5);transform:translateY(-4px);}
+.course-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--accent),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
 .course-card:hover::before{transform:scaleX(1);}
-.card-num{font-family:var(--bb);font-size:4rem;color:rgba(255,230,0,.07);line-height:1;margin-bottom:1rem;}
+.card-num{font-family:var(--bb);font-size:4rem;color:rgba(0,245,255,.07);line-height:1;margin-bottom:1rem;}
 .card-icon{font-size:1.8rem;margin-bottom:1rem;}
 .card-title{font-family:var(--bb);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--w);margin-bottom:.8rem;}
-.card-sub{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);margin-bottom:1rem;}
+.card-sub{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
 .card-desc{font-size:.9rem;font-weight:300;color:var(--dim);line-height:1.6;margin-bottom:1.8rem;}
-.card-link{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--y);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;transition:gap .2s;}
+.card-link{font-family:var(--mo);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;transition:gap .2s;}
 .card-link:hover{gap:.9rem;}
 .card-link::after{content:'→';}
 
 /* FOOTER */
-footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,230,0,.08);flex-wrap:wrap;gap:1rem;}
-.footer-copy{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);}
+footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(0,245,255,.08);flex-wrap:wrap;gap:1rem;}
+.footer-copy{font-family:var(--vt);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,236,224,.45);}
 .footer-socials{display:flex;gap:1.5rem;}
-.footer-socials a{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;transition:color .2s;}
-.footer-socials a:hover{color:var(--y);}
+.footer-socials a{font-family:var(--vt);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,236,224,.7);text-decoration:none;cursor:none;transition:color .2s;}
+.footer-socials button.email-copy-btn{font-family:var(--vt);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,236,224,.7);}
+.footer-socials a:hover{color:var(--accent);}
 
 /* COURSE HERO */
 .course-hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) clamp(1.5rem,5vw,5rem);}
 .course-hero-inner{position:relative;z-index:2;}
 .course-back{font-family:var(--mo);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:3rem;transition:color .2s;}
-.course-back:hover{color:var(--y);}
+.course-back:hover{color:var(--accent);}
 .course-back::before{content:'←';}
-.course-tag{font-family:var(--mo);font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;padding:.3rem .9rem;border:1px solid var(--y);border-radius:20px;color:var(--y);display:inline-block;margin-bottom:1.2rem;}
+.course-tag{font-family:var(--mo);font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;padding:.3rem .9rem;border:1px solid var(--accent);border-radius:20px;color:var(--accent);display:inline-block;margin-bottom:1.2rem;}
 .course-title{font-family:var(--bb);font-size:clamp(4rem,12vw,10rem);line-height:.88;color:var(--w);letter-spacing:.02em;margin-bottom:1.2rem;}
-.course-title .accent{color:var(--y);}
-.course-subtitle{font-size:clamp(.95rem,1.8vw,1.2rem);font-weight:300;color:var(--dim2);max-width:48ch;line-height:1.55;margin-bottom:2rem;}
+.course-title .accent{color:var(--accent);}
+.course-subtitle{font-family:var(--pm);font-size:clamp(.95rem,1.8vw,1.2rem);color:rgba(240,236,224,.55);max-width:48ch;line-height:1.55;margin-bottom:2rem;}
 .course-pills{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.pill{font-family:var(--mo);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border:1px solid rgba(255,230,0,.25);border-radius:20px;color:rgba(255,230,0,.6);transition:all .22s;white-space:nowrap;}
-.pill:hover{border-color:var(--y);color:var(--y);background:rgba(255,230,0,.06);}
+.pill{font-family:var(--vt);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border:1px solid rgba(0,245,255,.25);border-radius:20px;color:rgba(0,245,255,.6);transition:all .22s;white-space:nowrap;}
+.pill:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,245,255,.06);}
 .pills-section{padding:2rem clamp(1.5rem,5vw,5rem) 0;display:flex;gap:.6rem;flex-wrap:wrap;max-width:1100px;}
 
 /* WHAT YOU LEARN */
@@ -307,8 +309,8 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 .learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:1100px;margin-top:3rem;}
 @media(max-width:800px){.learn-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:500px){.learn-grid{grid-template-columns:1fr;}}
-.learn-card{padding:1.8rem;border:1px solid rgba(255,230,0,.1);border-radius:3px;background:var(--b2);transition:border-color .25s,background .25s;}
-.learn-card:hover{border-color:rgba(255,230,0,.4);background:#141414;}
+.learn-card{padding:1.8rem;border:1px solid rgba(0,245,255,.1);border-radius:3px;background:var(--b2);transition:border-color .25s,background .25s;}
+.learn-card:hover{border-color:rgba(0,245,255,.4);background:#141414;}
 .learn-card-icon{font-size:1.5rem;margin-bottom:1rem;}
 .learn-card-title{font-size:1rem;font-weight:600;color:var(--w);margin-bottom:.5rem;}
 .learn-card-text{font-size:.82rem;font-weight:300;color:var(--dim);line-height:1.55;}
@@ -326,21 +328,21 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 @media(max-width:720px){.paths-grid{grid-template-columns:1fr;}}
 
 .path-card{
-  border:1px solid rgba(255,230,0,.12);
+  border:1px solid rgba(0,245,255,.12);
   border-radius:3px;
   overflow:hidden;
   position:relative;
   background:var(--b);
   transition:border-color .3s,transform .3s;
 }
-.path-card:hover{border-color:rgba(255,230,0,.4);transform:translateY(-4px);}
-.path-card.featured{border-color:rgba(255,230,0,.3);}
-.path-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--y);}
+.path-card:hover{border-color:rgba(0,245,255,.4);transform:translateY(-4px);}
+.path-card.featured{border-color:rgba(0,245,255,.3);}
+.path-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);}
 
 .path-header{padding:2rem 2rem 1.5rem;}
 .path-audience{
   font-family:var(--mo);font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--y);margin-bottom:.8rem;
+  color:var(--accent);margin-bottom:.8rem;
 }
 .path-title{
   font-family:var(--bb);font-size:clamp(1.6rem,3.5vw,2.6rem);
@@ -348,7 +350,7 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 }
 .path-desc{font-size:.82rem;font-weight:300;color:var(--dim);line-height:1.5;}
 
-.path-divider{height:1px;background:rgba(255,230,0,.1);margin:0 2rem;}
+.path-divider{height:1px;background:rgba(0,245,255,.1);margin:0 2rem;}
 
 /* PROGRAM MODULE LIST */
 .path-program{padding:1.8rem 2rem;}
@@ -363,10 +365,10 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
   border-radius:2px;
   transition:background .2s;
 }
-.module-item:hover{background:rgba(255,230,0,.04);}
+.module-item:hover{background:rgba(0,245,255,.04);}
 .module-num{
   font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;
-  color:var(--y);flex-shrink:0;width:1.4rem;padding-top:.18rem;
+  color:var(--accent);flex-shrink:0;width:1.4rem;padding-top:.18rem;
 }
 .module-body{}
 .module-title{font-size:.85rem;font-weight:600;color:var(--w);margin-bottom:.15rem;}
@@ -375,8 +377,8 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 /* PRICING IN PATH CARD */
 .path-pricing{
   padding:1.8rem 2rem 2rem;
-  border-top:1px solid rgba(255,230,0,.1);
-  background:rgba(255,230,0,.02);
+  border-top:1px solid rgba(0,245,255,.1);
+  background:rgba(0,245,255,.02);
 }
 .price-currency-row{display:none;}
 .price-chf-inline{display:none;}
@@ -386,37 +388,37 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 .price-unit{display:none;}
 .price-pack{
   font-family:var(--mo);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,230,0,.8);margin-bottom:.4rem;
+  color:rgba(0,245,255,.8);margin-bottom:.4rem;
 }
-.price-pack strong{color:var(--y);}
+.price-pack strong{color:var(--accent);}
 .path-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.6rem;}
 .path-features li{font-size:.78rem;font-weight:300;color:var(--dim2);display:flex;align-items:flex-start;gap:.55rem;}
-.path-features li::before{content:'✓';color:var(--y);font-size:.7rem;flex-shrink:0;margin-top:.1rem;}
+.path-features li::before{content:'✓';color:var(--accent);font-size:.7rem;flex-shrink:0;margin-top:.1rem;}
 .path-cta{
   font-family:var(--mo);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
   text-decoration:none;padding:.7rem 1.5rem;border-radius:2px;
   display:inline-block;cursor:pointer;transition:all .22s;width:100%;text-align:center;border:none;
 }
-.path-cta-y{background:var(--y);color:var(--b);font-weight:600;}
-.path-cta-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--y);}
-.path-cta-o{border:1px solid rgba(255,230,0,.35);color:var(--dim2);background:transparent;}
-.path-cta-o:hover{border-color:var(--y);color:var(--y);}
+.path-cta-primary,.path-cta-y{background:var(--accent);color:var(--b);font-weight:600;}
+.path-cta-primary:hover,.path-cta-y:hover{background:var(--w);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--accent);}
+.path-cta-o{border:1px solid rgba(0,245,255,.35);color:rgba(240,236,224,.55);background:transparent;}
+.path-cta-o:hover{border-color:var(--accent);color:var(--accent);}
 
 /* FOR YOU */
 .for-section{padding:clamp(5rem,10vh,8rem) clamp(1.5rem,5vw,5rem);}
 .for-split{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;margin-top:3rem;}
 @media(max-width:700px){.for-split{grid-template-columns:1fr;gap:2rem;}}
 .for-col-title{font-family:var(--bb);font-size:clamp(1.5rem,3vw,2.5rem);margin-bottom:1.2rem;}
-.for-col-title.good{color:var(--y);}
+.for-col-title.good{color:var(--accent);}
 .for-col-title.bad{color:rgba(255,255,255,.2);}
 .for-list{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
 .for-list li{font-size:.88rem;font-weight:300;color:var(--dim2);display:flex;gap:.7rem;align-items:flex-start;line-height:1.4;}
-.for-list.good li::before{content:'→';color:var(--y);}
+.for-list.good li::before{content:'→';color:var(--accent);}
 .for-list.bad li::before{content:'×';color:rgba(255,255,255,.2);}
 
-.cta-section{padding:clamp(5rem,12vh,10rem) clamp(1.5rem,5vw,5rem);text-align:center;border-top:1px solid rgba(255,230,0,.08);}
+.cta-section{padding:clamp(5rem,12vh,10rem) clamp(1.5rem,5vw,5rem);text-align:center;border-top:1px solid rgba(0,245,255,.08);}
 .cta-title{font-family:var(--bb);font-size:clamp(3rem,8vw,7rem);color:var(--w);line-height:.9;margin-bottom:1.5rem;}
-.cta-title .y{color:var(--y);}
+.cta-title .y{color:var(--accent);}
 .cta-sub{font-size:clamp(.9rem,1.6vw,1.1rem);font-weight:300;color:var(--dim);max-width:40ch;margin:0 auto 2.5rem;line-height:1.6;}
 
 /* ══ PERSONA SELECTOR ══ */
@@ -428,19 +430,19 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 .persona-btn{
   display:flex;flex-direction:column;gap:.35rem;
   padding:1rem 1.5rem;
-  border:1px solid rgba(255,230,0,.25);border-radius:3px;
-  background:rgba(255,230,0,.03);
+  border:1px solid rgba(0,245,255,.25);border-radius:3px;
+  background:rgba(0,245,255,.03);
   cursor:none;transition:all .25s;text-align:left;
   position:relative;overflow:hidden;
   min-width:180px;
 }
 .persona-btn::before{
   content:'';position:absolute;inset:0;
-  background:var(--y);transform:scaleX(0);transform-origin:left;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;
   transition:transform .3s ease;z-index:0;
 }
 .persona-btn:hover::before,.persona-btn.active::before{transform:scaleX(1);}
-.persona-btn:hover,.persona-btn.active{border-color:var(--y);}
+.persona-btn:hover,.persona-btn.active{border-color:var(--accent);}
 .persona-btn *{position:relative;z-index:1;transition:color .25s;}
 .persona-btn:hover .pb-label,.persona-btn.active .pb-label{color:var(--b);}
 .persona-btn:hover .pb-sub,.persona-btn.active .pb-sub{color:rgba(8,8,8,.65);}
@@ -456,10 +458,10 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 
 /* ══ PATH CARD PERSONA STATES ══ */
 .path-card.persona-match{
-  border-color:rgba(255,230,0,.55) !important;
+  border-color:rgba(0,245,255,.55) !important;
   transform:translateY(-4px);
 }
-.path-card.persona-match .path-header{background:rgba(255,230,0,.04);}
+.path-card.persona-match .path-header{background:rgba(0,245,255,.04);}
 .path-card.persona-dim{
   opacity:.45;
   transform:scale(.98);
@@ -470,7 +472,7 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 .persona-banner{
   display:none;
   position:relative;z-index:20;
-  background:var(--y);
+  background:var(--accent);
   padding:.55rem clamp(1.5rem,5vw,5rem);
   font-family:var(--mo);font-size:.55rem;letter-spacing:.18em;
   text-transform:uppercase;color:var(--b);
@@ -493,11 +495,44 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 @keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.visible{opacity:1;transform:none;}
+
+/* About tagline */
+.about-tagline{font-family:var(--pm);font-size:clamp(1.1rem,2.2vw,1.5rem);color:var(--w);line-height:1.45;margin-bottom:2.5rem;max-width:60ch;}
+
+/* Per-course nav colors */
+#nav-code:hover,#nav-code.active{color:var(--acid)!important;}
+#nav-code::after,#nav-code.active::after{background:var(--acid)!important;}
+#nav-physics:hover,#nav-physics.active{color:var(--amber)!important;}
+#nav-physics::after,#nav-physics.active::after{background:var(--amber)!important;}
+#nav-ai:hover,#nav-ai.active{color:var(--purple)!important;}
+#nav-ai::after,#nav-ai.active::after{background:var(--purple)!important;}
+
+/* ── CYBERDREAM ADDITIONS ── */
+#page-home{--accent:var(--cyan);}
+#page-code{--accent:var(--acid);}
+#page-physics{--accent:var(--amber);}
+#page-ai{--accent:var(--purple);}
+
+/* CRT scanlines */
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.07) 2px,rgba(0,0,0,.07) 4px);pointer-events:none;z-index:199;}
+
+/* Blinking LED */
+.led{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent),0 0 16px var(--accent);margin-right:7px;vertical-align:middle;flex-shrink:0;animation:ledBlink 1s ease-in-out infinite;}
+@keyframes ledBlink{0%,100%{opacity:1;box-shadow:0 0 10px var(--accent),0 0 20px var(--accent);}50%{opacity:.1;box-shadow:none;}}
+
+/* Sticker badge */
+.sticker{position:absolute;font-family:var(--vt);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);padding:3px 10px;transform:rotate(var(--rot,-3deg));box-shadow:0 0 10px var(--accent);white-space:nowrap;z-index:10;}
+
+/* Home hero gradient title */
+.hero-name-gradient{background:linear-gradient(135deg,var(--cyan) 0%,var(--mag) 50%,var(--amber) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(0,245,255,.35));}
+
+/* Course title glow */
+.course-title-glow{filter:drop-shadow(0 0 15px var(--accent));}
 </style>
 <script>
 (function(C,A,L){let p=function(a,ar){a.q.push(ar);},d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true;}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==="string"){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,["initNamespace",namespace]);}else p(cal,ar);return;}p(cal,ar);};})(window,"https://app.cal.com/embed/embed.js","init");
 Cal("init","fabio-marchiano",{origin:"https://cal.com"});
-Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",cssVarsPerTheme:{light:{"cal-brand":"#FFE600","cal-brand-text":"#080808"},dark:{"cal-brand":"#FFE600","cal-brand-text":"#080808"}}});
+Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",cssVarsPerTheme:{light:{"cal-brand":"#00f5ff","cal-brand-text":"#0a0a0a"},dark:{"cal-brand":"#00f5ff","cal-brand-text":"#0a0a0a"}}});
 </script>
 </head>
 <body>
@@ -522,34 +557,10 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
 
 <!-- ══ HOME ══ -->
 <div class="page active" id="page-home">
-  <div class="home-hero">
-    <canvas id="canvas-home"></canvas>
-    <div class="home-hero-inner">
-      <div class="hero-eyebrow" data-i18n="hero_eyebrow">// PhD · Researcher · Educator</div>
-      <h1 class="hero-name">FABIO<br><span class="y">MARCHIANÒ</span><span class="outline" aria-hidden="true">MASTERCLASS</span></h1>
-      <p class="hero-tagline" data-i18n="hero_tagline">I make hard things click. Science and code, taught by someone who actually does both.</p>
-      <div class="hero-creds">
-        <div class="cred"><span class="cred-val">PhD</span><span class="cred-label" data-i18n="cred_phd">Computational Bio</span></div>
-        <div class="cred"><span class="cred-val">1:1</span><span class="cred-label" data-i18n="cred_sessions">Custom materials</span></div>
-        <div class="cred"><span class="cred-val">🌍</span><span class="cred-label" data-i18n="cred_location">Online &amp; In-person</span></div>
-      </div>
-      <div class="persona-row">
-        <button class="persona-btn" id="pb-hs" onclick="setPersona('hs')">
-          <span class="pb-emoji">🎒</span>
-          <span class="pb-label" data-i18n="pb_hs_label">High school</span>
-          <span class="pb-sub" data-i18n="pb_hs_sub">Liceo · Lycée · Secondary</span>
-        </button>
-        <button class="persona-btn" id="pb-uni" onclick="setPersona('uni')">
-          <span class="pb-emoji">🎓</span>
-          <span class="pb-label" data-i18n="pb_uni_label">Uni / Pro</span>
-          <span class="pb-sub" data-i18n="pb_uni_sub">University · Professional</span>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <section class="section reveal">
-    <div class="section-label" data-i18n="about_label">// About</div>
+    <div class="section-label"><span class="led"></span>// PhD · Scientist · Educator</div>
+    <p class="about-tagline" data-i18n="hero_tagline">I make hard things click. Science and code, taught by someone who actually does both.</p>
     <div class="bio-grid">
       <div class="bio-text" data-i18n="bio_text">I hold a <strong>PhD in computational biology</strong> and spent 8+ years doing research — cancer genomics, developmental biology, building tools published in top journals.<br><br>But my real superpower is something else: I'm genuinely obsessed with <strong>many things at once</strong>. Science, philosophy, music, code, sports, travel. That breadth is exactly what makes me a different kind of teacher.<br><br>When you're stuck on a physics concept, I find the angle that fits <em>your</em> world — not a generic textbook explanation. When code feels abstract, I connect it to something you already love. I don't translate difficulty away. I <strong>find the door that was always there</strong>.<br><br>Every session comes with custom materials: slides, handouts, and exercises built around your specific questions. Not recycled content — made for you.</div>
       <div class="bio-facts">
@@ -574,7 +585,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </section>
 
   <section class="inperson-section reveal">
-    <div class="section-label" data-i18n="inperson_label">// In-person sessions</div>
+    <div class="section-label" data-i18n="inperson_label"><span class="led"></span>// In-person sessions</div>
     <p class="inperson-intro" data-i18n="inperson_intro">I travel. The sessions follow. Depending on the season, I'm available face-to-face in these cities.</p>
     <div class="seasons-grid" style="grid-template-columns:1fr 1fr;">
       <div class="season-card reveal"><div class="season-label" data-i18n="s1_label">Europa</div><span class="season-emoji">🌍</span><div class="season-cities" data-i18n="s1_cities">Verbania<br>Torino · Milano<br>Lugano · Lausanne</div><div class="season-months" data-i18n="s1_months">Mar — Dec</div><div class="season-note" data-i18n="s1_note">Based in Northern Italy / Swiss border area. Online sessions available worldwide year-round.</div></div>
@@ -584,23 +595,23 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </section>
 
   <section class="courses-teaser reveal" style="padding:clamp(3rem,8vh,7rem) clamp(1.5rem,5vw,5rem);">
-    <div class="section-label" data-i18n="courses_label">// Masterclasses</div>
+    <div class="section-label" data-i18n="courses_label"><span class="led"></span>// Masterclasses</div>
     <div class="courses-grid" style="grid-template-columns:repeat(3,1fr);">
-      <div class="course-card reveal" onclick="showPage('code')" style="cursor:none;">
+      <div class="course-card reveal" onclick="showPage('code')" style="cursor:none;--accent:var(--acid);">
         <div class="card-num">01</div><div class="card-icon">⌨️</div>
         <div class="card-sub">Python · R · JavaScript · p5.js</div>
         <div class="card-title" data-i18n="card1_title">Code &amp; Creative Art</div>
         <div class="card-desc" data-i18n="card1_desc">From your first loop to generative art. Programming taught through things you actually want to build.</div>
         <a class="card-link" href="#" onclick="event.stopPropagation();showPage('code')" data-i18n="card_explore">Explore course</a>
       </div>
-      <div class="course-card reveal" onclick="showPage('physics')" style="cursor:none;">
+      <div class="course-card reveal" onclick="showPage('physics')" style="cursor:none;--accent:var(--amber);">
         <div class="card-num">02</div><div class="card-icon">⚡</div>
         <div class="card-sub">Physics · Electronics · Arduino · KNX</div>
         <div class="card-title" data-i18n="card2_title">Physics, Arduino<br>&amp; Domotics</div>
         <div class="card-desc" data-i18n="card2_desc">Electrons, circuits, smart home automation. Taught with real components and real KNX installations.</div>
         <a class="card-link" href="#" onclick="event.stopPropagation();showPage('physics')" data-i18n="card_explore">Explore course</a>
       </div>
-      <div class="course-card reveal" onclick="showPage('ai')" style="cursor:none;">
+      <div class="course-card reveal" onclick="showPage('ai')" style="cursor:none;--accent:var(--purple);">
         <div class="card-num">03</div><div class="card-icon">🤖</div>
         <div class="card-sub">AI · Automation · Notion · Google Workspace</div>
         <div class="card-title" data-i18n="card3_title">AI &amp; Automation</div>
@@ -621,12 +632,13 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </div>
   <div class="course-hero">
     <canvas id="canvas-code"></canvas>
+    <div class="sticker" style="--rot:3deg;top:7rem;right:clamp(1.5rem,5vw,5rem)">Processing · p5.js</div>
     <div class="course-hero-inner">
       <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
       <div class="course-tag" data-i18n="course1_tag">Masterclass 01</div>
-      <h1 class="course-title" data-i18n="c1_title">CODE &amp;<br><span class="accent">CREATIVE</span><br>ART</h1>
+      <h1 class="course-title course-title-glow" data-i18n="c1_title">CODE &amp;<br><span class="accent">CREATIVE</span><br>ART</h1>
       <p class="course-subtitle" data-i18n="c1_sub">Python, R, JavaScript and generative art — taught like a conversation, not a lecture.</p>
-      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
+      <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
     </div>
   </div>
   <div class="pills-section">
@@ -636,7 +648,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
 
   <!-- WHAT YOU LEARN -->
   <section class="learn-section reveal">
-    <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
+    <div class="section-label" data-i18n="learn_label"><span class="led"></span>// What you'll learn</div>
     <div class="learn-grid">
       <div class="learn-card reveal"><div class="learn-card-icon">🐍</div><div class="learn-card-title" data-i18n="lc1_t">Python</div><div class="learn-card-text" data-i18n="lc1_d">The language of science, data and automation. Clean syntax that reads almost like English — once you get Python, everything else becomes easier. Used by researchers, startups and data scientists worldwide.</div></div>
       <div class="learn-card reveal"><div class="learn-card-icon">📊</div><div class="learn-card-title" data-i18n="lc2_t">R &amp; Data analysis</div><div class="learn-card-text" data-i18n="lc2_d">R is the statistician's power tool. Tidyverse makes data wrangling intuitive, ggplot2 produces publication-quality charts. If you work with data, this is your language.</div></div>
@@ -697,7 +709,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </section>
   <!-- DUAL PATH -->
   <section class="paths-section reveal">
-    <div class="section-label" data-i18n="paths_label">// Choose your path</div>
+    <div class="section-label" data-i18n="paths_label"><span class="led"></span>// Choose your path</div>
     <p class="paths-intro" data-i18n="c_paths_intro">Same quality, different depth. Pick the programme that matches where you are right now.</p>
     <div class="paths-grid">
 
@@ -765,14 +777,14 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <li data-i18n="pf_async">24h async support between sessions</li>
             <li data-i18n="pf_cancel">Cancel up to 24h before</li>
           </ul>
-          <button class="path-cta path-cta-y" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+          <button class="path-cta path-cta-primary" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
         </div>
       </div>
     </div>
   </section>
 
   <section class="for-section reveal">
-    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="section-label" data-i18n="for_label"><span class="led"></span>// Is this for you?</div>
     <div class="for-split">
       <div>
         <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
@@ -799,7 +811,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   <section class="cta-section reveal">
     <div class="cta-title" data-i18n="cta1_title">READY TO<br><span class="y">ACTUALLY</span><br>GET IT?</div>
     <p class="cta-sub" data-i18n="cta_guarantee">First session is a trial. If it doesn't click, you don't pay. Simple.</p>
-    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+    <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
   </section>
   <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
 </div>
@@ -812,12 +824,13 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </div>
   <div class="course-hero">
     <canvas id="canvas-physics"></canvas>
+    <div class="sticker" style="--rot:-2deg;top:7rem;right:clamp(1.5rem,5vw,5rem)">Arduino · DIY</div>
     <div class="course-hero-inner">
       <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
       <div class="course-tag" data-i18n="course2_tag">Masterclass 02</div>
-      <h1 class="course-title" data-i18n="c2_title">PHYSICS,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICS</h1>
+      <h1 class="course-title course-title-glow" data-i18n="c2_title">PHYSICS,<br><span class="accent">ARDUINO</span><br>&amp; DOMOTICS</h1>
       <p class="course-subtitle" data-i18n="c2_sub">Electricity, waves, mechanics and smart home automation — taught with real components, from breadboard to KNX.</p>
-      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
+      <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free trial →</button>
     </div>
   </div>
   <div class="pills-section">
@@ -826,7 +839,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </div>
 
   <section class="learn-section reveal">
-    <div class="section-label" data-i18n="learn_label">// What you'll learn</div>
+    <div class="section-label" data-i18n="learn_label"><span class="led"></span>// What you'll learn</div>
     <div class="learn-grid">
       <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="lp1_t">Electricity &amp; circuits</div><div class="learn-card-text" data-i18n="lp1_d">Voltage, current, resistance — the ABCs of electronics. We start with Ohm's law on a breadboard and work up to building actual circuits. Theory only makes sense once you've held the components.</div></div>
       <div class="learn-card reveal"><div class="learn-card-icon">🔌</div><div class="learn-card-title" data-i18n="lp2_t">Arduino</div><div class="learn-card-text" data-i18n="lp2_d">Arduino is a microcontroller you program in C++. It reads sensors, controls LEDs and motors, communicates with your computer. The feedback loop — write code, see something physical happen — is addictive.</div></div>
@@ -887,7 +900,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   </section>
   <!-- DUAL PATH PHYSICS -->
   <section class="paths-section reveal">
-    <div class="section-label" data-i18n="paths_label">// Choose your path</div>
+    <div class="section-label" data-i18n="paths_label"><span class="led"></span>// Choose your path</div>
     <p class="paths-intro" data-i18n="p_paths_intro">Same hands-on approach, different level of rigour. Pick the track that matches your background.</p>
     <div class="paths-grid">
 
@@ -955,14 +968,14 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
             <li data-i18n="pf_async">24h async support between sessions</li>
             <li data-i18n="pf_cancel">Cancel up to 24h before</li>
           </ul>
-          <button class="path-cta path-cta-y" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
+          <button class="path-cta path-cta-primary" data-cal-link="fabio-marchiano/30min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_session">Book a session</button>
         </div>
       </div>
     </div>
   </section>
 
   <section class="for-section reveal">
-    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="section-label" data-i18n="for_label"><span class="led"></span>// Is this for you?</div>
     <div class="for-split">
       <div>
         <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
@@ -989,7 +1002,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
   <section class="cta-section reveal">
     <div class="cta-title" data-i18n="cta2_title">PHYSICS ISN'T <span class="y">HARD</span>.<br>IT'S MIS-TAUGHT.</div>
     <p class="cta-sub" data-i18n="cta_guarantee">First session is a trial. If it doesn't click, you don't pay. Simple.</p>
-    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+    <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
   </section>
   <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
 </div>
@@ -1089,9 +1102,9 @@ en:{
   cta1_title:'READY TO<br><span class="y">ACTUALLY</span><br>GET IT?',
   cta2_title:'PHYSICS ISN\'T <span class="y">HARD</span>.<br>IT\'S MIS-TAUGHT.',
   demo_label:'// Live demo',
-  c_demo_title:'Code becomes<br>something <span style="color:var(--y)">visible.</span>',
+  c_demo_title:'Code becomes<br>something <span style="color:var(--accent)">visible.</span>',
   c_demo_desc:"This is the kind of output you'll build — a generative sketch running entirely in your browser. Every line of code you write draws something, moves something, reacts to something. That's the feedback loop that makes it stick.",
-  p_demo_title:'Circuits that<br>actually <span style="color:var(--y)">do things.</span>',
+  p_demo_title:'Circuits that<br>actually <span style="color:var(--accent)">do things.</span>',
   p_demo_desc:"This is the loop: you write a few lines, a real LED blinks, a sensor reacts, a motor moves. The feedback is immediate and physical. That's what makes electronics and domotics learnable — not theory, but tangible cause and effect.",
   mat_headline:'Every session.<br><span class="y">Every material.</span><br>Included.',
   mat_sub_code:"You never leave empty-handed. Each session produces a set of custom materials built around exactly what we covered.",
@@ -1435,7 +1448,7 @@ function makeP(W,H,n){return Array.from({length:n},()=>({x:Math.random()*W,y:Mat
 function moveP(pts,W,H,t){pts.forEach(p=>{const a=noise3(p.x/W,p.y/H,t)*Math.PI*2;p.x+=Math.cos(a)*.28+p.vx;p.y+=Math.sin(a)*.28+p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;});}
 function edges(ctx,pts,D,r,g,b){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],bb=pts[j],dx=a.x-bb.x,dy=a.y-bb.y,d=Math.sqrt(dx*dx+dy*dy);if(d<D){ctx.beginPath();ctx.strokeStyle=`rgba(${r},${g},${b},${(1-d/D)*.18})`;ctx.lineWidth=(1-d/D)*.7;ctx.moveTo(a.x,a.y);ctx.lineTo(bb.x,bb.y);ctx.stroke();}}}
 function drawNodes(ctx,pts,t,r,g,b){pts.forEach(p=>{if(!isFinite(p.x)||!isFinite(p.y)||!isFinite(p.r)||p.r<=0)return;const p2=.7+.3*Math.sin(t/p.s*.001+p.ph),gr=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*9);gr.addColorStop(0,`rgba(${r},${g},${b},${.1*p2})`);gr.addColorStop(1,`rgba(${r},${g},${b},0)`);ctx.beginPath();ctx.fillStyle=gr;ctx.arc(p.x,p.y,p.r*9,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(${r},${g},${b},${.7+.3*p2})`;ctx.arc(p.x,p.y,p.r*p2,0,Math.PI*2);ctx.fill();});}
-function vig(ctx,W,H){if(!W||!H||!isFinite(W)||!isFinite(H))return;const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);}
+function vig(ctx,W,H){if(!W||!H||!isFinite(W)||!isFinite(H))return;const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);v.addColorStop(0,'rgba(10,10,10,0)');v.addColorStop(1,'rgba(10,10,10,.88)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);}
 
 /* HOME */
 (function(){
@@ -1446,7 +1459,7 @@ function vig(ctx,W,H){if(!W||!H||!isFinite(W)||!isFinite(H))return;const v=ctx.c
     H=cv.height=window.innerHeight;
     pts=makeP(W,H,70);
   }
-  function draw(){if(!W||!H)return void(rAF=requestAnimationFrame(draw));t+=.004;ctx.clearRect(0,0,W,H);moveP(pts,W,H,t);edges(ctx,pts,140,255,230,0);drawNodes(ctx,pts,t,255,230,0);vig(ctx,W,H);rAF=requestAnimationFrame(draw);}
+  function draw(){if(!W||!H)return void(rAF=requestAnimationFrame(draw));t+=.004;ctx.clearRect(0,0,W,H);moveP(pts,W,H,t);edges(ctx,pts,140,0,245,255);drawNodes(ctx,pts,t,0,245,255);vig(ctx,W,H);rAF=requestAnimationFrame(draw);}
   window.addEventListener('resize',()=>{
     clearTimeout(resizeTimer);
     resizeTimer=setTimeout(resize,120);
@@ -1465,9 +1478,9 @@ function initCodeCanvas(){
   function draw(){
     if(!W||!H)return void requestAnimationFrame(draw);
     t+=.003;ctx.clearRect(0,0,W,H);
-    ctx.font='11px monospace';ctx.fillStyle='rgba(0,255,180,.018)';
+    ctx.font='11px monospace';ctx.fillStyle='rgba(170,255,0,.018)';
     for(let i=0;i<W;i+=28)ctx.fillText(String.fromCharCode(33+Math.floor(Math.random()*90)),i,Math.random()*H);
-    moveP(pts,W,H,t);edges(ctx,pts,120,0,255,180);drawNodes(ctx,pts,t,0,255,180);vig(ctx,W,H);requestAnimationFrame(draw);
+    moveP(pts,W,H,t);edges(ctx,pts,120,170,255,0);drawNodes(ctx,pts,t,170,255,0);vig(ctx,W,H);requestAnimationFrame(draw);
   }
   window.addEventListener('resize',resize);resize();draw();
 }
@@ -1485,11 +1498,11 @@ function initPhysCanvas(){
   }
   function draw(){
     t+=.018;ctx.clearRect(0,0,W,H);
-    ctx.strokeStyle='rgba(255,140,0,.04)';ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(255,149,0,.04)';ctx.lineWidth=1;
     for(let x=0;x<W;x+=80){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
     for(let y=0;y<H;y+=80){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    nds.forEach((n,i)=>{if(!n.active)return;nds.slice(i+1).forEach(m=>{if(!m.active)return;const dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){ctx.beginPath();ctx.strokeStyle=`rgba(255,140,0,${(1-d/160)*.2})`;ctx.lineWidth=.8;ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}});});
-    nds.forEach(n=>{if(!n.active)return;if(!isFinite(n.x)||!isFinite(n.y))return;const p=.6+.4*Math.sin(t+n.pulse),g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);g.addColorStop(0,`rgba(255,140,0,${.18*p})`);g.addColorStop(1,'rgba(255,140,0,0)');ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(255,140,0,${.8*p})`;ctx.arc(n.x,n.y,2*p,0,Math.PI*2);ctx.fill();});
+    nds.forEach((n,i)=>{if(!n.active)return;nds.slice(i+1).forEach(m=>{if(!m.active)return;const dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);if(d<160){ctx.beginPath();ctx.strokeStyle=`rgba(255,149,0,${(1-d/160)*.2})`;ctx.lineWidth=.8;ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);ctx.stroke();}});});
+    nds.forEach(n=>{if(!n.active)return;if(!isFinite(n.x)||!isFinite(n.y))return;const p=.6+.4*Math.sin(t+n.pulse),g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,12);g.addColorStop(0,`rgba(255,149,0,${.18*p})`);g.addColorStop(1,'rgba(255,149,0,0)');ctx.beginPath();ctx.fillStyle=g;ctx.arc(n.x,n.y,12,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.fillStyle=`rgba(255,149,0,${.8*p})`;ctx.arc(n.x,n.y,2*p,0,Math.PI*2);ctx.fill();});
     const sx=(Math.sin(t*.4)+1)/2*W;if(isFinite(sx)&&isFinite(H)){const g2=ctx.createRadialGradient(sx,H/2,0,sx,H/2,80);g2.addColorStop(0,'rgba(255,180,0,.07)');g2.addColorStop(1,'rgba(255,180,0,0)');ctx.fillStyle=g2;ctx.fillRect(0,0,W,H);}
     vig(ctx,W,H);requestAnimationFrame(draw);
   }
@@ -1602,12 +1615,13 @@ setLang(detectLang());
   </div>
   <div class="course-hero">
     <canvas id="canvas-ai"></canvas>
+    <div class="sticker" style="--rot:4deg;top:7rem;right:clamp(1.5rem,5vw,5rem)">Automation · AI</div>
     <div class="course-hero-inner">
       <a class="course-back" href="#" onclick="showPage('home')" data-i18n="back_home">Back to home</a>
       <div class="course-tag" data-i18n="course3_tag">Masterclass 03</div>
-      <h1 class="course-title" data-i18n="c3_title">AI &amp;<br><span class="accent">AUTOMATION</span></h1>
+      <h1 class="course-title course-title-glow" data-i18n="c3_title">AI &amp;<br><span class="accent">AUTOMATION</span></h1>
       <p class="course-subtitle" data-i18n="c3_sub">Stop doing manually what AI can do for you. From daily workflow automation to full custom integrations — built around your specific use case.</p>
-      <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free 15-min call</button>
+      <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_trial">Book a free 15-min call</button>
     </div>
   </div>
   <div class="pills-section">
@@ -1618,7 +1632,7 @@ setLang(detectLang());
 
   <!-- WHAT YOU LEARN -->
   <section class="learn-section reveal">
-    <div class="section-label" data-i18n="learn_label">// What you'll work on</div>
+    <div class="section-label" data-i18n="learn_label"><span class="led"></span>// What you'll work on</div>
     <div class="learn-grid">
       <div class="learn-card reveal"><div class="learn-card-icon">🧠</div><div class="learn-card-title" data-i18n="la1_t">AI literacy</div><div class="learn-card-text" data-i18n="la1_d">Understand what AI tools actually do, where they're reliable, where they fail, and how to work with them instead of around them. Not hype — practical understanding.</div></div>
       <div class="learn-card reveal"><div class="learn-card-icon">⚡</div><div class="learn-card-title" data-i18n="la2_t">Prompt engineering</div><div class="learn-card-text" data-i18n="la2_d">Writing prompts that consistently give you what you need. Techniques for structured output, role definition, chain-of-thought — applied to your real tasks, not toy examples.</div></div>
@@ -1631,7 +1645,7 @@ setLang(detectLang());
 
   <!-- WHO IS THIS FOR -->
   <section class="paths-section reveal" style="background:var(--b2);">
-    <div class="section-label" data-i18n="ai_who_label">// Who is this for</div>
+    <div class="section-label" data-i18n="ai_who_label"><span class="led"></span>// Who is this for</div>
     <p class="paths-intro" data-i18n="ai_who_intro">Two different engagements, depending on where you are and what you need.</p>
     <div class="paths-grid">
 
@@ -1696,7 +1710,7 @@ setLang(detectLang());
             <li data-i18n="ai_feat3">Iterative build with your feedback</li>
             <li data-i18n="ai_feat4">Handover + documentation + 30-day support</li>
           </ul>
-          <button class="path-cta path-cta-y" onclick="document.getElementById('ai-form-section').scrollIntoView({behavior:'smooth'})" data-i18n="ai_get_quote">Tell me your project →</button>
+          <button class="path-cta path-cta-primary" onclick="document.getElementById('ai-form-section').scrollIntoView({behavior:'smooth'})" data-i18n="ai_get_quote">Tell me your project →</button>
         </div>
       </div>
     </div>
@@ -1704,7 +1718,7 @@ setLang(detectLang());
 
   <!-- QUOTE FORM -->
   <section class="section reveal" id="ai-form-section" style="background:var(--b);">
-    <div class="section-label" data-i18n="ai_form_label">// Tell me your project</div>
+    <div class="section-label" data-i18n="ai_form_label"><span class="led"></span>// Tell me your project</div>
     <div style="max-width:700px;">
       <p class="paths-intro" data-i18n="ai_form_intro">Describe what you're trying to automate or build. I'll reply within 48h with a scoped proposal and a price estimate. No commitment required.</p>
       <div class="ai-form">
@@ -1734,7 +1748,7 @@ setLang(detectLang());
             <option value="> €5,000">Over €5,000</option>
           </select>
         </div>
-        <button class="btn btn-y" onclick="sendQuoteEmail()" data-i18n="ai_form_send" style="width:100%;text-align:center;">Send me a proposal request →</button>
+        <button class="btn btn-primary" onclick="sendQuoteEmail()" data-i18n="ai_form_send" style="width:100%;text-align:center;">Send me a proposal request →</button>
         <p class="form-note" data-i18n="ai_form_note">This opens your email client with everything pre-filled. No data is stored anywhere.</p>
       </div>
     </div>
@@ -1742,7 +1756,7 @@ setLang(detectLang());
 
   <!-- IS THIS FOR YOU -->
   <section class="for-section reveal">
-    <div class="section-label" data-i18n="for_label">// Is this for you?</div>
+    <div class="section-label" data-i18n="for_label"><span class="led"></span>// Is this for you?</div>
     <div class="for-split">
       <div>
         <div class="for-col-title good" data-i18n="for_yes">This is for you if…</div>
@@ -1768,7 +1782,7 @@ setLang(detectLang());
   <section class="cta-section reveal">
     <div class="cta-title" data-i18n="cta3_title">YOUR TIME IS<br><span class="y">WORTH</span><br>MORE THAN THIS.</div>
     <p class="cta-sub" data-i18n="cta3_sub">Let's find the one thing AI can take off your plate this week. Free 15-min call — no pitch, just a conversation.</p>
-    <button class="btn btn-y" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
+    <button class="btn btn-primary" data-cal-link="fabio-marchiano/15min" data-cal-namespace="fabio-marchiano" data-cal-config='{"layout":"month_view"}' data-i18n="book_call_short">Book a free 15-min call</button>
   </section>
   <footer><span class="footer-copy">© 2025 Fabio Marchianò</span><div class="footer-socials"><a href="https://www.linkedin.com/in/fabiomarchiano/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/fmarchiano" target="_blank" rel="noopener">GitHub</a><button class="email-copy-btn" onclick="copyEmail()">Email</button></div></footer>
 </div>
@@ -1788,7 +1802,7 @@ function initAiCanvas(){
   aiInit=true;
   const cv=document.getElementById('canvas-ai'),ctx=cv.getContext('2d');
   let W,H,t=0,nodes=[];
-  const COL='0,230,120';
+  const COL='155,48,255';
 
   function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;buildNodes();}
 
@@ -1842,7 +1856,7 @@ function initAiCanvas(){
     });
     if(!isFinite(W)||!isFinite(H))return void requestAnimationFrame(draw);
     const v=ctx.createRadialGradient(W/2,H/2,H*.2,W/2,H/2,H*.85);
-    v.addColorStop(0,'rgba(8,8,8,0)');v.addColorStop(1,'rgba(8,8,8,.88)');
+    v.addColorStop(0,'rgba(10,10,10,0)');v.addColorStop(1,'rgba(10,10,10,.88)');
     ctx.fillStyle=v;ctx.fillRect(0,0,W,H);
     requestAnimationFrame(draw);
   }
