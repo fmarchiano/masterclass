@@ -187,6 +187,7 @@ body::before{content:'';position:fixed;inset:0;z-index:200;background-image:url(
 .form-note{font-family:var(--mo);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,245,255,.3);margin-top:.5rem;text-align:center;}
 @media(max-width:600px){.courses-grid{grid-template-columns:1fr!important;}}
 canvas{position:absolute;inset:0;z-index:0;}
+#canvas-home{position:fixed;inset:0;z-index:0;pointer-events:none;}
 .cur,.cur-r{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
 .cur{width:9px;height:9px;background:var(--accent);border-radius:50%;}
 .cur-r{width:34px;height:34px;border:1.5px solid rgba(0,245,255,.5);border-radius:50%;z-index:9998;transition:all .13s ease;}
@@ -557,6 +558,7 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
 
 <!-- ══ HOME ══ -->
 <div class="page active" id="page-home">
+  <canvas id="canvas-home"></canvas>
 
   <section class="section reveal">
     <div class="section-label"><span class="led"></span>// PhD · Scientist · Educator</div>
