@@ -239,7 +239,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 
 /* BIO */
 .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;}
-@media(max-width:700px){.bio-grid{grid-template-columns:1fr;gap:2.5rem;}}
+@media(max-width:700px){.bio-grid{grid-template-columns:1fr 100px;gap:1.2rem;align-items:start;}
+.about-photo{max-width:100%;margin-bottom:.6rem;}
+.bio-facts{gap:.8rem;}}
 .bio-text{font-size:clamp(1rem,1.8vw,1.25rem);font-weight:300;line-height:1.7;color:var(--dim2);}
 .bio-text strong{color:var(--w);font-weight:600;}
 .bio-text .hl{color:var(--accent);}
@@ -327,6 +329,12 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
   align-items:start;
 }
 @media(max-width:720px){.paths-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){
+  .paths-section{padding:clamp(2rem,5vh,3.5rem) clamp(1.5rem,5vw,3rem);}
+  .path-pricing{padding:1.2rem 1.2rem 1.2rem;}
+  .path-features{margin-bottom:.8rem;}
+  .paths-grid{gap:.8rem;}
+}
 
 .path-card{
   border:1px solid rgba(0,245,255,.12);
