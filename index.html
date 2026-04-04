@@ -238,10 +238,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .section-label::after{content:'';flex:1;height:1px;background:rgba(0,245,255,.15);max-width:120px;}
 
 /* BIO */
-.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;max-width:1100px;}
-@media(max-width:700px){.bio-grid{grid-template-columns:1fr 100px;gap:1.2rem;align-items:start;}
-.about-photo{max-width:100%;margin-bottom:.6rem;}
-.bio-facts{gap:.8rem;}}
+.bio-grid{display:grid;grid-template-columns:1fr auto;gap:4rem;max-width:1100px;align-items:start;margin-bottom:2rem;}
+.bio-facts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1100px;margin-top:.5rem;}
+@media(max-width:700px){.bio-grid{grid-template-columns:1fr 110px;gap:1.2rem;}
+.about-photo{max-width:110px;margin-bottom:0;}
+.bio-facts{grid-template-columns:1fr;gap:1rem;}}
 .bio-text{font-size:clamp(1rem,1.8vw,1.25rem);font-weight:300;line-height:1.7;color:var(--dim2);}
 .bio-text strong{color:var(--w);font-weight:600;}
 .bio-text .hl{color:var(--accent);}
@@ -294,6 +295,7 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 
 /* COURSE HERO */
 .course-hero{position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(6rem,12vh,9rem) clamp(1.5rem,5vw,5rem) clamp(1.5rem,5vw,5rem);}
+@media(max-width:700px){.course-hero{height:auto;padding-bottom:3.5rem;}}
 .course-hero-inner{position:relative;z-index:2;}
 .course-back{font-family:var(--mo);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:3rem;transition:color .2s;}
 .course-back:hover{color:var(--accent);}
@@ -573,13 +575,13 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
     <p class="about-tagline" data-i18n="hero_tagline">I make hard things click. Science and code, taught by someone who actually does both.</p>
     <div class="bio-grid">
       <div class="bio-text" data-i18n="bio_text">I hold a <strong>PhD in computational biology</strong> and spent 8+ years doing research — cancer genomics, developmental biology, building tools published in top journals.<br><br>But my real superpower is something else: I'm genuinely obsessed with <strong>many things at once</strong>. Science, philosophy, music, code, sports, travel. That breadth is exactly what makes me a different kind of teacher.<br><br>When you're stuck on a physics concept, I find the angle that fits <em>your</em> world — not a generic textbook explanation. When code feels abstract, I connect it to something you already love. I don't translate difficulty away. I <strong>find the door that was always there</strong>.<br><br>Every session comes with custom materials: slides, handouts, and exercises built around your specific questions. Not recycled content — made for you.</div>
-      <div class="bio-facts">
-        <img class="about-photo reveal" src="pic/about.jpg" alt="Fabio Marchianò">
-        <div class="fact reveal"><div class="fact-title" data-i18n="fact1_title">Research background</div><div class="fact-text" data-i18n="fact1_text">Precision oncology · Cancer genomics · Developmental biology · Multi-omics · Published in Nucleic Acids Research & Scientific Reports</div></div>
-        <div class="fact reveal"><div class="fact-title" data-i18n="fact2_title">Included in every session</div><div class="fact-text" data-i18n="fact2_text">Custom slides · Personalized handouts · Exercises · Session notes · 24h async support</div></div>
-        <div class="fact reveal"><div class="fact-title" data-i18n="fact3_title">Teaching philosophy</div><div class="fact-text" data-i18n="fact3_text">I adapt to how you think — not the other way around. Your questions drive the session. Your project is the curriculum.</div></div>
-        <div class="fact reveal"><div class="fact-title" data-i18n="fact4_title">Based</div><div class="fact-text" data-i18n="fact4_text">Verbania / Milan / Lugano · Thailand (Dec–Mar) · Online worldwide</div></div>
-      </div>
+      <img class="about-photo reveal" src="pic/about.jpg" alt="Fabio Marchianò">
+    </div>
+    <div class="bio-facts">
+      <div class="fact reveal"><div class="fact-title" data-i18n="fact1_title">Research background</div><div class="fact-text" data-i18n="fact1_text">Precision oncology · Cancer genomics · Developmental biology · Multi-omics · Published in Nucleic Acids Research & Scientific Reports</div></div>
+      <div class="fact reveal"><div class="fact-title" data-i18n="fact2_title">Included in every session</div><div class="fact-text" data-i18n="fact2_text">Custom slides · Personalized handouts · Exercises · Session notes · 24h async support</div></div>
+      <div class="fact reveal"><div class="fact-title" data-i18n="fact3_title">Teaching philosophy</div><div class="fact-text" data-i18n="fact3_text">I adapt to how you think — not the other way around. Your questions drive the session. Your project is the curriculum.</div></div>
+      <div class="fact reveal"><div class="fact-title" data-i18n="fact4_title">Based</div><div class="fact-text" data-i18n="fact4_text">Verbania / Milan / Lugano · Thailand (Dec–Mar) · Online worldwide</div></div>
     </div>
     <div class="polymath-strip reveal">
       <span class="poly-intro" data-i18n="poly_intro">Talks to you through</span>
