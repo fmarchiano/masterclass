@@ -5,3 +5,8 @@ style-card.html
 index_backup.html
 .claude/
 .superpowers/
+.playwright-mcp/
+inperson-*.png
+*-overlay.png
+*-scrolled.png
+*-fixed.png
