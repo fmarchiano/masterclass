@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fabio Marchianò — Masterclass</title>
+<title>Fabio Marchianò</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=VT323&family=Permanent+Marker&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -523,6 +523,23 @@ footer{padding:3rem clamp(1.5rem,5vw,5rem);display:flex;justify-content:space-be
 #page-code{--accent:var(--acid);}
 #page-physics{--accent:var(--amber);}
 #page-ai{--accent:var(--purple);}
+#page-publications{--accent:var(--mag);}
+/* Publications page */
+.pub-wrap{max-width:860px;margin:0 auto;padding:7rem clamp(1.5rem,5vw,3rem) 5rem;}
+.pub-heading{font-family:var(--bb);font-size:clamp(3rem,6vw,5rem);color:var(--accent);line-height:1;margin-bottom:.4rem;}
+.pub-subtitle{font-family:var(--mo);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,236,224,.4);margin-bottom:3rem;}
+.pub-year-sep{display:flex;align-items:center;gap:1rem;margin:2.5rem 0 1.2rem;}
+.pub-year-sep hr{flex:1;border:none;border-top:1px solid rgba(255,0,170,.2);}
+.pub-year-label{font-family:var(--bb);font-size:1.1rem;letter-spacing:.2em;color:var(--accent);}
+.pub-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:.9rem;position:relative;}
+.pub-card.first-author{border-left:3px solid var(--mag);}
+.pub-badge{font-family:var(--vt);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;background:var(--mag);color:var(--b);padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:.55rem;}
+.pub-title{font-family:var(--mo);font-size:.92rem;color:var(--w);font-weight:400;margin-bottom:.35rem;line-height:1.45;}
+.pub-authors{font-family:var(--mo);font-size:.7rem;color:rgba(240,236,224,.42);margin-bottom:.3rem;}
+.pub-journal{font-family:var(--bb);font-size:.95rem;letter-spacing:.08em;color:var(--accent);margin-bottom:.35rem;}
+.pub-doi a{font-family:var(--mo);font-size:.65rem;color:rgba(240,236,224,.32);text-decoration:none;transition:color .2s;}
+.pub-doi a:hover{color:var(--accent);}
+@media(max-width:600px){.pub-card{padding:.9rem 1rem;}.pub-title{font-size:.82rem;}}
 
 /* CRT scanlines */
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.07) 2px,rgba(0,0,0,.07) 4px);pointer-events:none;z-index:199;}
@@ -552,7 +569,6 @@ Cal.ns["fabio-marchiano"]("ui",{hideEventTypeDetails:false,layout:"month_view",c
 <div class="cur-r" id="curR"></div>
 
 <nav>
-  <a class="nav-logo" href="#" onclick="showPage('home')">FM.SYS</a>
   <ul class="nav-center">
     <li><a href="#" onclick="showPage('home')" id="nav-home" class="active" data-i18n="nav_home">Home</a></li>
     <li><a href="#" onclick="showPage('code')" id="nav-code" data-i18n="nav_code">Code &amp; Art</a></li>
