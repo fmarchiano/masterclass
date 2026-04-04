@@ -145,7 +145,7 @@ Cards have `.reveal` class.
 | Title | Prednisolone rescues Duchenne muscular dystrophy phenotypes in human pluripotent stem cell-derived skeletal muscle in vitro |
 | Journal | PNAS |
 | Authors | et al. (Marchianò F co-author) |
-| DOI | https://doi.org/10.1073/pnas.2022960118 ⚠️ verify last digit |
+| DOI | https://doi.org/10.1073/pnas.2022960118 |
 | First author | No |
 
 **Paper 4**
@@ -183,8 +183,8 @@ FR and IT fall back to EN via existing `T[l][k]??T['en'][k]` pattern. Optional: 
 
 ---
 
-## Open question
-- PNAS DOI: user provided `10.1073/pnas.202296011` (9 digits) — likely should be `10.1073/pnas.2022960118` (12 digits). **Verify before publishing.**
+## Notes
+- PNAS DOI confirmed by user: `10.1073/pnas.2022960118`
 - Co-author full author lists not provided — cards show `et al.` with a parenthetical note. If full lists are provided later, they can be added as a `data-authors` attribute and truncated with "show more".
 
 ---
